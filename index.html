@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anir Ouafi - Professional CV</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="icon" href="anir.png" type="image/png">
+
+    <style>
+        :root {
+            --bg-color: #f6f8f8;
+            --text-color: #2d3748;
+            --primary-color: #2c5282;
+            --secondary-color: #38a169;
+            --accent-color: #d69e2e;
+            --card-bg: #f0ede8;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+            padding: 3rem 0;
+                background: linear-gradient(135deg, 
+        rgba(44, 82, 130, 0.2), /* var(--primary-color) with 70% opacity */
+        rgba(56, 161, 105, 0.5) /* var(--secondary-color) with 70% opacity */
+    );
+            color: var(--text-color);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 1rem 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .section {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .skill-button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin: 0.25rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .skill-button:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .skill-button.active {
+            background-color: var(--accent-color);
+        }
+
+        .experience-item, .education-item, .certification-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .experience-item:hover, .education-item:hover, .certification-item:hover {
+            background-color: var(--bg-color);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .theme-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        .theme-switch:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .dark-mode {
+            --bg-color: #1a202c;
+            --text-color: #e2e8f0;
+            --primary-color: #63b3ed;
+
+            --card-bg: #2d3743;
+        }
+
+        .skill-details {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .project-details {
+            background-color: var(--bg-color);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            box-shadow: var(--shadow);
+            transition: opacity 0.3s, max-height 0.3s;
+            overflow: hidden;
+        }
+        .project-details.hover {
+            background-color: #fff;
+        }
+        .project-details.hidden {
+            opacity: 0;
+            max-height: 0;
+            padding: 0;
+            margin-top: 0;
+        }
+
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+        }
+
+.certification-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.certification-item {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: var(--shadow);
+}
+
+.certification-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.certification-name {
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.certification-link {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.certification-link:hover {
+    background-color: var(--primary-color);
+}
+
+header a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+header a:hover {
+    opacity: 0.8;
+}
+
+.social-icons {
+    margin-top: 1rem;
+}
+
+.icon-link {
+    display: inline-block;
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.icon-link:hover {
+    transform: translateY(-3px);
+    opacity: 0.8;
+}
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <div id="particles-js"></div>
+    <button class="theme-switch">Dark Mode</button>
+    <div class="container">
+
+<header>
+    <img src="anir.png" alt="Anir Ouafi" class="profile-image">
+    <h1>Anir Ouafi</h1>
+    <p>Marketing Graduate from the National School of Business and Management</p>
+    <p>
+        <a href="https://www.google.com/maps/place/Inezgane+80000/" target="_blank">Inezgane, Souss-Massa, Morocco</a> | 
+        <a href="mailto:ouafianir@gmail.com">ouafianir@gmail.com</a> | 
+        <a href="tel:+212629915388">+212 629915388</a>
+    </p>
+    <div class="social-icons">
+        <a href="mailto:ouafianir@gmail.com" target="_blank" class="icon-link">
+            <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://wa.me/212629915388" target="_blank" class="icon-link">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/ouafi/" target="_blank" class="icon-link">
+            <i class="fab fa-linkedin"></i>
+        </a>
+    </div>
+</header>
+
+        <section class="section" id="summary">
+            <h2>Professional Summary</h2>
+            <p>Marketing graduate from the National School of Commerce and Management (ENCG) in Agadir, with a strong academic background in marketing complemented by hands-on experience. Possessing an analytical mindset and a high capacity for learning, which enables quick adaptation to new tools and technologies.</p>
+        </section>
+
+        <section class="section" id="experience">
+            <h2>Experience</h2>
+            <div id="experience-items"></div>
+        </section>
+
+        <section class="section" id="education">
+            <h2>Education</h2>
+            <div id="education-items"></div>
+        </section>
+
+        <section class="section" id="certifications">
+            <h2>Certifications</h2>
+            <div id="certification-items"></div>
+        </section>
+
+        <section class="section" id="skills">
+            <h2>Skills</h2>
+            <div id="skill-buttons"></div>
+            <div id="skill-details" class="hidden"></div>
+        </section>
+
+        <section class="section" id="languages">
+            <h2>Languages</h2>
+            <ul>
+                <li>Tamazight: Native</li>
+                <li>Arabic: Bilingual</li>
+                <li>French: Professional proficiency</li>
+                <li>English: Professional proficiency</li>
+                <li>Spanish: Elementary</li>
+            </ul>
+        </section>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        const experiences = [
+            {
+                title: "Digital Marketing Assistant",
+                company: "Media Man",
+                period: "February 2024 - May 2024",
+                location: "Agadir, Souss-Massa, Morocco",
+                responsibilities: [
+                    "Developing scripts, storyboards, concepts, and copywriting for social media image and video posts",
+                    "Participating in content strategy development",
+                    "Evaluating website user experience and assisting with SEO improvements",
+                    "Observing advertising campaign management",
+                    "Assisting models with script memorization and delivery"
+                ]
+            },
+            {
+                title: "Advertising Campaign Manager and Seller",
+                company: "Horizon Pack",
+                period: "May 2023 - August 2023",
+                location: "Inezgane, Souss-Massa, Morocco",
+                responsibilities: [
+                    "Gathering information and qualitative data to craft an advertising narrative",
+                    "Developing script, storyboard, and visual concepts for a promotional video",
+                    "Collaborating with an external production team and overseeing video creation",
+                    "Launching and monitoring of advertising campaigns on Meta and Google Ads platforms",
+                    "Receiving and processing orders from new customers"
+                ]
+            },
+            {
+                title: "Community Manager",
+                company: "Horizon Pack",
+                period: "June 2022 - September 2022",
+                location: "Inezgane, Souss-Massa, Morocco",
+                responsibilities: [
+                    "Streamlining social media presence",
+                    "Establishing company profiles on Google My Business and Meta Business Suite",
+                    "Developing a WordPress website featuring product catalogs",
+                    "Generating commercial posts featuring company products through photography and editing",
+                    "Managing online engagement by responding to messages and comments"
+                ]
+            }
+        ];
+
+        const education = [
+            {
+                degree: "Master's degree in Marketing",
+                school: "National School of Business and Management in Agadir",
+                period: "2021 - 2024",
+                finalYearProject: true
+            },
+            {
+                degree: "Bac +2, Economics and Business - Scientific Option",
+                school: "CPGE - Classes préparatoires aux grandes écoles",
+                period: "2019 - 2021"
+            },
+            {
+                degree: "Baccalaureate, Mathematical Sciences",
+                school: "Abdallah Ibn Yassine High School - Inezgane",
+                period: "2019",
+                grade: "Grade: mention bien"
+            }
+        ];
+
+        const certifications = [
+            { name: "Google Analytics Certification", link: "https://skillshop.credential.net/d6c9f066-29bc-4a2b-9368-5f91abfefc6b" },
+            { name: "LinkedIn Marketing Solutions Fundamentals", link: "https://verify.skilljar.com/c/m8ywwzkqvfax" },
+            { name: "Semrush SEO Crash Course", link: "https://static.semrush.com/academy/certificates/d1264bc907/anir-ouafi_2.pdf" }
+        ];
+
+        const skills = [
+            "Digital Marketing", "Data-driven Marketing", "Marketing", "Content Analysis",
+            "Online Content Creation", "Marketing Campaign Management", "Data Analysis",
+            "Google Analytics", "Meta Ads", "Google Ads", "LinkedIn Advertising",
+            "Search Engine Optimization (SEO)", "Online Presence", "Strategic Marketing",
+            "Strategic Planning", "Management", "Economic Intelligence", "Hypothesis Testing",
+            "Contextual Analysis", "Contextual Advertising", "Problem Solving", "Critical Thinking",
+            "Leadership", "Public Speaking", "Presentation Skills", "WordPress Development",
+            "Photography", "Image Editing", "Adobe Illustrator", "B2B Marketing", "Negotiation",
+            "Customer Service", "Competitive Analysis", "Community Management",
+            "Social Media Management", "Content Planning", "Concept Development", "Scriptwriting",
+            "Storyboarding", "Copywriting", "Microsoft Excel", "JavaScript", "Python", "PHP",
+            "HTML", "CSS", "Microsoft PowerPoint", "SQL"
+        ];
+
+        const skillDetails = {
+            "Digital Marketing": ["Media Man", "Horizon Pack", "ENCG Final Year Research"],
+            "Data-driven Marketing": ["Google Analytics Certification", "ENCG Final Year Research"],
+            "Marketing": ["Media Man", "Horizon Pack", "ENCG Agadir", "ENCG Final Year Research"],
+            "Content Analysis": ["Media Man", "ENCG Final Year Research"],
+            "Online Content Creation": ["Media Man"],
+            "Marketing Campaign Management": ["Horizon Pack"],
+            "Data Analysis": ["ENCG Final Year Research"],
+            "Google Analytics": ["Google Analytics Certification"],
+            "Meta Ads": ["Horizon Pack"],
+            "Google Ads": ["Horizon Pack", "Self-Learned"],
+            "LinkedIn Advertising": ["LinkedIn Marketing Solutions Fundamentals"],
+            "Search Engine Optimization (SEO)": ["Semrush SEO Crash Course"],
+            "Online Presence": ["Horizon Pack"],
+            "Strategic Marketing": ["ENCG Agadir"],
+            "Strategic Planning": ["ENCG Agadir"],
+            "Management": ["ENCG Agadir"],
+            "Economic Intelligence": ["ENCG Agadir"],
+            "Hypothesis Testing": ["ENCG Final Year Research"],
+            "Contextual Analysis": ["ENCG Final Year Research"],
+            "Contextual Advertising": ["ENCG Final Year Research"],
+            "Problem Solving": ["CPGE", "ENCG Final Year Research"],
+            "Critical Thinking": ["CPGE"],
+            "Leadership": ["CPGE"],
+            "Public Speaking": ["CPGE"],
+            "Presentation Skills": ["CPGE"],
+            "WordPress Development": ["Horizon Pack"],
+            "Photography": ["Horizon Pack"],
+            "Image Editing": ["Horizon Pack"],
+            "Adobe Illustrator": ["Horizon Pack"],
+            "B2B Marketing": ["Horizon Pack"],
+            "Negotiation": ["Horizon Pack"],
+            "Customer Service": ["Horizon Pack"],
+            "Competitive Analysis": ["Media Man"],
+            "Community Management": ["Media Man", "Horizon Pack"],
+            "Social Media Management": ["Media Man"],
+            "Content Planning": ["Media Man"],
+            "Concept Development": ["Media Man"],
+            "Scriptwriting": ["Media Man", "Horizon Pack"],
+            "Storyboarding": ["Media Man", "Horizon Pack"],
+            "Copywriting": ["Media Man"],
+            "Microsoft Excel": ["Self-Learned"],
+            "JavaScript": ["Self-Learned"],
+            "Python": ["Self-Learned"],
+            "PHP": ["Self-Learned"],
+            "HTML": ["Self-learned"],
+            "CSS": ["Self-learned"],
+            "Microsoft PowerPoint": ["Self-learned"],
+            "SQL": ["Self-learned"]
+        };
+
+function populateSkills() {
+            const skillButtons = document.getElementById('skill-buttons');
+            skills.forEach(skill => {
+                const button = document.createElement('button');
+                button.textContent = skill;
+                button.classList.add('skill-button');
+                button.addEventListener('click', () => showSkillDetails(skill));
+                skillButtons.appendChild(button);
+            });
+        }
+
+        function showSkillDetails(skill) {
+            const skillDetailsElement = document.getElementById('skill-details');
+            const button = event.target;
+            
+            if (button.classList.contains('active')) {
+                button.classList.remove('active');
+                skillDetailsElement.classList.add('hidden');
+            } else {
+                document.querySelectorAll('.skill-button').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                const details = skillDetails[skill] || ["professional experience and academic studies"];
+                skillDetailsElement.innerHTML = `<p>"${skill}": This skill was developed through: ${details.join(", ")}.</p>`;
+                skillDetailsElement.classList.remove('hidden');
+            }
+        }
+
+        function populateExperience() {
+            const experienceItems = document.getElementById('experience-items');
+            experienceItems.innerHTML = ''; // Clear existing content
+            experiences.forEach(exp => {
+                const item = document.createElement('div');
+                item.classList.add('experience-item');
+                item.innerHTML = `
+                    <h3>${exp.title} at ${exp.company}</h3>
+                    <p>${exp.period} | ${exp.location}</p>
+                    <ul>
+                        ${exp.responsibilities.map(resp => `<li>${resp}</li>`).join('')}
+                    </ul>
+                `;
+                experienceItems.appendChild(item);
+            });
+        }
+
+        function populateEducation() {
+            const educationItems = document.getElementById('education-items');
+            education.forEach(edu => {
+                const item = document.createElement('div');
+                item.classList.add('education-item');
+                item.innerHTML = `
+                    <h3>${edu.degree}</h3>
+                    <p>${edu.school}, ${edu.period}</p>
+                    ${edu.grade ? `<p>${edu.grade}</p>` : ''}
+                `;
+                if (edu.finalYearProject) {
+                    const projectButton = document.createElement('button');
+                    projectButton.classList.add('skill-button');
+                    projectButton.textContent = 'View Final Year Project Details';
+                    item.appendChild(projectButton);
+
+                    const projectDetails = document.createElement('div');
+                    projectDetails.classList.add('project-details', 'hidden');
+                    projectDetails.innerHTML = `
+                        <h3>Final Year Research Project</h3>
+                        <p>Theme: "Content Marketing Effectiveness in The Moroccan Context: Evaluation and Analysis"</p>
+                        <p>Period: Mar 2024 - May 2024</p>
+                        <p>Associated with ENCG - National School of Business and Management of Agadir</p>
+                        <p>I conducted this research for my final year at ENCG Agadir, interning at Media Man, a social media marketing agency based in Agadir, monitored by its director Mr. Mohamed Gallab, under the supervision of Dr. El Boukhari Majda, and jury members including her, along with Dr. Belhiyah Khadija and Dr. Saidi Asma, all of them are ENCG Agadir professor-researchers.</p>
+                        <p>In this research, I conducted an in-depth study focusing on the effectiveness of content marketing for businesses targeting Moroccan audiences. Implementing a quantitative approach and analyzing a substantial sample of 10,189 social media posts, the study identified some specific variables that significantly impact the studied engagement metrics (likes, comments, shares) and highlighted several other factors showing significant differences in engagement.</p>
+                        <h4>Key Findings:</h4>
+                        <ul>
+                            <li>Distribution Channel: Facebook outperformed Instagram, significantly increasing median likes and comments compared to Instagram.</li>
+                            <li>Business Category: B2C content saw the highest median engagement.</li>
+                            <li>Content Category: Humor/entertainment content significantly increased engagement.</li>
+                            <li>Day of the Week: Weekends boosted engagement, while some weekdays drastically lowered it.</li>
+                            <li>Hashtags: Unexpectedly, posts with 0-1 hashtag generated the highest median engagement across metrics.</li>
+                            <li>Hour: Midday (12pm) and late evening (10pm) notably increased Facebook likes, while morning (8am) significantly improved comments and shares.</li>
+                            <li>Minute: Posting on Facebook exactly at the 30th minute of any hour maximized engagement.</li>
+                            <li>Posting Frequency: Higher posting frequency correlated moderately with increased likes and weakly with comments/shares.</li>
+                            <li>Complexity: Engagement metrics decrease with complexity.</li>
+                        </ul>
+                        <p>Overall, this report serves as a pioneering effort in the field, providing valuable insights for businesses aiming to optimize their content marketing strategies and engage more effectively with Moroccan audiences.</p>
+                    `;
+                    item.appendChild(projectDetails);
+
+                    projectButton.addEventListener('click', () => {
+                        projectDetails.classList.toggle('hidden');
+                    });
+                }
+                educationItems.appendChild(item);
+            });
+        }
+
+function populateCertifications() {
+    const certificationItems = document.getElementById('certification-items');
+    certificationItems.classList.add('certification-grid');
+    certifications.forEach(cert => {
+        const item = document.createElement('div');
+        item.classList.add('certification-item');
+        item.innerHTML = `
+            <div class="certification-name">${cert.name}</div>
+            <a href="${cert.link}" target="_blank" class="certification-link">View Credential</a>
+        `;
+        certificationItems.appendChild(item);
+    });
+}
+
+        function initBackgroundAnimation() {
+            particlesJS("particles-js", {
+                particles: {
+                    number: { value: 80, density: { enable: true, value_area: 800 } },
+                    color: { value: "#3182ce" },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.5, random: false },
+                    size: { value: 3, random: true },
+                    line_linked: { enable: true, distance: 150, color: "#3182ce", opacity: 0.4, width: 1 },
+                    move: { enable: true, speed: 6, direction: "none", random: false, straight: false, out_mode: "out", bounce: false }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
+                    modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+                },
+                retina_detect: true
+            });
+        }
+
+function toggleDarkMode() {
+    const body = document.body;
+    const themeSwitch = document.querySelector('.theme-switch');
+    
+    body.classList.toggle('dark-mode');
+    
+    if (body.classList.contains('dark-mode')) {
+        themeSwitch.textContent = 'Light Mode';
+    } else {
+        themeSwitch.textContent = 'Dark Mode';
+    }
+}
+
+        function initAnimations() {
+            const sections = document.querySelectorAll('.section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        }
+
+        function animateSkillButtons() {
+            const buttons = document.querySelectorAll('.skill-button');
+            buttons.forEach((button, index) => {
+                button.style.opacity = 0;
+                button.style.transform = 'scale(0.8)';
+                button.style.transition = 'opacity 0.3s, transform 0.3s';
+                button.style.transitionDelay = `${index * 0.05}s`;
+
+                setTimeout(() => {
+                    button.style.opacity = 1;
+                    button.style.transform = 'scale(1)';
+                }, 100);
+            });
+        }
+
+        window.onload = function() {
+            populateSkills();
+            populateExperience();
+            populateEducation();
+            populateCertifications();
+            initBackgroundAnimation();
+            initAnimations();
+            animateSkillButtons();
+            document.querySelector('.theme-switch').addEventListener('click', toggleDarkMode);
+        };
+    </script>
+<div style="width: 100%; text-align: center;">
+This webpage was entirely developed from scratch by me, Anir Ouafi, using AI.
+  <div class="social-icons" style="margin-top: 10px;">
+    <a href="mailto:ouafianir@gmail.com" target="_blank" class="icon-link">
+      <i class="fas fa-envelope"></i>
+    </a>
+    <a href="https://wa.me/212629915388" target="_blank" class="icon-link">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="https://www.linkedin.com/in/ouafi/" target="_blank" class="icon-link">
+      <i class="fab fa-linkedin"></i>
+    </a>
+  </div>
+</div>
+
+</body>
+</html>
