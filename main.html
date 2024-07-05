@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anir Ouafi - Professional CV</title>
+    <title data-translate="Anir Ouafi - Professional CV">Anir Ouafi - Professional CV</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="icon" href="anir.png" type="image/png">
@@ -41,10 +41,10 @@
             position: relative;
             overflow: hidden;
             padding: 3rem 0;
-                background: linear-gradient(135deg, 
-        rgba(44, 82, 130, 0.2), /* var(--primary-color) with 70% opacity */
-        rgba(56, 161, 105, 0.5) /* var(--secondary-color) with 70% opacity */
-    );
+            background: linear-gradient(135deg, 
+                rgba(44, 82, 130, 0.2),
+                rgba(56, 161, 105, 0.5)
+            );
             color: var(--text-color);
             border-radius: 10px;
             box-shadow: var(--shadow);
@@ -153,7 +153,6 @@
             --bg-color: #1a202c;
             --text-color: #e2e8f0;
             --primary-color: #63b3ed;
-
             --card-bg: #2d3743;
         }
 
@@ -211,166 +210,238 @@
             }
         }
 
-.certification-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
+        .certification-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .certification-item {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: var(--shadow);
+        }
+
+        .certification-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .certification-name {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .certification-link {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .certification-link:hover {
+            background-color: var(--primary-color);
+        }
+
+        header a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        header a:hover {
+            opacity: 0.8;
+        }
+
+        .social-icons {
+            margin-top: 1rem;
+        }
+
+        .icon-link {
+            display: inline-block;
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .icon-link:hover {
+            transform: translateY(-3px);
+            opacity: 0.8;
+        }
+
+        .language-switch {
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        .language-switch:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .language-options {
+            position: fixed;
+            top: 120px;
+            right: 20px;
+            display: none;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        .language-option {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin-top: 5px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .language-option:hover {
+            background-color: var(--secondary-color);
+        }
+		
+		
+		
+.always-ltr {
+    direction: ltr;
+    text-align: left;
 }
 
-.certification-item {
-    background-color: var(--card-bg);
-    border-radius: 8px;
-    padding: 1.5rem;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: var(--shadow);
+[dir="rtl"] .always-ltr {
+    unicode-bidi: embed;
 }
 
-.certification-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
 
-.certification-name {
-    font-weight: bold;
-    margin-bottom: 1rem;
-    color: var(--primary-color);
-}
-
-.certification-link {
+.language-button {
     display: inline-block;
-    background-color: var(--secondary-color);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    text-decoration: none;
-    transition: background-color 0.3s;
-}
-
-.certification-link:hover {
     background-color: var(--primary-color);
-}
-
-header a {
-    color: var(--text-color);
+    color: white;
+    border: none;
+    padding: 0rem 1rem;
+    margin: 0.25rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
     text-decoration: none;
-    transition: opacity 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-header a:hover {
-    opacity: 0.8;
+.language-button:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-.social-icons {
-    margin-top: 1rem;
-}
-
-.icon-link {
-    display: inline-block;
-    margin: 0 0.5rem;
-    font-size: 1.5rem;
-    color: var(--text-color);
-    transition: transform 0.3s, opacity 0.3s;
-}
-
-.icon-link:hover {
-    transform: translateY(-3px);
-    opacity: 0.8;
+.language-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
     </style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </head>
+
+
 <body>
     <div id="particles-js"></div>
-    <button class="theme-switch">Dark Mode</button>
+    <button class="theme-switch" data-translate="Dark Mode">Dark Mode</button>
+    <button class="language-switch" data-translate="Language">Language</button>
+    <div class="language-options">
+        <button class="language-option" data-lang="en">English</button>
+        <button class="language-option" data-lang="fr">Français</button>
+        <button class="language-option" data-lang="ar">العربية</button>
+        <button class="language-option" data-lang="zgh">ⵜⴰⵎⴰⵣⵉⵖⵜ</button>
+    </div>
     <div class="container">
 
-<header>
-    <img src="anir.png" alt="Anir Ouafi" class="profile-image">
-    <h1>Anir Ouafi</h1>
-    <p>Marketing Graduate from the National School of Business and Management</p>
-    <p>
-        <a href="https://www.google.com/maps/place/Inezgane+80000/" target="_blank">Inezgane, Souss-Massa, Morocco</a> | 
-        <a href="mailto:ouafianir@gmail.com">ouafianir@gmail.com</a> | 
-        <a href="tel:+212629915388">+212 629915388</a>
-    </p>
-    <div class="social-icons">
-        <a href="mailto:ouafianir@gmail.com" target="_blank" class="icon-link">
-            <i class="fas fa-envelope"></i>
-        </a>
-        <a href="https://wa.me/212629915388" target="_blank" class="icon-link">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/ouafi/" target="_blank" class="icon-link">
-            <i class="fab fa-linkedin"></i>
-        </a>
-    </div>
-</header>
+        <header>
+            <img src="anir.png" alt="Anir Ouafi" class="profile-image">
+            <h1 data-translate="Anir Ouafi">Anir Ouafi</h1>
+            <p data-translate="Marketing Graduate">Marketing Graduate from the National School of Business and Management</p>
+            <p>
+                <a href="https://www.google.com/maps/place/Inezgane+80000/" target="_blank" data-translate="Location">Inezgane, Souss-Massa, Morocco</a> | 
+                <a href="mailto:ouafianir@gmail.com">ouafianir@gmail.com</a> | 
+                <a href="tel:+212629915388">+212 629915388</a>
+            </p>
+            <div class="social-icons">
+                <a href="mailto:ouafianir@gmail.com" target="_blank" class="icon-link">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://wa.me/212629915388" target="_blank" class="icon-link">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/ouafi/" target="_blank" class="icon-link">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </header>
 
         <section class="section" id="summary">
-            <h2>Professional Summary</h2>
-            <p>Marketing graduate from the National School of Commerce and Management (ENCG) in Agadir, with a strong academic background in marketing complemented by hands-on experience. Possessing an analytical mindset and a high capacity for learning, which enables quick adaptation to new tools and technologies.</p>
+            <h2 data-translate="Professional Summary">Professional Summary</h2>
+            <p data-translate="Summary Content">Marketing graduate from the National School of Commerce and Management (ENCG) in Agadir, with a strong academic background in marketing complemented by hands-on experience. Possessing an analytical mindset and a high capacity for learning, which enables quick adaptation to new tools and technologies.</p>
         </section>
 
         <section class="section" id="experience">
-            <h2>Experience</h2>
+            <h2 data-translate="Experience">Experience</h2>
             <div id="experience-items"></div>
         </section>
 
         <section class="section" id="education">
-            <h2>Education</h2>
+            <h2 data-translate="Education">Education</h2>
             <div id="education-items"></div>
         </section>
 
         <section class="section" id="certifications">
-            <h2>Certifications</h2>
+            <h2 data-translate="Certifications">Certifications</h2>
             <div id="certification-items"></div>
         </section>
 
         <section class="section" id="skills">
-            <h2>Skills</h2>
+            <h2 data-translate="Skills">Skills</h2>
             <div id="skill-buttons"></div>
             <div id="skill-details" class="hidden"></div>
         </section>
 
         <section class="section" id="languages">
-            <h2>Languages</h2>
+            <h2 data-translate="Languages">Languages</h2>
             <ul>
-                <li>Tamazight: Native</li>
-                <li>Arabic: Bilingual</li>
-                <li>French: Professional proficiency</li>
-                <li>English: Professional proficiency</li>
-                <li>Spanish: Elementary</li>
+                <li>
+                    <span data-translate="Tamazight">Tamazight: Native</span>
+                    <button class="language-button" data-lang="zgh">ⵥⵕ ⵜⴰⵙⵏⴰ ⴰⴷ ⵙ ⵜⵎⴰⵣⵉⵖⵜ</button>
+                </li>
+                <li>
+                    <span data-translate="Arabic">Arabic: Bilingual</span>
+                    <button class="language-button" data-lang="ar">شاهد هذه الصفحة بالعربية</button>
+                </li>
+                <li>
+                    <span data-translate="French">French: Professional proficiency</span>
+                    <button class="language-button" data-lang="fr">Voir cette page en français</button>
+                </li>
+                <li>
+                    <span data-translate="English">English: Professional proficiency</span>
+                    <button class="language-button" data-lang="en">See this page in English</button>
+                </li>
+                <li>
+                    <span data-translate="Spanish">Spanish: Elementary</span>
+                </li>
             </ul>
         </section>
 
@@ -513,87 +584,95 @@ header a:hover {
         };
 
 function populateSkills() {
-            const skillButtons = document.getElementById('skill-buttons');
-            skills.forEach(skill => {
-                const button = document.createElement('button');
-                button.textContent = skill;
-                button.classList.add('skill-button');
-                button.addEventListener('click', () => showSkillDetails(skill));
-                skillButtons.appendChild(button);
-            });
-        }
+    const skillButtons = document.getElementById('skill-buttons');
+    skills.forEach(skill => {
+        const button = document.createElement('button');
+        button.textContent = skill;
+        button.setAttribute('data-translate', skill);
+        button.classList.add('skill-button');
+        button.addEventListener('click', () => showSkillDetails(skill));
+        skillButtons.appendChild(button);
+    });
+}
 
-        function showSkillDetails(skill) {
-            const skillDetailsElement = document.getElementById('skill-details');
-            const button = event.target;
-            
-            if (button.classList.contains('active')) {
-                button.classList.remove('active');
-                skillDetailsElement.classList.add('hidden');
-            } else {
-                document.querySelectorAll('.skill-button').forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                const details = skillDetails[skill] || ["professional experience and academic studies"];
-                skillDetailsElement.innerHTML = `<p>"${skill}": This skill was developed through: ${details.join(", ")}.</p>`;
-                skillDetailsElement.classList.remove('hidden');
-            }
-        }
+function showSkillDetails(skill) {
+    const skillDetailsElement = document.getElementById('skill-details');
+    const button = event.target;
+    
+    if (button.classList.contains('active')) {
+        button.classList.remove('active');
+        skillDetailsElement.classList.add('hidden');
+    } else {
+        document.querySelectorAll('.skill-button').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        const details = skillDetails[skill] || ["professional experience and academic studies"];
+		
+        skillDetailsElement.innerHTML = `<div class="always-ltr"><p data-translate="${skill}">"${skill}": This skill was developed through: ${details.join(", ")}.</p></div>`;
+        skillDetailsElement.classList.remove('hidden');
+    }
+}
 
-        function populateExperience() {
-            const experienceItems = document.getElementById('experience-items');
-            experienceItems.innerHTML = ''; // Clear existing content
-            experiences.forEach(exp => {
-                const item = document.createElement('div');
-                item.classList.add('experience-item');
-                item.innerHTML = `
-                    <h3>${exp.title} at ${exp.company}</h3>
-                    <p>${exp.period} | ${exp.location}</p>
-                    <ul>
-                        ${exp.responsibilities.map(resp => `<li>${resp}</li>`).join('')}
-                    </ul>
-                `;
-                experienceItems.appendChild(item);
-            });
-        }
+function populateExperience() {
+    const experienceItems = document.getElementById('experience-items');
+    experienceItems.innerHTML = ''; // Clear existing content
+    experiences.forEach(exp => {
+        const item = document.createElement('div');
+        item.classList.add('experience-item');
+        item.innerHTML = `
+            <h3 data-translate="${exp.title}">${exp.title}</h3>
+            <p data-translate="${exp.company}">${exp.company}</p>
+            <p data-translate="${exp.period}">${exp.period}</p>
+            <p data-translate="${exp.location}">${exp.location}</p>
+            <ul>
+                ${exp.responsibilities.map(resp => `<li data-translate="${resp}">${resp}</li>`).join('')}
+            </ul>
+        `;
+        experienceItems.appendChild(item);
+    });
+}
 
         function populateEducation() {
-            const educationItems = document.getElementById('education-items');
-            education.forEach(edu => {
-                const item = document.createElement('div');
-                item.classList.add('education-item');
-                item.innerHTML = `
-                    <h3>${edu.degree}</h3>
-                    <p>${edu.school}, ${edu.period}</p>
-                    ${edu.grade ? `<p>${edu.grade}</p>` : ''}
-                `;
+    const educationItems = document.getElementById('education-items');
+    education.forEach(edu => {
+        const item = document.createElement('div');
+        item.classList.add('education-item');
+        item.innerHTML = `
+            <h3 data-translate="${edu.degree}">${edu.degree}</h3>
+            <p data-translate="${edu.school}">${edu.school}</p>
+            <p data-translate="${edu.period}">${edu.period}</p>
+            ${edu.grade ? `<p data-translate="${edu.grade}">${edu.grade}</p>` : ''}
+        `;
                 if (edu.finalYearProject) {
                     const projectButton = document.createElement('button');
                     projectButton.classList.add('skill-button');
                     projectButton.textContent = 'View Final Year Project Details';
+                    projectButton.setAttribute('data-translate', 'View Final Year Project Details');
                     item.appendChild(projectButton);
 
                     const projectDetails = document.createElement('div');
                     projectDetails.classList.add('project-details', 'hidden');
                     projectDetails.innerHTML = `
-                        <h3>Final Year Research Project</h3>
-                        <p>Theme: "Content Marketing Effectiveness in The Moroccan Context: Evaluation and Analysis"</p>
-                        <p>Period: Mar 2024 - May 2024</p>
-                        <p>Associated with ENCG - National School of Business and Management of Agadir</p>
-                        <p>I conducted this research for my final year at ENCG Agadir, interning at Media Man, a social media marketing agency based in Agadir, monitored by its director Mr. Mohamed Gallab, under the supervision of Dr. El Boukhari Majda, and jury members including her, along with Dr. Belhiyah Khadija and Dr. Saidi Asma, all of them are ENCG Agadir professor-researchers.</p>
-                        <p>In this research, I conducted an in-depth study focusing on the effectiveness of content marketing for businesses targeting Moroccan audiences. Implementing a quantitative approach and analyzing a substantial sample of 10,189 social media posts, the study identified some specific variables that significantly impact the studied engagement metrics (likes, comments, shares) and highlighted several other factors showing significant differences in engagement.</p>
-                        <h4>Key Findings:</h4>
+					<div class="always-ltr">
+                        <h3 data-translate="Final Year Research Project">Final Year Research Project</h3>
+                        <p data-translate="Project Theme">Theme: "Content Marketing Effectiveness in The Moroccan Context: Evaluation and Analysis"</p>
+<p data-translate="Project Period">Period: Mar 2024 - May 2024</p>
+                        <p data-translate="Project Association">Associated with ENCG - National School of Business and Management of Agadir</p>
+                        <p data-translate="Project Description">I conducted this research for my final year at ENCG Agadir, interning at Media Man, a social media marketing agency based in Agadir, monitored by its director Mr. Mohamed Gallab, under the supervision of Dr. El Boukhari Majda, and jury members including her, along with Dr. Belhiyah Khadija and Dr. Saidi Asma, all of them are ENCG Agadir professor-researchers.</p>
+                        <p data-translate="Project Approach">In this research, I conducted an in-depth study focusing on the effectiveness of content marketing for businesses targeting Moroccan audiences. Implementing a quantitative approach and analyzing a substantial sample of 10,189 social media posts, the study identified some specific variables that significantly impact the studied engagement metrics (likes, comments, shares) and highlighted several other factors showing significant differences in engagement.</p>
+                        <h4 data-translate="Key Findings">Key Findings:</h4>
                         <ul>
-                            <li>Distribution Channel: Facebook outperformed Instagram, significantly increasing median likes and comments compared to Instagram.</li>
-                            <li>Business Category: B2C content saw the highest median engagement.</li>
-                            <li>Content Category: Humor/entertainment content significantly increased engagement.</li>
-                            <li>Day of the Week: Weekends boosted engagement, while some weekdays drastically lowered it.</li>
-                            <li>Hashtags: Unexpectedly, posts with 0-1 hashtag generated the highest median engagement across metrics.</li>
-                            <li>Hour: Midday (12pm) and late evening (10pm) notably increased Facebook likes, while morning (8am) significantly improved comments and shares.</li>
-                            <li>Minute: Posting on Facebook exactly at the 30th minute of any hour maximized engagement.</li>
-                            <li>Posting Frequency: Higher posting frequency correlated moderately with increased likes and weakly with comments/shares.</li>
-                            <li>Complexity: Engagement metrics decrease with complexity.</li>
+                            <li data-translate="Finding1">Distribution Channel: Facebook outperformed Instagram, significantly increasing median likes and comments compared to Instagram.</li>
+                            <li data-translate="Finding2">Business Category: B2C content saw the highest median engagement.</li>
+                            <li data-translate="Finding3">Content Category: Humor/entertainment content significantly increased engagement.</li>
+                            <li data-translate="Finding4">Day of the Week: Weekends boosted engagement, while some weekdays drastically lowered it.</li>
+                            <li data-translate="Finding5">Hashtags: Unexpectedly, posts with 0-1 hashtag generated the highest median engagement across metrics.</li>
+                            <li data-translate="Finding6">Hour: Midday (12pm) and late evening (10pm) notably increased Facebook likes, while morning (8am) significantly improved comments and shares.</li>
+                            <li data-translate="Finding7">Minute: Posting on Facebook exactly at the 30th minute of any hour maximized engagement.</li>
+                            <li data-translate="Finding8">Posting Frequency: Higher posting frequency correlated moderately with increased likes and weakly with comments/shares.</li>
+                            <li data-translate="Finding9">Complexity: Engagement metrics decrease with complexity.</li>
                         </ul>
-                        <p>Overall, this report serves as a pioneering effort in the field, providing valuable insights for businesses aiming to optimize their content marketing strategies and engage more effectively with Moroccan audiences.</p>
+                        <p data-translate="Project Conclusion">Overall, this report serves as a pioneering effort in the field, providing valuable insights for businesses aiming to optimize their content marketing strategies and engage more effectively with Moroccan audiences.</p>
+						</div>
                     `;
                     item.appendChild(projectDetails);
 
@@ -605,19 +684,19 @@ function populateSkills() {
             });
         }
 
-function populateCertifications() {
-    const certificationItems = document.getElementById('certification-items');
-    certificationItems.classList.add('certification-grid');
-    certifications.forEach(cert => {
-        const item = document.createElement('div');
-        item.classList.add('certification-item');
-        item.innerHTML = `
-            <div class="certification-name">${cert.name}</div>
-            <a href="${cert.link}" target="_blank" class="certification-link">View Credential</a>
-        `;
-        certificationItems.appendChild(item);
-    });
-}
+        function populateCertifications() {
+            const certificationItems = document.getElementById('certification-items');
+            certificationItems.classList.add('certification-grid');
+            certifications.forEach(cert => {
+                const item = document.createElement('div');
+                item.classList.add('certification-item');
+                item.innerHTML = `
+                    <div class="certification-name" data-translate="${cert.name}">${cert.name}</div>
+                    <a href="${cert.link}" target="_blank" class="certification-link" data-translate="View Credential">View Credential</a>
+                `;
+                certificationItems.appendChild(item);
+            });
+        }
 
         function initBackgroundAnimation() {
             particlesJS("particles-js", {
@@ -639,17 +718,28 @@ function populateCertifications() {
             });
         }
 
-function toggleDarkMode() {
+function toggleDarkMode(setMode = null) {
     const body = document.body;
     const themeSwitch = document.querySelector('.theme-switch');
     
-    body.classList.toggle('dark-mode');
-    
-    if (body.classList.contains('dark-mode')) {
-        themeSwitch.textContent = 'Light Mode';
+    if (setMode !== null) {
+        body.classList.toggle('dark-mode', setMode === 'dark');
     } else {
-        themeSwitch.textContent = 'Dark Mode';
+        body.classList.toggle('dark-mode');
     }
+    
+    const isDarkMode = body.classList.contains('dark-mode');
+    
+    if (isDarkMode) {
+        themeSwitch.textContent = translations[currentLanguage]["Light Mode"];
+    } else {
+        themeSwitch.textContent = translations[currentLanguage]["Dark Mode"];
+    }
+
+    // Update URL
+    const url = new URL(window.location);
+    url.searchParams.set('theme', isDarkMode ? 'dark' : 'light');
+    window.history.replaceState({}, '', url);
 }
 
         function initAnimations() {
@@ -683,31 +773,639 @@ function toggleDarkMode() {
             });
         }
 
-        window.onload = function() {
-            populateSkills();
-            populateExperience();
-            populateEducation();
-            populateCertifications();
-            initBackgroundAnimation();
-            initAnimations();
-            animateSkillButtons();
-            document.querySelector('.theme-switch').addEventListener('click', toggleDarkMode);
-        };
-    </script>
-<div style="width: 100%; text-align: center;">
-This webpage was entirely developed from scratch by me, Anir Ouafi, using AI.
-  <div class="social-icons" style="margin-top: 10px;">
-    <a href="mailto:ouafianir@gmail.com" target="_blank" class="icon-link">
-      <i class="fas fa-envelope"></i>
-    </a>
-    <a href="https://wa.me/212629915388" target="_blank" class="icon-link">
-      <i class="fab fa-whatsapp"></i>
-    </a>
-    <a href="https://www.linkedin.com/in/ouafi/" target="_blank" class="icon-link">
-      <i class="fab fa-linkedin"></i>
-    </a>
-  </div>
-</div>
+        const translations = {
+            en: {
+                "Dark Mode": "Dark Mode",
+                "Light Mode": "Light Mode",
+                "Language": "Language",
+                "Marketing Graduate": "Marketing Graduate from the National School of Business and Management",
+                "Location": "Inezgane, Souss-Massa, Morocco",
+                "Professional Summary": "Professional Summary",
+                "Summary Content": "Marketing graduate from the National School of Commerce and Management (ENCG) in Agadir, with a strong academic background in marketing complemented by hands-on experience. Possessing an analytical mindset and a high capacity for learning, which enables quick adaptation to new tools and technologies.",
+                "Experience": "Experience",
+                "Education": "Education",
+                "Certifications": "Certifications",
+                "Skills": "Skills",
+                "Languages": "Languages",
+                "Tamazight": "Tamazight: Native",
+                "Arabic": "Arabic: Bilingual",
+                "French": "French: Professional proficiency",
+                "English": "English: Professional proficiency",
+                "Spanish": "Spanish: Elementary",
+                "View Credential": "View Credential",
+                "View Final Year Project Details": "View Final Year Project Details",
+                "Final Year Research Project": "Final Year Research Project",
+                "Project Theme": "Theme: \"Content Marketing Effectiveness in The Moroccan Context: Evaluation and Analysis\"",
+                "Project Period": "Period: Mar 2024 - May 2024",
+                "Project Association": "Associated with ENCG - National School of Business and Management of Agadir",
+                "Project Description": "I conducted this research for my final year at ENCG Agadir, interning at Media Man, a social media marketing agency based in Agadir, monitored by its director Mr. Mohamed Gallab, under the supervision of Dr. El Boukhari Majda, and jury members including her, along with Dr. Belhiyah Khadija and Dr. Saidi Asma, all of them are ENCG Agadir professor-researchers.",
+                "Project Approach": "In this research, I conducted an in-depth study focusing on the effectiveness of content marketing for businesses targeting Moroccan audiences. Implementing a quantitative approach and analyzing a substantial sample of 10,189 social media posts, the study identified some specific variables that significantly impact the studied engagement metrics (likes, comments, shares) and highlighted several other factors showing significant differences in engagement.",
+                "Key Findings": "Key Findings:",
+                "Finding1": "Distribution Channel: Facebook outperformed Instagram, significantly increasing median likes and comments compared to Instagram.",
+                "Finding2": "Business Category: B2C content saw the highest median engagement.",
+                "Finding3": "Content Category: Humor/entertainment content significantly increased engagement.",
+                "Finding4": "Day of the Week: Weekends boosted engagement, while some weekdays drastically lowered it.",
+                "Finding5": "Hashtags: Unexpectedly, posts with 0-1 hashtag generated the highest median engagement across metrics.",
+                "Finding6": "Hour: Midday (12pm) and late evening (10pm) notably increased Facebook likes, while morning (8am) significantly improved comments and shares.",
+                "Finding7": "Minute: Posting on Facebook exactly at the 30th minute of any hour maximized engagement.",
+                "Finding8": "Posting Frequency: Higher posting frequency correlated moderately with increased likes and weakly with comments/shares.",
+                "Finding9": "Complexity: Engagement metrics decrease with complexity.",
+                "Project Conclusion": "Overall, this report serves as a pioneering effort in the field, providing valuable insights for businesses aiming to optimize their content marketing strategies and engage more effectively with Moroccan audiences.",
 
+  // Experience translations
+  "Digital Marketing Assistant": "Digital Marketing Assistant",
+  "Media Man": "Media Man",
+  "February 2024 - May 2024": "February 2024 - May 2024",
+  "Agadir, Souss-Massa, Morocco": "Agadir, Souss-Massa, Morocco",
+  "Developing scripts, storyboards, concepts, and copywriting for social media image and video posts": "Developing scripts, storyboards, concepts, and copywriting for social media image and video posts",
+  "Participating in content strategy development": "Participating in content strategy development",
+  "Evaluating website user experience and assisting with SEO improvements": "Evaluating website user experience and assisting with SEO improvements",
+  "Observing advertising campaign management": "Observing advertising campaign management",
+  "Assisting models with script memorization and delivery": "Assisting models with script memorization and delivery",
+  
+  "Advertising Campaign Manager and Seller": "Advertising Campaign Manager and Seller",
+  "Horizon Pack": "Horizon Pack",
+  "May 2023 - August 2023": "May 2023 - August 2023",
+  "Inezgane, Souss-Massa, Morocco": "Inezgane, Souss-Massa, Morocco",
+  "Gathering information and qualitative data to craft an advertising narrative": "Gathering information and qualitative data to craft an advertising narrative",
+  "Developing script, storyboard, and visual concepts for a promotional video": "Developing script, storyboard, and visual concepts for a promotional video",
+  "Collaborating with an external production team and overseeing video creation": "Collaborating with an external production team and overseeing video creation",
+  "Launching and monitoring of advertising campaigns on Meta and Google Ads platforms": "Launching and monitoring of advertising campaigns on Meta and Google Ads platforms",
+  "Receiving and processing orders from new customers": "Receiving and processing orders from new customers",
+  
+  "Community Manager": "Community Manager",
+  "June 2022 - September 2022": "June 2022 - September 2022",
+  "Streamlining social media presence": "Streamlining social media presence",
+  "Establishing company profiles on Google My Business and Meta Business Suite": "Establishing company profiles on Google My Business and Meta Business Suite",
+  "Developing a WordPress website featuring product catalogs": "Developing a WordPress website featuring product catalogs",
+  "Generating commercial posts featuring company products through photography and editing": "Generating commercial posts featuring company products through photography and editing",
+  "Managing online engagement by responding to messages and comments": "Managing online engagement by responding to messages and comments",
+
+  // Education translations
+  "Master's degree in Marketing": "Master's degree in Marketing",
+  "National School of Business and Management in Agadir": "National School of Business and Management in Agadir",
+  "2021 - 2024": "2021 - 2024",
+  "Bac +2, Economics and Business - Scientific Option": "Bac +2, Economics and Business - Scientific Option",
+  "CPGE - Classes préparatoires aux grandes écoles": "CPGE - Classes préparatoires aux grandes écoles",
+  "2019 - 2021": "2019 - 2021",
+  "Baccalaureate, Mathematical Sciences": "Baccalaureate, Mathematical Sciences",
+  "Abdallah Ibn Yassine High School - Inezgane": "Abdallah Ibn Yassine High School - Inezgane",
+  "2019": "2019",
+  "Grade: mention bien": "Grade: mention bien",
+
+  // Skills translations
+  "Digital Marketing": "Digital Marketing",
+  "Data-driven Marketing": "Data-driven Marketing",
+  "Marketing": "Marketing",
+  "Content Analysis": "Content Analysis",
+  "Online Content Creation": "Online Content Creation",
+  "Marketing Campaign Management": "Marketing Campaign Management",
+  "Data Analysis": "Data Analysis",
+  "Google Analytics": "Google Analytics",
+  "Meta Ads": "Meta Ads",
+  "Google Ads": "Google Ads",
+  "LinkedIn Advertising": "LinkedIn Advertising",
+  "Search Engine Optimization (SEO)": "Search Engine Optimization (SEO)",
+  "Online Presence": "Online Presence",
+  "Strategic Marketing": "Strategic Marketing",
+  "Strategic Planning": "Strategic Planning",
+  "Management": "Management",
+  "Economic Intelligence": "Economic Intelligence",
+  "Hypothesis Testing": "Hypothesis Testing",
+  "Contextual Analysis": "Contextual Analysis",
+  "Contextual Advertising": "Contextual Advertising",
+  "Problem Solving": "Problem Solving",
+  "Critical Thinking": "Critical Thinking",
+  "Leadership": "Leadership",
+  "Public Speaking": "Public Speaking",
+  "Presentation Skills": "Presentation Skills",
+  "WordPress Development": "WordPress Development",
+  "Photography": "Photography",
+  "Image Editing": "Image Editing",
+  "Adobe Illustrator": "Adobe Illustrator",
+  "B2B Marketing": "B2B Marketing",
+  "Negotiation": "Negotiation",
+  "Customer Service": "Customer Service",
+  "Competitive Analysis": "Competitive Analysis",
+  "Community Management": "Community Management",
+  "Social Media Management": "Social Media Management",
+  "Content Planning": "Content Planning",
+  "Concept Development": "Concept Development",
+  "Scriptwriting": "Scriptwriting",
+  "Storyboarding": "Storyboarding",
+  "Copywriting": "Copywriting",
+  "Microsoft Excel": "Microsoft Excel",
+  "JavaScript": "JavaScript",
+  "Python": "Python",
+  "PHP": "PHP",
+  "HTML": "HTML",
+  "CSS": "CSS",
+  "Microsoft PowerPoint": "Microsoft PowerPoint",
+  "SQL": "SQL",
+         "Anir Ouafi": "Anir Ouafi",
+        "Footer Text": "This webpage was entirely developed from scratch by me, Anir Ouafi, using AI."
+
+            },
+            fr: {
+// French translations
+"Dark Mode": "Mode sombre",
+                "Light Mode": "Mode clair",
+                "Language": "Langue",
+                "Marketing Graduate": "Lauréat de l'École Nationale de Commerce et de Gestion en Marketing",
+                "Location": "Inezgane, Souss-Massa, Maroc",
+                "Professional Summary": "Résumé professionnel",
+                "Summary Content": "Lauréat en marketing de l'École Nationale de Commerce et de Gestion (ENCG) d'Agadir, avec de solides bases académiques en marketing complétées par des expériences pratiques. Doté d'un esprit analytique et d'une grande capacité d'apprentissage, ce qui me permet de m'adapter rapidement à divers contextes et environnements.",
+                "Experience": "Expérience",
+                "Education": "Formation",
+                "Certifications": "Certifications",
+                "Skills": "Compétences",
+                "Languages": "Langues",
+                "Tamazight": "Tamazight : Langue maternelle",
+                "Arabic": "Arabe : Bilingue",
+                "French": "Français : Maîtrise professionnelle",
+                "English": "Anglais : Maîtrise professionnelle",
+                "Spanish": "Espagnol : Élémentaire",
+                "View Credential": "Voir la référence",
+                "View Final Year Project Details": "Voir les détails du projet de fin d'études",
+				
+                "Final Year Research Project": "Final Year Research Project",
+                "Project Theme": "Theme: \"Content Marketing Effectiveness in The Moroccan Context: Evaluation and Analysis\"",
+                "Project Period": "Period: Mar 2024 - May 2024",
+                "Project Association": "Associated with ENCG - National School of Business and Management of Agadir",
+                "Project Description": "I conducted this research for my final year at ENCG Agadir, interning at Media Man, a social media marketing agency based in Agadir, monitored by its director Mr. Mohamed Gallab, under the supervision of Dr. El Boukhari Majda, and jury members including her, along with Dr. Belhiyah Khadija and Dr. Saidi Asma, all of them are ENCG Agadir professor-researchers.",
+                "Project Approach": "In this research, I conducted an in-depth study focusing on the effectiveness of content marketing for businesses targeting Moroccan audiences. Implementing a quantitative approach and analyzing a substantial sample of 10,189 social media posts, the study identified some specific variables that significantly impact the studied engagement metrics (likes, comments, shares) and highlighted several other factors showing significant differences in engagement.",
+                "Key Findings": "Key Findings:",
+                "Finding1": "Distribution Channel: Facebook outperformed Instagram, significantly increasing median likes and comments compared to Instagram.",
+                "Finding2": "Business Category: B2C content saw the highest median engagement.",
+                "Finding3": "Content Category: Humor/entertainment content significantly increased engagement.",
+                "Finding4": "Day of the Week: Weekends boosted engagement, while some weekdays drastically lowered it.",
+                "Finding5": "Hashtags: Unexpectedly, posts with 0-1 hashtag generated the highest median engagement across metrics.",
+                "Finding6": "Hour: Midday (12pm) and late evening (10pm) notably increased Facebook likes, while morning (8am) significantly improved comments and shares.",
+                "Finding7": "Minute: Posting on Facebook exactly at the 30th minute of any hour maximized engagement.",
+                "Finding8": "Posting Frequency: Higher posting frequency correlated moderately with increased likes and weakly with comments/shares.",
+                "Finding9": "Complexity: Engagement metrics decrease with complexity.",
+                "Project Conclusion": "Overall, this report serves as a pioneering effort in the field, providing valuable insights for businesses aiming to optimize their content marketing strategies and engage more effectively with Moroccan audiences.",
+
+  // Experience translations
+  "Digital Marketing Assistant": "Assistant en Marketing Digital",
+  "Media Man": "Media Man",
+  "February 2024 - May 2024": "Février 2024 - Mai 2024",
+  "Agadir, Souss-Massa, Morocco": "Agadir, Souss-Massa, Maroc",
+  "Developing scripts, storyboards, concepts, and copywriting for social media image and video posts": "Développement des scripts, storyboards, concepts et rédactions pour les publications image et vidéo sur les réseaux sociaux.",
+  "Participating in content strategy development": "Participation au développement de stratégies de contenu et de branding.",
+  "Evaluating website user experience and assisting with SEO improvements": "Évaluation de l'expérience utilisateur des sites web, et assistance aux améliorations du référencement (SEO).",
+  "Observing advertising campaign management": "Observation de la gestion des campagnes publicitaires.",
+  "Assisting models with script memorization and delivery": "Assistance des acteurs dans la mémorisation et l'exécution des scripts.",
+  
+  "Advertising Campaign Manager and Seller": "Responsable de Campagne Publicitaire et Vendeur",
+  "Horizon Pack": "Horizon Pack",
+  "May 2023 - August 2023": "Mai 2023 - Août 2023",
+  "Inezgane, Souss-Massa, Morocco": "Inezgane, Souss-Massa, Maroc",
+  "Gathering information and qualitative data to craft an advertising narrative": "Collecte d'informations et de données qualitatives pour l'élaboration d'un argumentaire publicitaire.",
+  "Developing script, storyboard, and visual concepts for a promotional video": "Développement de script, storyboard et concepts visuels pour une vidéo publicitaire.",
+  "Collaborating with an external production team and overseeing video creation": "Collaboration avec une équipe de production externe et supervision de la création vidéo.",
+  "Launching and monitoring of advertising campaigns on Meta and Google Ads platforms": "Lancement et suivi des campagnes publicitaires sur les plateformes Meta et Google Ads.",
+  "Receiving and processing orders from new customers": "Réception et traitement des commandes des nouveaux clients.",
+  
+  "Community Manager": "Community Manager",
+  "June 2022 - September 2022": "Juin 2022 - Septembre 2022",
+  "Streamlining social media presence": "Rationalisation de la présence sur les réseaux sociaux.",
+  "Establishing company profiles on Google My Business and Meta Business Suite": "Création de profils d'entreprise sur Google My Business et Meta Business Suite.",
+  "Developing a WordPress website featuring product catalogs": "Développement d'un site WordPress présentant des catalogues de produits.",
+  "Generating commercial posts featuring company products through photography and editing": "Création de publications commerciales présentant les produits de l'entreprise.",
+  "Managing online engagement by responding to messages and comments": "Gestion de l'engagement en ligne en répondant aux messages et aux commentaires.",
+
+  // Education translations
+  "Master's degree in Marketing": "Master en Marketing",
+  "National School of Business and Management in Agadir": "École Nationale de Commerce et de Gestion (ENCG) - Agadir",
+  "2021 - 2024": "2021 - 2024",
+  "Bac +2, Economics and Business - Scientific Option": "Bac +2, Économie et Gestion - Option Scientifique",
+  "CPGE - Classes préparatoires aux grandes écoles": "Classes préparatoires aux grandes écoles (CPGE), Réda Slaoui - Agadir",
+  "2019 - 2021": "2019 - 2021",
+  "Baccalaureate, Mathematical Sciences": "Baccalauréat, Sciences Mathématiques",
+  "Abdallah Ibn Yassine High School - Inezgane": "Lycée Abdallah Ibn Yassine - Inezgane",
+  "2019": "2019",
+  "Grade: mention bien": "Mention : Bien",
+
+  // Skills translations
+  "Digital Marketing": "Marketing digital",
+  "Data-driven Marketing": "Marketing basé sur les données",
+  "Marketing": "Marketing",
+  "Content Analysis": "Analyse de contenu",
+  "Online Content Creation": "Création de contenu en ligne",
+  "Marketing Campaign Management": "Gestion de campagnes marketing",
+  "Data Analysis": "Analyse de données",
+  "Google Analytics": "Google Analytics",
+  "Meta Ads": "Meta Ads",
+  "Google Ads": "Google Ads",
+  "LinkedIn Advertising": "Publicité LinkedIn",
+  "Search Engine Optimization (SEO)": "Optimisation pour les moteurs de recherche (SEO)",
+  "Online Presence": "Présence en ligne",
+  "Strategic Marketing": "Marketing stratégique",
+  "Strategic Planning": "Planification stratégique",
+  "Management": "Gestion",
+  "Economic Intelligence": "Intelligence économique",
+  "Hypothesis Testing": "Test d'hypothèses",
+  "Contextual Analysis": "Analyse contextuelle",
+  "Contextual Advertising": "Publicité contextuelle",
+  "Problem Solving": "Résolution de problèmes",
+  "Critical Thinking": "Pensée critique",
+  "Leadership": "Leadership",
+  "Public Speaking": "Prise de parole en public",
+  "Presentation Skills": "Compétences en présentation",
+  "WordPress Development": "Développement WordPress",
+  "Photography": "Photographie",
+  "Image Editing": "Édition d'images",
+  "Adobe Illustrator": "Adobe Illustrator",
+  "B2B Marketing": "Marketing B2B",
+  "Negotiation": "Négociation",
+  "Customer Service": "Service client",
+  "Competitive Analysis": "Analyse concurrentielle",
+  "Community Management": "Gestion de communauté",
+  "Social Media Management": "Gestion des réseaux sociaux",
+  "Content Planning": "Planification de contenu",
+  "Concept Development": "Développement de concepts",
+  "Scriptwriting": "Écriture de scripts",
+  "Storyboarding": "Storyboarding",
+  "Copywriting": "Rédaction publicitaire",
+  "Microsoft Excel": "Microsoft Excel",
+  "JavaScript": "JavaScript",
+  "Python": "Python",
+  "PHP": "PHP",
+  "HTML": "HTML",
+  "CSS": "CSS",
+  "Microsoft PowerPoint": "Microsoft PowerPoint",
+  "SQL": "SQL",
+          "Anir Ouafi": "Anir Ouafi",
+        "Footer Text": "Cette page web a été entièrement développée par moi, Anir Ouafi, en utilisant l'IA."
+
+            },
+            ar: {
+// Arabic translations
+"Dark Mode": "الوضع الداكن",
+                "Light Mode": "الوضع الفاتح",
+                "Language": "اللغة",
+                "Marketing Graduate": "خريج تسويق من المدرسة الوطنية للتجارة والتسيير",
+                "Location": "إنزكان، سوس ماسة، المغرب",
+                "Professional Summary": "الملخص المهني",
+                "Summary Content": "خريج متخصص في التسويق من المدرسة الوطنية للتجارة والتسيير بأكادير، يجمع بين رصانة المعرفة الأكاديمية وخبرة التجربة العملية. يتميز بعقلية تحليلية فذة وشغف دائم للتعلم، ما يمكنه من استيعاب الأدوات والتقنيات الجديدة وتطبيقها بكفاءة عالية، وكذا التكيف مع بيئة العمل مستمرة التطور.",
+                "Experience": "الخبرة",
+                "Education": "التعليم",
+                "Certifications": "الشهادات",
+                "Skills": "المهارات",
+                "Languages": "اللغات",
+                "Tamazight": "الأمازيغية: اللغة الأم",
+                "Arabic": "العربية: ثنائي اللغة",
+                "French": "الفرنسية: إتقان مهني",
+                "English": "الإنجليزية: إتقان مهني",
+                "Spanish": "الإسبانية: مستوى أساسي",
+                "View Credential": "عرض الاعتماد",
+                "View Final Year Project Details": "عرض تفاصيل مشروع السنة النهائية",
+                "Final Year Research Project": "Final Year Research Project",
+                "Project Theme": "Theme: \"Content Marketing Effectiveness in The Moroccan Context: Evaluation and Analysis\"",
+                "Project Period": "Period: Mar 2024 - May 2024",
+                "Project Association": "Associated with ENCG - National School of Business and Management of Agadir",
+                "Project Description": "I conducted this research for my final year at ENCG Agadir, interning at Media Man, a social media marketing agency based in Agadir, monitored by its director Mr. Mohamed Gallab, under the supervision of Dr. El Boukhari Majda, and jury members including her, along with Dr. Belhiyah Khadija and Dr. Saidi Asma, all of them are ENCG Agadir professor-researchers.",
+                "Project Approach": "In this research, I conducted an in-depth study focusing on the effectiveness of content marketing for businesses targeting Moroccan audiences. Implementing a quantitative approach and analyzing a substantial sample of 10,189 social media posts, the study identified some specific variables that significantly impact the studied engagement metrics (likes, comments, shares) and highlighted several other factors showing significant differences in engagement.",
+                "Key Findings": "Key Findings:",
+                "Finding1": "Distribution Channel: Facebook outperformed Instagram, significantly increasing median likes and comments compared to Instagram.",
+                "Finding2": "Business Category: B2C content saw the highest median engagement.",
+                "Finding3": "Content Category: Humor/entertainment content significantly increased engagement.",
+                "Finding4": "Day of the Week: Weekends boosted engagement, while some weekdays drastically lowered it.",
+                "Finding5": "Hashtags: Unexpectedly, posts with 0-1 hashtag generated the highest median engagement across metrics.",
+                "Finding6": "Hour: Midday (12pm) and late evening (10pm) notably increased Facebook likes, while morning (8am) significantly improved comments and shares.",
+                "Finding7": "Minute: Posting on Facebook exactly at the 30th minute of any hour maximized engagement.",
+                "Finding8": "Posting Frequency: Higher posting frequency correlated moderately with increased likes and weakly with comments/shares.",
+                "Finding9": "Complexity: Engagement metrics decrease with complexity.",
+                "Project Conclusion": "Overall, this report serves as a pioneering effort in the field, providing valuable insights for businesses aiming to optimize their content marketing strategies and engage more effectively with Moroccan audiences.",
+
+  // Experience translations
+  "Digital Marketing Assistant": "مساعد في التسويق الرقمي",
+  "Media Man": "ميديا مان",
+  "February 2024 - May 2024": "فبراير 2024 - ماي 2024",
+  "Agadir, Souss-Massa, Morocco": "أكادير، سوس ماسة، المغرب",
+  "Developing scripts, storyboards, concepts, and copywriting for social media image and video posts": "Developing scripts, storyboards, concepts, and copywriting for social media image and video posts",
+  "Participating in content strategy development": "Participating in content strategy development",
+  "Evaluating website user experience and assisting with SEO improvements": "Evaluating website user experience and assisting with SEO improvements",
+  "Observing advertising campaign management": "Observing advertising campaign management",
+  "Assisting models with script memorization and delivery": "Assisting models with script memorization and delivery",
+  
+  "Advertising Campaign Manager and Seller": "مسير حملات إعلانية وبائع",
+  "Horizon Pack": "Horizon Pack",
+  "May 2023 - August 2023": "ماي 2023 - غشت 2023",
+  "Inezgane, Souss-Massa, Morocco": "إنزكان، سوس ماسة، المغرب",
+  "Gathering information and qualitative data to craft an advertising narrative": "Gathering information and qualitative data to craft an advertising narrative",
+  "Developing script, storyboard, and visual concepts for a promotional video": "Developing script, storyboard, and visual concepts for a promotional video",
+  "Collaborating with an external production team and overseeing video creation": "Collaborating with an external production team and overseeing video creation",
+  "Launching and monitoring of advertising campaigns on Meta and Google Ads platforms": "Launching and monitoring of advertising campaigns on Meta and Google Ads platforms",
+  "Receiving and processing orders from new customers": "Receiving and processing orders from new customers",
+  
+  "Community Manager": "Community Manager",
+  "June 2022 - September 2022": "يونيو 2022 - شتنبر 2022",
+  "Streamlining social media presence": "Streamlining social media presence",
+  "Establishing company profiles on Google My Business and Meta Business Suite": "Establishing company profiles on Google My Business and Meta Business Suite",
+  "Developing a WordPress website featuring product catalogs": "Developing a WordPress website featuring product catalogs",
+  "Generating commercial posts featuring company products through photography and editing": "Generating commercial posts featuring company products through photography and editing",
+  "Managing online engagement by responding to messages and comments": "Managing online engagement by responding to messages and comments",
+
+  // Education translations
+  "Master's degree in Marketing": "ماجستير في التسويق",
+  "National School of Business and Management in Agadir": "المدرسة الوطنية للتجارة والتسيير - أكادير",
+  "2021 - 2024": "2021 - 2024",
+  "Bac +2, Economics and Business - Scientific Option": "باك +2، الاقتصاد والتجارة - الخيار العلمي",
+  "CPGE - Classes préparatoires aux grandes écoles": "الأقسام التحضيرية للمدارس العليا، رضى السلاوي - أكادير",
+  "2019 - 2021": "2019 - 2021",
+  "Baccalaureate, Mathematical Sciences": "البكالوريا، العلوم الرياضية",
+  "Abdallah Ibn Yassine High School - Inezgane": "ثانوية عبد الله بن ياسين - إنزكان",
+  "2019": "2019",
+  "Grade: mention bien": "التقدير: جيد",
+
+  // Skills translations
+  "Digital Marketing": "التسويق الرقمي",
+  "Data-driven Marketing": "التسويق المعتمد على البيانات",
+  "Marketing": "التسويق",
+  "Content Analysis": "تحليل المحتوى",
+  "Online Content Creation": "إنشاء المحتوى عبر الإنترنت",
+  "Marketing Campaign Management": "إدارة الحملات التسويقية",
+  "Data Analysis": "تحليل البيانات",
+  "Google Analytics": "Google Analytics",
+  "Meta Ads": "إعلانات ميتا",
+  "Google Ads": "إعلانات جوجل",
+  "LinkedIn Advertising": "الإعلان على لينكد إن",
+  "Search Engine Optimization (SEO)": "تحسين محركات البحث (SEO)",
+  "Online Presence": "التواجد عبر الإنترنت",
+  "Strategic Marketing": "التسويق الاستراتيجي",
+  "Strategic Planning": "التخطيط الاستراتيجي",
+  "Management": "الإدارة",
+  "Economic Intelligence": "الذكاء الاقتصادي",
+  "Hypothesis Testing": "اختبار الفرضيات",
+  "Contextual Analysis": "التحليل السياقي",
+  "Contextual Advertising": "الإعلان السياقي",
+  "Problem Solving": "حل المشكلات",
+  "Critical Thinking": "التفكير النقدي",
+  "Leadership": "القيادة",
+  "Public Speaking": "فن الخطابة",
+  "Presentation Skills": "مهارات العرض",
+  "WordPress Development": "تطوير ووردبريس",
+  "Photography": "التصوير الفوتوغرافي",
+  "Image Editing": "تعديل تحرير",
+  "Adobe Illustrator": "أدوبي إليستريتور",
+  "B2B Marketing": "التسويق بين الشركات",
+  "Negotiation": "التفاوض",
+  "Customer Service": "خدمة العملاء",
+  "Competitive Analysis": "التحليل التنافسي",
+  "Community Management": "Community Management",
+  "Social Media Management": "إدارة وسائل التواصل الاجتماعي",
+  "Content Planning": "تخطيط المحتوى",
+  "Concept Development": "تطوير المفاهيم",
+  "Scriptwriting": "كتابة السيناريو",
+  "Storyboarding": "Storyboarding",
+  "Copywriting": "كتابة النصوص الإعلانية",
+  "Microsoft Excel": "مايكروسوفت إكسل",
+  "JavaScript": "جافا سكريبت",
+  "Python": "بايثون",
+  "PHP": "PHP",
+  "HTML": "HTML",
+  "CSS": "سي إس إس",
+  "Microsoft PowerPoint": "مايكروسوفت باوربوينت",
+  "SQL": "SQL",
+          "Anir Ouafi": "أنير وافي",
+        "Footer Text": "تم تطوير هذه الصفحة بالكامل من الصفر بواسطتي، أنير وافي، باستخدام الذكاء الاصطناعي."
+
+            },
+            zgh: {
+// Tamazight translations
+			"Dark Mode": "ⴰⴷⴷⴰⴷ ⵉⵍⵍⴰⵙⵏ",
+            "Light Mode": "ⴰⴷⴷⴰⴷ ⵉⴼⴰⵡⵏ",
+            "Language": "ⵜⵓⵜⵍⴰⵢⵜ",
+            "Marketing Graduate": "ⴰⵎⵔⵓⵣ ⵏ  ⵓⵙⴳⴷⵣ ⵣⵖ ⵜⵉⵏⵎⵍ ⵜⴰⵏⴰⵎⵓⵔⵜ ⵏ ⵓⵙⵖⵏⵣⵉ ⴷ ⵓⵙⵡⵓⴷⴷⵓ",
+            "Location": "ⵉⵏⵣⴳⴰⵏ, ⵙⵓⵙ-ⵎⴰⵙⵙⵜ, ⵍⵎⵖⵔⵉⴱ",
+            "Professional Summary": "ⵜⴰⴳⴹⵡⵉⵜ",
+            "Summary Content": "ⴰⵎⵔⵓⵣ ⵏ  ⵓⵙⴳⴷⵣ ⵣⵖ ⵜⵉⵏⵎⵍ ⵜⴰⵏⴰⵎⵓⵔⵜ ⵏ ⵓⵙⵖⵏⵣⵉ ⴷ ⵓⵙⵡⵓⴷⴷⵓ ⵏ ⵓⴳⴰⴷⵉⵔ, ⴷⴰ ⵉⵙⵎⵓⵏⴰⵏ ⴳⵔ ⵜⵓⵙⵙⵏⴰ ⵜⴰⴽⴰⴷⵉⵎⵉⵜ ⵉⴷⵓⵙⵏ ⴳ ⵓⵙⴳⴷⵣ, ⴷ ⵉⵔⵉⵎ ⴰⵎⵙⴽⴰⵔ ⴳ ⵓⴳⴰⴷⴰⵣ ⵏ ⵜⵡⵓⵔⵉ. ⵉⴳⴰ ⴰⵎⵙⵙⴼⵙⴰⵢ ⵉⵥⴹⴰⵔⵏ ⵙⵓⵍ ⵉⵥⴹⴰⵔⵏ ⵉ ⵓⵍⵎⵎⵓⴷ, ⵎⴽ ⵉⵥⴹⴰⵔ ⵉ ⵜⵏⴰⵎⵉⵜ ⵅⴼ ⵉⵎⴰⵙⵙⵏ ⵉⵜⵉⴽⵏⵓⵍⵓⵊⵉⵢⵏ ⵉⵎⴰⵢⵏⵓⵜⵏ ⴷ ⵉⵙⵏⴼⴰⵍ ⵏ ⵜⵡⵏⵏⴰⴹ ⵏ ⵜⵡⵓⵔⵉ.",
+            "Experience": "ⵉⵔⵉⵎ",
+            "Education": "ⴰⵙⴳⵎⵉ",
+            "Certifications": "ⵉⵙⴽⵍⵉⵏⵏ",
+            "Skills": "ⵜⵉⵙⵓⴳⴰⵔ",
+            "Languages": "ⵜⵓⵜⵍⴰⵢⵉⵏ",
+            "Tamazight": "ⵜⴰⵎⴰⵣⵉⵖⵜ: ⵜⴰⵢⵎⵎⴰⵜ",
+            "Arabic": "ⵜⴰⵄⵕⴰⴱⵜ: ⵜⵉⵙⵙ ⵙⵏⴰⵜ",
+            "French": "ⵜⴰⴼⵕⴰⵏⵙⵉⵙⵜ: ⵜⴰⵣⵣⵓⵍⴰⵏⵜ",
+            "English": "ⵜⴰⵏⴳⵍⵉⵣⵜ: ⵜⴰⵣⵣⵓⵍⴰⵏⵜ",
+            "Spanish": "ⵜⴰⵙⴱⵏⵢⵓⵍⵜ: ⴰⵙⵏⴼⴰⵍ",
+            "View Credential": "ⵥⵕ ⵜⴰⵙⵖⵣⵏⵜ",
+            "View Final Year Project Details": "ⵥⵕ ⵉⴼⵔⵓⵔⵉⵜⵏ ⵏ ⵓⵙⵏⵜⵉ ⵏ ⵓⵙⴳⴳⵯⴰⵙ ⴰⵎⴳⴳⴰⵔⵓ",
+                "Final Year Research Project": "Final Year Research Project",
+                "Project Theme": "Theme: \"Content Marketing Effectiveness in The Moroccan Context: Evaluation and Analysis\"",
+                "Project Period": "Period: Mar 2024 - May 2024",
+                "Project Association": "Associated with ENCG - National School of Business and Management of Agadir",
+                "Project Description": "I conducted this research for my final year at ENCG Agadir, interning at Media Man, a social media marketing agency based in Agadir, monitored by its director Mr. Mohamed Gallab, under the supervision of Dr. El Boukhari Majda, and jury members including her, along with Dr. Belhiyah Khadija and Dr. Saidi Asma, all of them are ENCG Agadir professor-researchers.",
+                "Project Approach": "In this research, I conducted an in-depth study focusing on the effectiveness of content marketing for businesses targeting Moroccan audiences. Implementing a quantitative approach and analyzing a substantial sample of 10,189 social media posts, the study identified some specific variables that significantly impact the studied engagement metrics (likes, comments, shares) and highlighted several other factors showing significant differences in engagement.",
+                "Key Findings": "Key Findings:",
+                "Finding1": "Distribution Channel: Facebook outperformed Instagram, significantly increasing median likes and comments compared to Instagram.",
+                "Finding2": "Business Category: B2C content saw the highest median engagement.",
+                "Finding3": "Content Category: Humor/entertainment content significantly increased engagement.",
+                "Finding4": "Day of the Week: Weekends boosted engagement, while some weekdays drastically lowered it.",
+                "Finding5": "Hashtags: Unexpectedly, posts with 0-1 hashtag generated the highest median engagement across metrics.",
+                "Finding6": "Hour: Midday (12pm) and late evening (10pm) notably increased Facebook likes, while morning (8am) significantly improved comments and shares.",
+                "Finding7": "Minute: Posting on Facebook exactly at the 30th minute of any hour maximized engagement.",
+                "Finding8": "Posting Frequency: Higher posting frequency correlated moderately with increased likes and weakly with comments/shares.",
+                "Finding9": "Complexity: Engagement metrics decrease with complexity.",
+                "Project Conclusion": "Overall, this report serves as a pioneering effort in the field, providing valuable insights for businesses aiming to optimize their content marketing strategies and engage more effectively with Moroccan audiences.",
+			// Experience translations
+"Digital Marketing Assistant": "ⴰⵎⴰⵡⴰⵙ ⴳ ⵓⵙⴳⴷⵣ ⴰⵎⵓⵟⵟⵓⵏ",
+"Media Man": "ⵎⵉⴷⵢⴰ ⵎⴰⵏ",
+"February 2024 - May 2024": "ⴱⵕⴰⵢⵕ 2024 - ⵎⴰⵢⵢⵓ 2024",
+"Agadir, Souss-Massa, Morocco": "ⴰⴳⴰⴷⵉⵔ, ⵙⵓⵙ-ⵎⴰⵙⵙⵜ, ⵍⵎⵖⵔⵉⴱ",
+"Developing scripts, storyboards, concepts, and copywriting for social media image and video posts": "Developing scripts, storyboards, concepts, and copywriting for social media image and video posts",
+"Participating in content strategy development": "Participating in content strategy development",
+"Evaluating website user experience and assisting with SEO improvements": "Evaluating website user experience and assisting with SEO improvements",
+"Observing advertising campaign management": "Observing advertising campaign management",
+"Assisting models with script memorization and delivery": "Assisting models with script memorization and delivery",
+"Advertising Campaign Manager and Seller": "ⴰⵏⴱⴷⴰⴷ ⵏ ⵓⵎⵣⵉⵣⵣⵍ ⵏ ⵓⵙⵓⵙⵙⵏ ⴷ ⵓⵎⵣⵣⵏⵣ",
+"Horizon Pack": "Horizon Pack",
+"May 2023 - August 2023": "ⵎⴰⵢⵢⵓ 2023 - ⵖⵓⵛⵜ 2023",
+"Inezgane, Souss-Massa, Morocco": "ⵉⵏⵣⴳⴳⴰⵏ, ⵙⵓⵙ-ⵎⴰⵙⵙⵜ, ⵍⵎⵖⵔⵉⴱ",
+"Gathering information and qualitative data to craft an advertising narrative": "Gathering information and qualitative data to craft an advertising narrative",
+"Developing script, storyboard, and visual concepts for a promotional video": "Developing script, storyboard, and visual concepts for a promotional video",
+"Collaborating with an external production team and overseeing video creation": "Collaborating with an external production team and overseeing video creation",
+"Launching and monitoring of advertising campaigns on Meta and Google Ads platforms": "Launching and monitoring of advertising campaigns on Meta and Google Ads platforms",
+"Receiving and processing orders from new customers": "Receiving and processing orders from new customers",
+"Community Manager": "ⴰⵏⴱⴷⴰⴷ ⵏ ⵜⵎⴳⵔⴰⵡⵜ",
+"June 2022 - September 2022": "ⵢⵓⵏⵢⵓ 2022 - ⵛⵓⵜⴰⵏⴱⵉⵔ 2022",
+"Streamlining social media presence": "Streamlining social media presence",
+"Establishing company profiles on Google My Business and Meta Business Suite": "Establishing company profiles on Google My Business and Meta Business Suite",
+"Developing a WordPress website featuring product catalogs": "Developing a WordPress website featuring product catalogs",
+"Generating commercial posts featuring company products through photography and editing": "Generating commercial posts featuring company products through photography and editing",
+"Managing online engagement by responding to messages and comments": "Managing online engagement by responding to messages and comments",
+// Education translations
+"Master's degree in Marketing": "ⵎⴰⵙⵜⵔ ⴳ ⵓⵙⴳⴷⵣ",
+"National School of Business and Management in Agadir": "ⵜⵉⵏⵎⵍ ⵜⴰⵏⴰⵎⵓⵔⵜ ⵏ ⵓⵙⵖⵏⵣⵉ ⴷ ⵓⵙⵡⵓⴷⴷⵓ ⵏ ⵓⴳⴰⴷⵉⵔ",
+"2021 - 2024": "2021 - 2024",
+"Bac +2, Economics and Business - Scientific Option": "Bac +2, Economics and Business - Scientific Option",
+"CPGE - Classes préparatoires aux grandes écoles": "CPGE - Classes préparatoires aux grandes écoles",
+"2019 - 2021": "2019 - 2021",
+"Baccalaureate, Mathematical Sciences": "ⴱⴰⴽⴰⵍⵓⵔⵢⴰ, ⵜⵓⵙⵙⵏⴰ ⵏ ⵜⵓⵙⵏⴰⴽⵜ",
+"Abdallah Ibn Yassine High School - Inezgane": "ⴰⵙⵉⵏⴰⵏ ⵏ ⵓⵙⵎⴷⵉ ⵄⴱⴷⵍⵍⴰⵀ ⵓ ⵢⴰⵙⵉⵏ - ⵉⵏⵣⴳⴳⴰⵏ",
+"2019": "2019",
+"Grade: mention bien": "ⴰⵙⵡⵉⵔ: ⴰⵢⵢⵓⵣ",
+// Skills translations
+"Digital Marketing": "ⴰⵙⴳⴷⵣ ⴰⵎⵓⵟⵟⵓⵏ",
+"Data-driven Marketing": "Data-driven Marketing",
+"Marketing": "ⴰⵙⴳⴷⵣ",
+"Content Analysis": "ⴰⵙⴼⵙⵉ ⵏ ⵜⵓⵎⴰⵢⵜ",
+"Online Content Creation": "ⴰⵙⵏⴼⵍⵓⵍ ⵏ ⵜⵓⵎⴰⵢⵜ ⵜⴰⵎⵓⵟⵟⵓⵏⵜ",
+"Marketing Campaign Management": "ⵜⴰⴱⴷⴰⵜⵜ ⵏ ⵉⵎⵣⵉⵣⵣⵍⵏ ⵏ ⵓⵙⵓⵙⵙⵏ",
+"Data Analysis": "ⴰⵙⴼⵙⵉ ⵏ ⵉⵙⴼⴽⴰ",
+  "Google Analytics": "Google Analytics",
+  "Meta Ads": "Meta Ads",
+  "Google Ads": "Google Ads",
+  "LinkedIn Advertising": "LinkedIn Advertising",
+  "Search Engine Optimization (SEO)": "Search Engine Optimization (SEO)",
+  "Online Presence": "Online Presence",
+  "Strategic Marketing": "ⴰⵙⴳⴷⵣ ⴰⵙⵜⵕⴰⵜⵉⵊⵉ",
+  "Strategic Planning": "ⴰⵙⵖⵉⵡⵙ ⴰⵙⵜⵕⴰⵜⵉⵊⵉ",
+  "Management": "ⵜⴰⴱⴷⴰⵜⵜ",
+  "Economic Intelligence": "ⵜⵉⵖⵉⵙⵜ ⵜⴰⴷⴰⵎⵙⴰⵏⵜ",
+  "Hypothesis Testing": "Hypothesis Testing",
+  "Contextual Analysis": "Contextual Analysis",
+  "Contextual Advertising": "Contextual Advertising",
+  "Problem Solving": "ⴰⴼⵙⵙⴰⵢ ⵏ ⵜⵎⵓⴽⵔⵉⵙⵉⵏ",
+  "Critical Thinking": "Critical Thinking",
+  "Leadership": "Leadership",
+  "Public Speaking": "Public Speaking",
+  "Presentation Skills": "Presentation Skills",
+  "WordPress Development": "WordPress Development",
+  "Photography": "ⴰⵙⵡⵍⴼ",
+  "Image Editing": "Image Editing",
+  "Adobe Illustrator": "Adobe Illustrator",
+  "B2B Marketing": "B2B Marketing",
+  "Negotiation": "Negotiation",
+  "Customer Service": "Customer Service",
+  "Competitive Analysis": "Competitive Analysis",
+  "Community Management": "Community Management",
+  "Social Media Management": "Social Media Management",
+  "Content Planning": "Content Planning",
+  "Concept Development": "Concept Development",
+  "Scriptwriting": "Scriptwriting",
+  "Storyboarding": "Storyboarding",
+  "Copywriting": "Copywriting",
+  "Microsoft Excel": "Microsoft Excel",
+  "JavaScript": "JavaScript",
+  "Python": "Python",
+  "PHP": "PHP",
+  "HTML": "HTML",
+  "CSS": "CSS",
+  "Microsoft PowerPoint": "Microsoft PowerPoint",
+  "SQL": "SQL",
+          "Anir Ouafi": "ⴰⵏⵉⵔ ⵡⴰⴼⵉ",
+        "Footer Text": "ⵜⴰⵙⵏⴰ ⴰⴷ ⵜⵜⵢⴰⵡⵙⴽⴰⵔ ⵙⴳ ⵓⵎⵢⴰ ⵙ ⵓⴼⵓⵙ ⵉⵏⵓ ⵏⴽⴽⵉ, ⴰⵏⵉⵔ ⵡⴰⴼⵉ, ⵙ ⵓⵎⵢⴰⵡⴰⵙ ⵏ ⵜⵉⵖⵉⵙⵜ ⵜⵉⵎⵥⵍⵉⵜ."
+
+            }
+        }
+
+        let currentLanguage = 'en';
+
+function changeLanguage(lang) {
+    currentLanguage = lang;
+    document.documentElement.lang = lang;
+    document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+    document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (translations[lang] && translations[lang][key]) {
+            element.textContent = translations[lang][key];
+        }
+    });
+
+    // Update language buttons visibility
+    document.querySelectorAll('.language-button, .language-option').forEach(button => {
+        button.style.display = button.getAttribute('data-lang') === lang ? 'none' : 'inline-block';
+    });
+
+    // Hide the language options after changing the language
+    document.querySelector('.language-options').style.display = 'none';
+
+    // Update URL with new language parameter
+    let url = new URL(window.location.href);
+    url.searchParams.set('lang', lang);
+    window.history.pushState({}, '', url);
+}
+
+function initLanguageSwitch() {
+    const languageSwitch = document.querySelector('.language-switch');
+    const languageOptions = document.querySelector('.language-options');
+    const languageButtons = document.querySelectorAll('.language-option');
+
+    languageSwitch.addEventListener('click', () => {
+        languageOptions.style.display = languageOptions.style.display === 'flex' ? 'none' : 'flex';
+        languageButtons.forEach(button => {
+            button.style.display = button.getAttribute('data-lang') === currentLanguage ? 'none' : 'block';
+        });
+    });
+
+    languageButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const lang = button.getAttribute('data-lang');
+            changeLanguage(lang);
+			button.style.display = button.getAttribute('data-lang') === currentLanguage ? 'none' : 'block';
+        });
+    });
+}
+
+
+        
+
+        function initLanguageButtons() {
+            document.querySelectorAll('.language-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const lang = button.getAttribute('data-lang');
+                    changeLanguage(lang);
+                });
+            });
+        }
+
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+window.onload = function() {
+    let langParam = getUrlParameter('lang');
+    if (langParam && ['en', 'fr', 'ar', 'zgh'].includes(langParam)) {
+        currentLanguage = langParam;
+    }
+    populateSkills();
+    populateExperience();
+    populateEducation();
+    populateCertifications();
+    initBackgroundAnimation();
+    initAnimations();
+    animateSkillButtons();
+    document.querySelector('.theme-switch').addEventListener('click', () => toggleDarkMode());
+    initLanguageSwitch();
+    initLanguageButtons();
+    changeLanguage(currentLanguage); // This will set the initial language
+	    const themeParam = getUrlParameter('theme');
+    if (themeParam === 'dark' || themeParam === 'light') {
+        toggleDarkMode(themeParam === 'dark');
+    }
+};
+    </script>
+    <div style="width: 100%; text-align: center;">
+        <p data-translate="Footer Text">This webpage was entirely developed from scratch by me, Anir Ouafi, using AI.</p>
+        <div class="social-icons" style="margin-top: 10px;">
+            <a href="mailto:ouafianir@gmail.com" target="_blank" class="icon-link">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://wa.me/212629915388" target="_blank" class="icon-link">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/ouafi/" target="_blank" class="icon-link">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </div>
+    </div>
 </body>
 </html>
