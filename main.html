@@ -755,6 +755,11 @@ function populateExperience() {
 
                     projectButton.addEventListener('click', () => {
                         projectDetails.classList.toggle('hidden');
+						if (projectDetails.classList.contains('hidden')) {
+					        projectButton.textContent = translations[currentLanguage]['View Final Year Project Details'];
+					    } else {
+					        projectButton.textContent = translations[currentLanguage]['Hide Final Year Project Details'];
+					    }
                     });
                 }
                 educationItems.appendChild(item);
@@ -1499,5 +1504,6 @@ window.onload = function() {
     </div>
 </body>
 </html>
+
 
 
