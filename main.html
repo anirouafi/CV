@@ -717,14 +717,12 @@ function populateExperience() {
 		    item.appendChild(examplesDetails);
 		
 examplesButton.addEventListener('click', () => {
+    const isHidden = examplesDetails.classList.contains('hidden');
     examplesDetails.classList.toggle('hidden');
-    if (examplesDetails.classList.contains('hidden')) {
-        examplesButton.textContent = translations[currentLanguage]['View some examples'];
-        examplesButton.setAttribute('data-translate', 'View some examples');
-    } else {
-        examplesButton.textContent = translations[currentLanguage]['Hide the examples'];
-        examplesButton.setAttribute('data-translate', 'Hide the examples');
-    }
+    
+    const newText = isHidden ? translations[currentLanguage]['Hide the examples'] : translations[currentLanguage]['View some examples'];
+    examplesButton.textContent = newText;
+    examplesButton.setAttribute('data-translate', isHidden ? 'Hide the examples' : 'View some examples');
 });
 		}
         
@@ -1550,6 +1548,7 @@ window.onload = function() {
     </div>
 </body>
 </html>
+
 
 
 
