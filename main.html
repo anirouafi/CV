@@ -694,13 +694,14 @@ function populateExperience() {
             `;
             item.appendChild(examplesDetails);
 
-            examplesButton.addEventListener('click', () => {
-                examplesDetails.classList.toggle('hidden');
-            });
-        }
-        
-        experienceItems.appendChild(item);
-    });
+	examplesButton.addEventListener('click', () => {
+	    examplesDetails.classList.toggle('hidden');
+	    if (examplesDetails.classList.contains('hidden')) {
+	        examplesButton.textContent = translations[currentLanguage]['View some examples'];
+	    } else {
+	        examplesButton.textContent = translations[currentLanguage]['Hide the examples'];
+	    }
+	});
 }
 
         function populateEducation() {
@@ -748,9 +749,14 @@ function populateExperience() {
                     `;
                     item.appendChild(projectDetails);
 
-                    projectButton.addEventListener('click', () => {
-                        projectDetails.classList.toggle('hidden');
-                    });
+					projectButton.addEventListener('click', () => {
+					    projectDetails.classList.toggle('hidden');
+					    if (projectDetails.classList.contains('hidden')) {
+					        projectButton.textContent = translations[currentLanguage]['View Final Year Project Details'];
+					    } else {
+					        projectButton.textContent = translations[currentLanguage]['Hide Final Year Project Details'];
+					    }
+					});
                 }
                 educationItems.appendChild(item);
             });
@@ -864,8 +870,11 @@ function toggleDarkMode(setMode = null) {
                 "French": "French: Professional proficiency",
                 "English": "English: Professional proficiency",
                 "Spanish": "Spanish: Elementary",
+				"View some examples": "View some examples",
                 "View Credential": "View Credential",
                 "View Final Year Project Details": "View Final Year Project Details",
+				"Hide the examples": "Hide the examples",
+				"Hide Final Year Project Details": "Hide Final Year Project Details",
                 "Final Year Research Project": "Final Year Research Project",
                 "Project Theme": "Theme: \"Content Marketing Effectiveness in The Moroccan Context: Evaluation and Analysis\"",
                 "Project Period": "Period: Mar 2024 - May 2024",
@@ -894,7 +903,6 @@ function toggleDarkMode(setMode = null) {
   "Evaluating website user experience and assisting with SEO improvements": "Evaluating website user experience and assisting with SEO improvements",
   "Observing advertising campaign management": "Observing advertising campaign management",
   "Assisting models with script memorization and delivery": "Assisting models with script memorization and delivery",
-  "View some examples": "View some examples",
   
   "Advertising Campaign Manager and Seller": "Advertising Campaign Manager and Seller",
   "Horizon Pack": "Horizon Pack",
@@ -998,8 +1006,11 @@ function toggleDarkMode(setMode = null) {
                 "French": "Français : Maîtrise professionnelle",
                 "English": "Anglais : Maîtrise professionnelle",
                 "Spanish": "Espagnol : Élémentaire",
+				"View some examples": "Voir quelques exemples",
                 "View Credential": "Voir la référence",
-                "View Final Year Project Details": "Voir les détails du projet de fin d'études",
+                "View Final Year Project Details": "Voir les détails du Projet de fin d'Études",
+				"Hide the examples": "Masquer les exemples",
+				"Hide Final Year Project Details": "Masquer les détails du Projet de Fin d'Études",
 				
                 "Final Year Research Project": "Final Year Research Project",
                 "Project Theme": "Theme: \"Content Marketing Effectiveness in The Moroccan Context: Evaluation and Analysis\"",
@@ -1029,7 +1040,6 @@ function toggleDarkMode(setMode = null) {
   "Evaluating website user experience and assisting with SEO improvements": "Évaluation de l'expérience utilisateur des sites web, et assistance aux améliorations du référencement (SEO).",
   "Observing advertising campaign management": "Observation de la gestion des campagnes publicitaires.",
   "Assisting models with script memorization and delivery": "Assistance des acteurs dans la mémorisation et l'exécution des scripts.",
-  "View some examples": "Voir quelques exemples",
 				
   "Advertising Campaign Manager and Seller": "Responsable de Campagne Publicitaire et Vendeur",
   "Horizon Pack": "Horizon Pack",
@@ -1136,6 +1146,8 @@ function toggleDarkMode(setMode = null) {
                 "View Credential": "عرض الاعتماد",
 				"View some examples": "عرض بعض الأمثلة",
                 "View Final Year Project Details": "عرض تفاصيل مشروع السنة النهائية",
+				"Hide the examples": "Masquer les exemples",
+				"Hide Final Year Project Details": "Masquer les détails du projet de fin d'études",
                 "Final Year Research Project": "Final Year Research Project",
                 "Project Theme": "Theme: \"Content Marketing Effectiveness in The Moroccan Context: Evaluation and Analysis\"",
                 "Project Period": "Period: Mar 2024 - May 2024",
@@ -1270,23 +1282,25 @@ function toggleDarkMode(setMode = null) {
             "View Credential": "ⵥⵕ ⵜⴰⵙⵖⵣⵏⵜ",
 			"View some examples": "ⵥⵕ ⴽⵔⴰ ⵏ ⵉⵙⵎⴷⵢⴰⵜⵏ",
             "View Final Year Project Details": "ⵥⵕ ⵉⴼⵔⵓⵔⵉⵜⵏ ⵏ ⵓⵙⵏⵜⵉ ⵏ ⵓⵙⴳⴳⵯⴰⵙ ⴰⵎⴳⴳⴰⵔⵓ",
-                "Final Year Research Project": "Final Year Research Project",
-                "Project Theme": "Theme: \"Content Marketing Effectiveness in The Moroccan Context: Evaluation and Analysis\"",
-                "Project Period": "Period: Mar 2024 - May 2024",
-                "Project Association": "Associated with ENCG - National School of Business and Management of Agadir",
-                "Project Description": "I conducted this research for my final year at ENCG Agadir, interning at Media Man, a social media marketing agency based in Agadir, monitored by its director Mr. Mohamed Gallab, under the supervision of Dr. El Boukhari Majda, and jury members including her, along with Dr. Belhiyah Khadija and Dr. Saidi Asma, all of them are ENCG Agadir professor-researchers.",
-                "Project Approach": "In this research, I conducted an in-depth study focusing on the effectiveness of content marketing for businesses targeting Moroccan audiences. Implementing a quantitative approach and analyzing a substantial sample of 10,189 social media posts, the study identified some specific variables that significantly impact the studied engagement metrics (likes, comments, shares) and highlighted several other factors showing significant differences in engagement.",
-                "Key Findings": "Key Findings:",
-                "Finding1": "Distribution Channel: Facebook outperformed Instagram, significantly increasing median likes and comments compared to Instagram.",
-                "Finding2": "Business Category: B2C content saw the highest median engagement.",
-                "Finding3": "Content Category: Humor/entertainment content significantly increased engagement.",
-                "Finding4": "Day of the Week: Weekends boosted engagement, while some weekdays drastically lowered it.",
-                "Finding5": "Hashtags: Unexpectedly, posts with 0-1 hashtag generated the highest median engagement across metrics.",
-                "Finding6": "Hour: Midday (12pm) and late evening (10pm) notably increased Facebook likes, while morning (8am) significantly improved comments and shares.",
-                "Finding7": "Minute: Posting on Facebook exactly at the 30th minute of any hour maximized engagement.",
-                "Finding8": "Posting Frequency: Higher posting frequency correlated moderately with increased likes and weakly with comments/shares.",
-                "Finding9": "Complexity: Engagement metrics decrease with complexity.",
-                "Project Conclusion": "Overall, this report serves as a pioneering effort in the field, providing valuable insights for businesses aiming to optimize their content marketing strategies and engage more effectively with Moroccan audiences.",
+			"Hide the examples": "ⵙⵙⵏⵜⵍ ⵉⵙⵎⴷⵢⴰⵜⵏ",
+			"Hide Final Year Project Details": "ⵙⵙⵏⵜⵍ ⵉⴼⵔⵓⵔⵉⵜⵏ ⵏ ⵓⵙⵏⵜⵉ ⵏ ⵓⵙⴳⴳⵯⴰⵙ ⴰⵎⴳⴳⴰⵔⵓ",
+			"Final Year Research Project": "Final Year Research Project",
+			"Project Theme": "Theme: \"Content Marketing Effectiveness in The Moroccan Context: Evaluation and Analysis\"",
+			"Project Period": "Period: Mar 2024 - May 2024",
+			"Project Association": "Associated with ENCG - National School of Business and Management of Agadir",
+			"Project Description": "I conducted this research for my final year at ENCG Agadir, interning at Media Man, a social media marketing agency based in Agadir, monitored by its director Mr. Mohamed Gallab, under the supervision of Dr. El Boukhari Majda, and jury members including her, along with Dr. Belhiyah Khadija and Dr. Saidi Asma, all of them are ENCG Agadir professor-researchers.",
+			"Project Approach": "In this research, I conducted an in-depth study focusing on the effectiveness of content marketing for businesses targeting Moroccan audiences. Implementing a quantitative approach and analyzing a substantial sample of 10,189 social media posts, the study identified some specific variables that significantly impact the studied engagement metrics (likes, comments, shares) and highlighted several other factors showing significant differences in engagement.",
+			"Key Findings": "Key Findings:",
+			"Finding1": "Distribution Channel: Facebook outperformed Instagram, significantly increasing median likes and comments compared to Instagram.",
+			"Finding2": "Business Category: B2C content saw the highest median engagement.",
+			"Finding3": "Content Category: Humor/entertainment content significantly increased engagement.",
+			"Finding4": "Day of the Week: Weekends boosted engagement, while some weekdays drastically lowered it.",
+			"Finding5": "Hashtags: Unexpectedly, posts with 0-1 hashtag generated the highest median engagement across metrics.",
+			"Finding6": "Hour: Midday (12pm) and late evening (10pm) notably increased Facebook likes, while morning (8am) significantly improved comments and shares.",
+			"Finding7": "Minute: Posting on Facebook exactly at the 30th minute of any hour maximized engagement.",
+			"Finding8": "Posting Frequency: Higher posting frequency correlated moderately with increased likes and weakly with comments/shares.",
+			"Finding9": "Complexity: Engagement metrics decrease with complexity.",
+			"Project Conclusion": "Overall, this report serves as a pioneering effort in the field, providing valuable insights for businesses aiming to optimize their content marketing strategies and engage more effectively with Moroccan audiences.",
 			// Experience translations
 "Digital Marketing Assistant": "ⴰⵎⴰⵡⴰⵙ ⴳ ⵓⵙⴳⴷⵣ ⴰⵎⵓⵟⵟⵓⵏ",
 "Media Man": "ⵎⵉⴷⵢⴰ ⵎⴰⵏ",
@@ -1485,6 +1499,7 @@ window.onload = function() {
     </div>
 </body>
 </html>
+
 
 
 
