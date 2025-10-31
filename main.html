@@ -504,7 +504,8 @@
                     "Collaborating with an external production team and overseeing video creation",
                     "Launching and monitoring of advertising campaigns on Meta and Google Ads platforms",
                     "Receiving and processing orders from new customers"
-                ]
+                ],
+				hasExamples: true
             },
             {
                 title: "Community Manager",
@@ -533,6 +534,22 @@
 		    "https://www.facebook.com/AGANET.agadir/videos/439751238595771",
 		    "https://www.instagram.com/p/C4TAmjwNShh/",
 		    "https://www.instagram.com/p/C-gFpKDt2yb/"
+		];
+
+		const horizonExamples = [
+		    { url: "https://www.instagram.com/p/CvSD1BNBwWt/embed" },
+		    { url: "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fphoto%2F%3Ffbid%3D302140442392003%26set%3Decnf.100077881491713&show_text=false&width=500" },
+		    { url: "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fphoto.php%3Ffbid%3D312519474687433%26set%3Dpb.100077881491713.-2207520000&show_text=false&width=500" },
+		    { url: "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fphoto.php%3Ffbid%3D302140402392007%26set%3Dpb.100077881491713.-2207520000&show_text=false&width=500" },
+		    { url: "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FHorizonPack%2Fphotos%2Fpb.100077881491713.-2207520000%2F177712994791048&show_text=false&width=500" }
+		];
+		
+		const horizonExampleLinks = [
+		    "https://www.instagram.com/horizon.pack/reel/CvSD1BNBwWt/",
+		    "https://web.facebook.com/photo/?fbid=302140442392003&set=ecnf.100077881491713",
+		    "https://web.facebook.com/photo.php?fbid=312519474687433&set=pb.100077881491713.-2207520000&type=3",
+		    "https://web.facebook.com/photo.php?fbid=302140402392007&set=pb.100077881491713.-2207520000&type=3",
+		    "https://web.facebook.com/HorizonPack/photos/pb.100077881491713.-2207520000/177712994791048/?type=3"
 		];
 
         const education = [
@@ -683,15 +700,19 @@ function populateExperience() {
 
             const examplesDetails = document.createElement('div');
             examplesDetails.classList.add('project-details', 'hidden');
-            examplesDetails.innerHTML = `
-                <div class="examples-grid">
-                    ${examples.map((example, index) => `
-                        <div class="example-item" onclick="window.open('${exampleLinks[index]}', '_blank')">
-                            <iframe src="${example.url}" scrolling="no" allowtransparency="true" allow="encrypted-media"></iframe>
-                        </div>
-                    `).join('')}
-                </div>
-            `;
+			const isHorizonPack = exp.company === "Horizon Pack";
+			const examplesList = isHorizonPack ? horizonExamples : examples;
+			const linksList = isHorizonPack ? horizonExampleLinks : exampleLinks;
+			
+			examplesDetails.innerHTML = `
+				<div class="examples-grid">
+					${examplesList.map((example, index) => `
+						<div class="example-item" onclick="window.open('${linksList[index]}', '_blank')">
+							<iframe src="${example.url}" scrolling="no" allowtransparency="true" allow="encrypted-media"></iframe>
+						</div>
+					`).join('')}
+				</div>
+			`;
             item.appendChild(examplesDetails);
 
             examplesButton.addEventListener('click', () => {
@@ -1526,3 +1547,4 @@ window.onload = function() {
     </div>
 </body>
 </html>
+
