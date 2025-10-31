@@ -716,14 +716,16 @@ function populateExperience() {
 		    `;
 		    item.appendChild(examplesDetails);
 		
-		    examplesButton.addEventListener('click', () => {
-		        examplesDetails.classList.toggle('hidden');
-		        if (examplesDetails.classList.contains('hidden')) {
-		            examplesButton.textContent = translations[currentLanguage]['View some examples'];
-		        } else {
-		            examplesButton.textContent = translations[currentLanguage]['Hide the examples'];
-		        }
-		    });
+examplesButton.addEventListener('click', () => {
+    examplesDetails.classList.toggle('hidden');
+    if (examplesDetails.classList.contains('hidden')) {
+        examplesButton.textContent = translations[currentLanguage]['View some examples'];
+        examplesButton.setAttribute('data-translate', 'View some examples');
+    } else {
+        examplesButton.textContent = translations[currentLanguage]['Hide the examples'];
+        examplesButton.setAttribute('data-translate', 'Hide the examples');
+    }
+});
 		}
         
         experienceItems.appendChild(item);
@@ -1548,6 +1550,7 @@ window.onload = function() {
     </div>
 </body>
 </html>
+
 
 
 
