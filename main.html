@@ -696,6 +696,11 @@ function populateExperience() {
 
             examplesButton.addEventListener('click', () => {
                 examplesDetails.classList.toggle('hidden');
+				if (examplesDetails.classList.contains('hidden')) {
+			        examplesButton.textContent = translations[currentLanguage]['View some examples'];
+			    } else {
+			        examplesButton.textContent = translations[currentLanguage]['Hide the examples'];
+			    }
             });
         }
         
@@ -1494,4 +1499,5 @@ window.onload = function() {
     </div>
 </body>
 </html>
+
 
