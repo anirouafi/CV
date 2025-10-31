@@ -504,7 +504,8 @@
                     "Collaborating with an external production team and overseeing video creation",
                     "Launching and monitoring of advertising campaigns on Meta and Google Ads platforms",
                     "Receiving and processing orders from new customers"
-                ]
+                ],
+				hasExamples: true
             },
             {
                 title: "Community Manager",
@@ -521,19 +522,38 @@
             }
         ];
 
-		const examples = [
-		    { url: "https://www.instagram.com/p/C8FVeAZNjnB/embed" },
-		    { url: "https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2FAGANET.agadir%2Fvideos%2F439751238595771%2F&show_text=false&width=560&t=0" },
-		    { url: "https://www.instagram.com/p/C4TAmjwNShh/embed" },
-		    { url: "https://www.instagram.com/p/C-gFpKDt2yb/embed" }
-		];
-		
-		const exampleLinks = [
-		    "https://www.instagram.com/p/C8FVeAZNjnB/",
-		    "https://www.facebook.com/AGANET.agadir/videos/439751238595771",
-		    "https://www.instagram.com/p/C4TAmjwNShh/",
-		    "https://www.instagram.com/p/C-gFpKDt2yb/"
-		];
+		const examplesByCompany = {
+		    "Media Man": {
+		        examples: [
+		            { url: "https://www.instagram.com/p/C8FVeAZNjnB/embed" },
+		            { url: "https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2FAGANET.agadir%2Fvideos%2F439751238595771%2F&show_text=false&width=560&t=0" },
+		            { url: "https://www.instagram.com/p/C4TAmjwNShh/embed" },
+		            { url: "https://www.instagram.com/p/C-gFpKDt2yb/embed" }
+		        ],
+		        links: [
+		            "https://www.instagram.com/p/C8FVeAZNjnB/",
+		            "https://www.facebook.com/AGANET.agadir/videos/439751238595771",
+		            "https://www.instagram.com/p/C4TAmjwNShh/",
+		            "https://www.instagram.com/p/C-gFpKDt2yb/"
+		        ]
+		    },
+		    "Horizon Pack": {
+		        examples: [
+		            { url: "https://www.instagram.com/p/CvSD1BNBwWt/embed" },
+		            { url: "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2Fphoto%2F%3Ffbid%3D302140442392003%26set%3Decnf.100077881491713&show_text=false&width=500" },
+		            { url: "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2Fphoto.php%3Ffbid%3D312519474687433%26set%3Dpb.100077881491713.-2207520000&show_text=false&width=500" },
+		            { url: "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2Fphoto.php%3Ffbid%3D302140402392007%26set%3Dpb.100077881491713.-2207520000&show_text=false&width=500" },
+		            { url: "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fweb.facebook.com%2FHorizonPack%2Fphotos%2Fpb.100077881491713.-2207520000%2F177712994791048%2F&show_text=false&width=500" }
+		        ],
+		        links: [
+		            "https://www.instagram.com/horizon.pack/reel/CvSD1BNBwWt/",
+		            "https://web.facebook.com/photo/?fbid=302140442392003&set=ecnf.100077881491713",
+		            "https://web.facebook.com/photo.php?fbid=312519474687433&set=pb.100077881491713.-2207520000&type=3",
+		            "https://web.facebook.com/photo.php?fbid=302140402392007&set=pb.100077881491713.-2207520000&type=3",
+		            "https://web.facebook.com/HorizonPack/photos/pb.100077881491713.-2207520000/177712994791048/?type=3"
+		        ]
+		    }
+		};
 
         const education = [
             {
@@ -674,35 +694,37 @@ function populateExperience() {
             </ul>
         `;
         
-        if (exp.hasExamples) {
-            const examplesButton = document.createElement('button');
-            examplesButton.classList.add('skill-button');
-            examplesButton.textContent = 'View some examples';
-            examplesButton.setAttribute('data-translate', 'View some examples');
-            item.appendChild(examplesButton);
-
-            const examplesDetails = document.createElement('div');
-            examplesDetails.classList.add('project-details', 'hidden');
-            examplesDetails.innerHTML = `
-                <div class="examples-grid">
-                    ${examples.map((example, index) => `
-                        <div class="example-item" onclick="window.open('${exampleLinks[index]}', '_blank')">
-                            <iframe src="${example.url}" scrolling="no" allowtransparency="true" allow="encrypted-media"></iframe>
-                        </div>
-                    `).join('')}
-                </div>
-            `;
-            item.appendChild(examplesDetails);
-
-            examplesButton.addEventListener('click', () => {
-                examplesDetails.classList.toggle('hidden');
-				if (examplesDetails.classList.contains('hidden')) {
-			        examplesButton.textContent = translations[currentLanguage]['View some examples'];
-			    } else {
-			        examplesButton.textContent = translations[currentLanguage]['Hide the examples'];
-			    }
-            });
-        }
+		if (exp.hasExamples) {
+		    const companyExamples = examplesByCompany[exp.company];
+		    
+		    const examplesButton = document.createElement('button');
+		    examplesButton.classList.add('skill-button');
+		    examplesButton.textContent = 'View some examples';
+		    examplesButton.setAttribute('data-translate', 'View some examples');
+		    item.appendChild(examplesButton);
+		
+		    const examplesDetails = document.createElement('div');
+		    examplesDetails.classList.add('project-details', 'hidden');
+		    examplesDetails.innerHTML = `
+		        <div class="examples-grid">
+		            ${companyExamples.examples.map((example, index) => `
+		                <div class="example-item" onclick="window.open('${companyExamples.links[index]}', '_blank')">
+		                    <iframe src="${example.url}" scrolling="no" allowtransparency="true" allow="encrypted-media"></iframe>
+		                </div>
+		            `).join('')}
+		        </div>
+		    `;
+		    item.appendChild(examplesDetails);
+		
+		    examplesButton.addEventListener('click', () => {
+		        examplesDetails.classList.toggle('hidden');
+		        if (examplesDetails.classList.contains('hidden')) {
+		            examplesButton.textContent = translations[currentLanguage]['View some examples'];
+		        } else {
+		            examplesButton.textContent = translations[currentLanguage]['Hide the examples'];
+		        }
+		    });
+		}
         
         experienceItems.appendChild(item);
     });
@@ -892,7 +914,7 @@ function toggleDarkMode(setMode = null) {
                 "French": "French: Professional proficiency",
                 "English": "English: Professional proficiency",
                 "Spanish": "Spanish: Elementary",
-				"View some examples": "View some examples",
+				"Show some examples": "Show some examples",
                 "View Credential": "View Credential",
                 "View Final Year Project Details": "View Final Year Project Details",
 				"Hide the examples": "Hide the examples",
@@ -1030,7 +1052,7 @@ function toggleDarkMode(setMode = null) {
                 "French": "Français : Maîtrise professionnelle",
                 "English": "Anglais : Maîtrise professionnelle",
                 "Spanish": "Espagnol : Élémentaire",
-				"View some examples": "Voir quelques exemples",
+				"Show some examples": "Voir quelques exemples",
                 "View Credential": "Voir la référence",
                 "View Final Year Project Details": "Voir les détails du projet de fin d'études",
 				"Hide the examples": "Masquer les exemples",
@@ -1169,7 +1191,7 @@ function toggleDarkMode(setMode = null) {
                 "English": "الإنجليزية: إتقان مهني",
                 "Spanish": "الإسبانية: مستوى أساسي",
                 "View Credential": "عرض الاعتماد",
-				"View some examples": "عرض بعض الأمثلة",
+				"Show some examples": "عرض بعض الأمثلة",
                 "View Final Year Project Details": "عرض تفاصيل مشروع السنة النهائية",
 				"Hide the examples": "إخفاء الأمثلة",
 				"Hide Final Year Project Details": "إخفاء تفاصيل مشروع السنة النهائية",
@@ -1306,7 +1328,7 @@ function toggleDarkMode(setMode = null) {
             "English": "ⵜⴰⵏⴳⵍⵉⵣⵜ: ⵜⴰⵣⵣⵓⵍⴰⵏⵜ",
             "Spanish": "ⵜⴰⵙⴱⵏⵢⵓⵍⵜ: ⴰⵙⵏⴼⴰⵍ",
             "View Credential": "ⵥⵕ ⵜⴰⵙⵖⵣⵏⵜ",
-			"View some examples": "ⵥⵕ ⴽⵔⴰ ⵏ ⵉⵙⵎⴷⵢⴰⵜⵏ",
+			"Show some examples": "ⵥⵕ ⴽⵔⴰ ⵏ ⵉⵙⵎⴷⵢⴰⵜⵏ",
             "View Final Year Project Details": "ⵥⵕ ⵉⴼⵔⵓⵔⵉⵜⵏ ⵏ ⵓⵙⵏⵜⵉ ⵏ ⵓⵙⴳⴳⵯⴰⵙ ⴰⵎⴳⴳⴰⵔⵓ",
 				"Hide the examples": "ⵙⵙⵏⵜⵍ ⵉⵙⵎⴷⵢⴰⵜⵏ",
 				"Hide Final Year Project Details": "ⵙⵙⵏⵜⵍ ⵉⴼⵔⵓⵔⵉⵜⵏ ⵏ ⵓⵙⵏⵜⵉ ⵏ ⵓⵙⴳⴳⵯⴰⵙ ⴰⵎⴳⴳⴰⵔⵓ",
@@ -1526,6 +1548,7 @@ window.onload = function() {
     </div>
 </body>
 </html>
+
 
 
 
