@@ -127,6 +127,35 @@
             background-color: var(--bg-color);
         }
 
+		.examples-grid {
+    		display: grid;
+    		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    		gap: 1.5rem;
+    		margin-top: 1rem;
+		}
+
+		.example-item {
+		    background-color: var(--card-bg);
+		    border-radius: 8px;
+		    padding: 1rem;
+		    text-align: center;
+		    transition: transform 0.3s, box-shadow 0.3s;
+		    box-shadow: var(--shadow);
+		    cursor: pointer;
+		}
+
+		.example-item:hover {
+		    transform: translateY(-5px);
+		    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+		}
+		
+		.example-item iframe {
+		    width: 100%;
+		    height: 400px;
+		    border: none;
+		    border-radius: 8px;
+		}
+
         .hidden {
             display: none;
         }
@@ -461,7 +490,8 @@
                     "Evaluating website user experience and assisting with SEO improvements",
                     "Observing advertising campaign management",
                     "Assisting models with script memorization and delivery"
-                ]
+                ],
+				hasExamples: true
             },
             {
                 title: "Advertising Campaign Manager and Seller",
@@ -490,6 +520,20 @@
                 ]
             }
         ];
+
+		const examples = [
+		    { url: "https://www.instagram.com/p/C8FVeAZNjnB/embed" },
+		    { url: "https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2FAGANET.agadir%2Fvideos%2F439751238595771%2F&show_text=false&width=560&t=0" },
+		    { url: "https://www.instagram.com/p/C4TAmjwNShh/embed" },
+		    { url: "https://www.instagram.com/p/C-gFpKDt2yb/embed" }
+		];
+		
+		const exampleLinks = [
+		    "https://www.instagram.com/p/C8FVeAZNjnB/",
+		    "https://www.facebook.com/AGANET.agadir/videos/439751238595771",
+		    "https://www.instagram.com/p/C4TAmjwNShh/",
+		    "https://www.instagram.com/p/C-gFpKDt2yb/"
+		];
 
         const education = [
             {
@@ -616,7 +660,7 @@ function showSkillDetails(skill) {
 
 function populateExperience() {
     const experienceItems = document.getElementById('experience-items');
-    experienceItems.innerHTML = ''; // Clear existing content
+    experienceItems.innerHTML = '';
     experiences.forEach(exp => {
         const item = document.createElement('div');
         item.classList.add('experience-item');
@@ -629,6 +673,32 @@ function populateExperience() {
                 ${exp.responsibilities.map(resp => `<li data-translate="${resp}">${resp}</li>`).join('')}
             </ul>
         `;
+        
+        if (exp.hasExamples) {
+            const examplesButton = document.createElement('button');
+            examplesButton.classList.add('skill-button');
+            examplesButton.textContent = 'View some examples';
+            examplesButton.setAttribute('data-translate', 'View some examples');
+            item.appendChild(examplesButton);
+
+            const examplesDetails = document.createElement('div');
+            examplesDetails.classList.add('project-details', 'hidden');
+            examplesDetails.innerHTML = `
+                <div class="examples-grid">
+                    ${examples.map((example, index) => `
+                        <div class="example-item" onclick="window.open('${exampleLinks[index]}', '_blank')">
+                            <iframe src="${example.url}" scrolling="no" allowtransparency="true" allow="encrypted-media"></iframe>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            item.appendChild(examplesDetails);
+
+            examplesButton.addEventListener('click', () => {
+                examplesDetails.classList.toggle('hidden');
+            });
+        }
+        
         experienceItems.appendChild(item);
     });
 }
@@ -824,6 +894,7 @@ function toggleDarkMode(setMode = null) {
   "Evaluating website user experience and assisting with SEO improvements": "Evaluating website user experience and assisting with SEO improvements",
   "Observing advertising campaign management": "Observing advertising campaign management",
   "Assisting models with script memorization and delivery": "Assisting models with script memorization and delivery",
+  "View some examples": "View some examples",
   
   "Advertising Campaign Manager and Seller": "Advertising Campaign Manager and Seller",
   "Horizon Pack": "Horizon Pack",
@@ -958,7 +1029,8 @@ function toggleDarkMode(setMode = null) {
   "Evaluating website user experience and assisting with SEO improvements": "Évaluation de l'expérience utilisateur des sites web, et assistance aux améliorations du référencement (SEO).",
   "Observing advertising campaign management": "Observation de la gestion des campagnes publicitaires.",
   "Assisting models with script memorization and delivery": "Assistance des acteurs dans la mémorisation et l'exécution des scripts.",
-  
+  "View some examples": "Voir quelques exemples",
+				
   "Advertising Campaign Manager and Seller": "Responsable de Campagne Publicitaire et Vendeur",
   "Horizon Pack": "Horizon Pack",
   "May 2023 - August 2023": "Mai 2023 - Août 2023",
@@ -1062,6 +1134,7 @@ function toggleDarkMode(setMode = null) {
                 "English": "الإنجليزية: إتقان مهني",
                 "Spanish": "الإسبانية: مستوى أساسي",
                 "View Credential": "عرض الاعتماد",
+				"View some examples": "عرض بعض الأمثلة",
                 "View Final Year Project Details": "عرض تفاصيل مشروع السنة النهائية",
                 "Final Year Research Project": "Final Year Research Project",
                 "Project Theme": "Theme: \"Content Marketing Effectiveness in The Moroccan Context: Evaluation and Analysis\"",
@@ -1195,6 +1268,7 @@ function toggleDarkMode(setMode = null) {
             "English": "ⵜⴰⵏⴳⵍⵉⵣⵜ: ⵜⴰⵣⵣⵓⵍⴰⵏⵜ",
             "Spanish": "ⵜⴰⵙⴱⵏⵢⵓⵍⵜ: ⴰⵙⵏⴼⴰⵍ",
             "View Credential": "ⵥⵕ ⵜⴰⵙⵖⵣⵏⵜ",
+			"View some examples": "ⵥⵕ ⴽⵔⴰ ⵏ ⵉⵙⵎⴷⵢⴰⵜⵏ",
             "View Final Year Project Details": "ⵥⵕ ⵉⴼⵔⵓⵔⵉⵜⵏ ⵏ ⵓⵙⵏⵜⵉ ⵏ ⵓⵙⴳⴳⵯⴰⵙ ⴰⵎⴳⴳⴰⵔⵓ",
                 "Final Year Research Project": "Final Year Research Project",
                 "Project Theme": "Theme: \"Content Marketing Effectiveness in The Moroccan Context: Evaluation and Analysis\"",
@@ -1411,4 +1485,5 @@ window.onload = function() {
     </div>
 </body>
 </html>
+
 
