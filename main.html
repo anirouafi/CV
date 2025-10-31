@@ -751,6 +751,24 @@ function populateExperience() {
                         <p data-translate="Project Conclusion">Overall, this report serves as a pioneering effort in the field, providing valuable insights for businesses aiming to optimize their content marketing strategies and engage more effectively with Moroccan audiences.</p>
 						</div>
                     `;
+					
+					const requestArticleButton = document.createElement('button');
+					requestArticleButton.classList.add('skill-button');
+					requestArticleButton.textContent = 'Request full article';
+					requestArticleButton.setAttribute('data-translate', 'Request full article');
+					requestArticleButton.style.backgroundColor = '#dc2626';
+					requestArticleButton.style.color = 'white';
+					requestArticleButton.addEventListener('mouseover', () => {
+					    requestArticleButton.style.backgroundColor = '#991b1b';
+					});
+					requestArticleButton.addEventListener('mouseout', () => {
+					    requestArticleButton.style.backgroundColor = '#dc2626';
+					});
+					requestArticleButton.addEventListener('click', () => {
+					    window.open('https://contentmarketing.carrd.co/', '_blank');
+					});
+					projectDetails.appendChild(requestArticleButton);
+					
                     item.appendChild(projectDetails);
 
                     projectButton.addEventListener('click', () => {
@@ -1504,6 +1522,7 @@ window.onload = function() {
     </div>
 </body>
 </html>
+
 
 
 
