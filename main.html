@@ -538,7 +538,7 @@
 
 		const horizonExamples = [
 		    { url: "https://www.instagram.com/p/CvSD1BNBwWt/embed" },
-		    { url: "https://www.facebook.com/plugins/photo.php?href=https%3A%2F%2Fwww.facebook.com%2Fphoto%2F%3Ffbid%3D302140355725345%26set%3Dpcb.302141625725218&show_text=false&width=500" },
+		    { url: "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fphoto%2F%3Ffbid%3D302140355725345%26set%3Dpcb.302141625725218&show_text=false&width=500" },
 		    { url: "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fphoto.php%3Ffbid%3D312519474687433%26set%3Dpb.100077881491713.-2207520000&show_text=false&width=500" },
 		    { url: "https://www.instagram.com/p/CkHeFIvoPst/embed" },
 		    { url: "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FHorizonPack%2Fphotos%2Fpb.100077881491713.-2207520000%2F177712994791048&show_text=false&width=500" }
@@ -703,8 +703,10 @@ function populateExperience() {
 			const isHorizonPack = exp.company === "Horizon Pack";
 			const examplesList = isHorizonPack ? horizonExamples : examples;
 			const linksList = isHorizonPack ? horizonExampleLinks : exampleLinks;
+			const descriptionKey = isHorizonPack ? "HorizonPackExamplesDescription" : "MediaManExamplesDescription";
 			
 			examplesDetails.innerHTML = `
+				<p data-translate="${descriptionKey}">${descriptionKey}</p>
 				<div class="examples-grid">
 					${examplesList.map((example, index) => `
 						<div class="example-item" onclick="window.open('${linksList[index]}', '_blank')">
@@ -967,6 +969,9 @@ function toggleDarkMode(setMode = null) {
   "Generating commercial posts featuring company products through photography and editing": "Generating commercial posts featuring company products through photography and editing",
   "Managing online engagement by responding to messages and comments": "Managing online engagement by responding to messages and comments",
 
+				"MediaManExamplesDescription": "MediaManExamplesDescription",
+				"HorizonPackExamplesDescription": "HorizonPackExamplesDescription",
+
   // Education translations
   "Master's degree in Marketing": "Master's degree in Marketing",
   "National School of Business and Management in Agadir": "National School of Business and Management in Agadir",
@@ -1085,6 +1090,8 @@ function toggleDarkMode(setMode = null) {
   "Evaluating website user experience and assisting with SEO improvements": "Évaluation de l'expérience utilisateur des sites web, et assistance aux améliorations du référencement (SEO).",
   "Observing advertising campaign management": "Observation de la gestion des campagnes publicitaires.",
   "Assisting models with script memorization and delivery": "Assistance des acteurs dans la mémorisation et l'exécution des scripts.",
+
+				
   
 				
   "Advertising Campaign Manager and Seller": "Responsable de Campagne Publicitaire et Vendeur",
@@ -1105,6 +1112,11 @@ function toggleDarkMode(setMode = null) {
   "Generating commercial posts featuring company products through photography and editing": "Création de publications commerciales présentant les produits de l'entreprise.",
   "Managing online engagement by responding to messages and comments": "Gestion de l'engagement en ligne en répondant aux messages et aux commentaires.",
 
+
+
+				"MediaManExamplesDescription": "MediaManExamplesDescription",
+				"HorizonPackExamplesDescription": "HorizonPackExamplesDescription",
+					
   // Education translations
   "Master's degree in Marketing": "Master en Marketing",
   "National School of Business and Management in Agadir": "École Nationale de Commerce et de Gestion (ENCG) - Agadir",
@@ -1242,6 +1254,9 @@ function toggleDarkMode(setMode = null) {
   "Generating commercial posts featuring company products through photography and editing": "Generating commercial posts featuring company products through photography and editing",
   "Managing online engagement by responding to messages and comments": "Managing online engagement by responding to messages and comments",
 
+				"MediaManExamplesDescription": "MediaManExamplesDescription",
+				"HorizonPackExamplesDescription": "HorizonPackExamplesDescription",
+
   // Education translations
   "Master's degree in Marketing": "ماجستير في التسويق",
   "National School of Business and Management in Agadir": "المدرسة الوطنية للتجارة والتسيير - أكادير",
@@ -1375,6 +1390,10 @@ function toggleDarkMode(setMode = null) {
 "Developing a WordPress website featuring product catalogs": "Developing a WordPress website featuring product catalogs",
 "Generating commercial posts featuring company products through photography and editing": "Generating commercial posts featuring company products through photography and editing",
 "Managing online engagement by responding to messages and comments": "Managing online engagement by responding to messages and comments",
+
+				"MediaManExamplesDescription": "MediaManExamplesDescription",
+				"HorizonPackExamplesDescription": "HorizonPackExamplesDescription",
+				
 // Education translations
 "Master's degree in Marketing": "ⵎⴰⵙⵜⵔ ⴳ ⵓⵙⴳⴷⵣ",
 "National School of Business and Management in Agadir": "ⵜⵉⵏⵎⵍ ⵜⴰⵏⴰⵎⵓⵔⵜ ⵏ ⵓⵙⵖⵏⵣⵉ ⴷ ⵓⵙⵡⵓⴷⴷⵓ ⵏ ⵓⴳⴰⴷⵉⵔ",
@@ -1547,6 +1566,7 @@ window.onload = function() {
     </div>
 </body>
 </html>
+
 
 
 
