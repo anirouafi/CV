@@ -1,794 +1,771 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Anir Ouafi — Portfolio (HTML + CSS + JS)</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Anir Ouafi — Portfolio</title>
+<style>
+  /* Reset & base */
+  :root{
+    --indigo-600:#4f46e5;
+    --blue-600:#2563eb;
+    --cyan-600:#06b6d4;
+    --indigo-500:#6366f1;
+    --blue-50:#eff6ff;
+    --bg-from:#f8fafc; /* slate-50 */
+    --bg-via:#eff6ff;  /* blue-50 */
+    --bg-to:#eef2ff;   /* indigo-50 */
+    --card-border:#e6edf8;
+    --muted:#6b7280;
+  }
+  html,body{height:100%;margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+  body{
+    background: linear-gradient(135deg,var(--bg-from),var(--bg-via),var(--bg-to));
+    color:#111827;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
 
-  <!-- Tailwind CDN (keeps the same classes & design) -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  a { color: inherit; text-decoration: none; }
+  .max-w-7xl{max-width:1100px;margin-left:auto;margin-right:auto;}
+  .px-4{padding-left:16px;padding-right:16px;}
+  .sm\\:px-6{padding-left:24px;padding-right:24px;}
+  .lg\\:px-8{padding-left:32px;padding-right:32px;}
+  .py-16{padding-top:64px;padding-bottom:64px;}
+  .py-24{padding-top:96px;padding-bottom:96px;}
+  .text-center{text-align:center;}
+  .inline-flex{display:inline-flex;}
+  .items-center{align-items:center;}
+  .gap-2{gap:8px;}
+  .rounded-full{border-radius:9999px;}
+  .mb-6{margin-bottom:24px;}
+  .text-sm{font-size:14px;}
+  .font-medium{font-weight:600;}
+  h1{margin:0;font-weight:800;letter-spacing:-0.02em;}
+  h1.text-5xl{font-size:40px;}
+  @media(min-width:640px){ h1.sm\\:text-6xl{font-size:56px;} }
+  .text-xl{font-size:18px;}
+  .text-lg{font-size:16px;}
+  .max-w-3xl{max-width:760px;margin-left:auto;margin-right:auto;}
+  .mb-8{margin-bottom:32px;}
+  .flex{display:flex;}
+  .flex-wrap{flex-wrap:wrap;}
+  .justify-center{justify-content:center;}
+  .gap-4{gap:16px;}
+  .bg-white{background:#fff;}
+  .text-indigo-600{color:var(--indigo-600);}
+  .rounded-lg{border-radius:12px;}
+  .px-6{padding-left:24px;padding-right:24px;}
+  .py-3{padding-top:12px;padding-bottom:12px;}
+  .shadow-lg{box-shadow:0 10px 25px rgba(2,6,23,0.08);}
+  .hover\\:bg-blue-50:hover{background:#eef2ff;}
+  .hover\\:shadow-xl:hover{box-shadow:0 20px 40px rgba(2,6,23,0.12);}
+  .backdrop-blur-sm{backdrop-filter: blur(6px);}
 
-  <!-- Lucide icons CDN (renders same icons used in React) -->
-  <script src="https://unpkg.com/lucide"></script>
+  /* Hero gradient header */
+  header.hero {
+    background: linear-gradient(90deg,var(--indigo-600),var(--blue-600),var(--cyan-600));
+    color:#fff;
+  }
+  header .hero-inner{
+    padding:48px 32px;
+  }
+  .badge {
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(255,255,255,0.18);
+    padding:8px 16px;
+    border-radius:9999px;
+    backdrop-filter: blur(6px);
+    font-size:14px;
+    margin-bottom:16px;
+  }
+  .award-icon{
+    width:16px;height:16px;display:inline-block;
+  }
+  .hero h1{font-size:40px;margin-top:6px;margin-bottom:12px;}
+  .hero .subtitle{opacity:0.95;font-weight:300;color:rgba(219,234,254,0.95);}
 
-  <style>
-    /* local keyframes used by the component */
-    @keyframes fade-in {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .animate-fade-in {
-      animation: fade-in 0.5s ease-out;
-    }
+  .hero p.lead{color:rgba(219,234,254,0.9);max-width:760px;margin-left:auto;margin-right:auto;margin-bottom:20px;line-height:1.6;}
 
-    /* small polish for smooth progress animation */
-    .skill-bar > .fill {
-      transition: width 1s ease;
-    }
+  /* CTAs */
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:18px;}
+  .cta{
+    display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:12px 20px;font-weight:700;background:#fff;color:var(--indigo-600);box-shadow:0 8px 20px rgba(2,6,23,0.08);
+    transition:all .18s ease;
+  }
+  .cta.alt{
+    background:rgba(255,255,255,0.08);backdrop-filter: blur(6px);border:2px solid rgba(255,255,255,0.14);color:#fff;font-weight:700;
+  }
+  .cta:hover{transform:translateY(-3px);}
 
-    /* keep nav overflow nice on small screens */
-    .nav-scroll::-webkit-scrollbar { height: 8px; }
-    .nav-scroll::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.08); border-radius: 9999px; }
+  /* Sticky nav */
+  nav.topnav{
+    position:sticky;top:0;z-index:40;background:rgba(255,255,255,0.9);backdrop-filter: blur(8px);border-bottom:1px solid #e6edf8;
+  }
+  .nav-inner{display:flex;justify-content:center;gap:8px;padding:12px 16px;overflow:auto;}
+  .nav-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:10px;font-weight:600;white-space:nowrap;border:none;background:transparent;cursor:pointer;color:var(--muted);}
+  .nav-btn.active{background:var(--indigo-600);color:#fff;box-shadow:0 8px 20px rgba(79,70,229,0.16);}
+  .nav-btn:hover{background:#f3f4f6;color:#111827;}
 
-    /* small fix for lucide icons alignment when used inline */
-    [data-lucide] { vertical-align: middle; display: inline-block; }
-  </style>
+  main{padding:48px 16px 80px;}
+  .animate-fade-in{animation:fade-in .45s ease-out both;}
+  @keyframes fade-in{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+
+  /* Cards & layout */
+  .card{
+    background:#fff;border-radius:18px;padding:28px;border:2px solid #f1f5f9;box-shadow:0 6px 18px rgba(2,6,23,0.04);transition:all .18s ease;margin-bottom:18px;
+  }
+  .card:hover{box-shadow:0 18px 40px rgba(2,6,23,0.08);transform:translateY(-4px);}
+  .grid{display:grid;gap:18px;}
+  .grid.md-2{grid-template-columns:repeat(2,1fr);}
+
+  .uvp { padding:24px;border-radius:16px; }
+  .uvp .icon-wrap{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;color:#fff;}
+  .uvp h3{margin:0 0 8px 0;font-size:18px;}
+  .stats{background:linear-gradient(90deg,var(--indigo-600),var(--blue-600));color:#fff;padding:28px;border-radius:18px;}
+  .stats .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;text-align:center;}
+
+  /* Projects list */
+  .project{border-radius:16px;overflow:hidden;margin-bottom:16px;}
+  .project .top{
+    display:flex;justify-content:space-between;align-items:flex-start;gap:18px;padding:20px;
+  }
+  .project .left{display:flex;gap:16px;align-items:flex-start;}
+  .project .icon-box{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;padding:12px;}
+  .project .meta h3{margin:0;font-size:20px;}
+  .tag{padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700;}
+  .meta .sub{color:#6b7280;font-size:13px;margin-top:6px;}
+  .project .expand-btn{background:none;border:none;color:var(--indigo-600);cursor:pointer;padding:8px;margin:0;}
+
+  .project .expanded{border-top:1px solid #f1f5f9;padding:18px 20px;background:#fff;}
+  .block{margin-bottom:14px;}
+  .list-approach{padding-left:14px;margin:0;}
+  .sample-card{background:#f8fafc;border:1px solid #e6edf8;border-radius:12px;overflow:hidden;cursor:pointer;}
+  .sample-card iframe{width:100%;height:380px;border:0;pointer-events:none;}
+
+  .skills-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
+  .skill-pill{background:#f3f4f6;padding:8px 12px;border-radius:999px;font-weight:600;font-size:13px;color:#374151;}
+
+  /* Competencies + certs */
+  .competency{padding:24px;border-radius:16px;background:#fff;border:2px solid #f1f5f9;}
+  .competency .head{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+  .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;}
+  .cert{background:#fff;padding:12px;border-radius:12px;border:1px solid rgba(99,102,241,0.08);}
+
+  /* Contact cards */
+  .contact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .contact-card{background:#fff;padding:28px;border-radius:18px;text-align:center;border:2px solid #f1f5f9;transition:all .12s ease;cursor:pointer;}
+  .contact-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(2,6,23,0.06);}
+  .contact-card .round{width:64px;height:64px;border-radius:999px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;}
+  .contact-card h3{margin:0 0 6px 0;font-size:16px;}
+
+  footer{background:#0f172a;color:#fff;padding:28px 16px;margin-top:40px;text-align:center;}
+
+  /* Responsive */
+  @media(max-width:900px){
+    .contact-grid{grid-template-columns:repeat(2,1fr);}
+    .cert-grid{grid-template-columns:repeat(2,1fr);}
+    .grid.md-2{grid-template-columns:1fr;}
+    .grid.sm-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media(max-width:560px){
+    .contact-grid{grid-template-columns:1fr;}
+    .nav-inner{padding:12px;}
+    h1{text-align:center;}
+  }
+
+  /* chevron rotate */
+  .chev-rotate{transition:transform .18s ease;}
+  .chev-rotate.open{transform:rotate(90deg);}
+</style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 font-sans text-gray-800">
+<body>
 
   <div id="app">
-    <!-- Header / Hero -->
-    <header class="bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-600 text-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <!-- Hero -->
+    <header class="hero">
+      <div class="max-w-7xl px-4 sm:px-6 lg:px-8 hero-inner">
         <div class="text-center">
-          <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
-            <i data-lucide="award" class="w-4 h-4"></i>
+          <div class="badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-award w-4 h-4"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path><circle cx="12" cy="8" r="6"></circle></svg>
             <span class="text-sm font-medium">Marketing Graduate • ENCG Agadir</span>
           </div>
 
-          <h1 class="text-5xl sm:text-6xl font-bold mb-6 tracking-tight">Anir Ouafi</h1>
+          <h1 class="text-5xl sm:text-6xl">Anir Ouafi</h1>
+          <p class="text-xl sm:text-2xl subtitle">Data-Driven Marketing Specialist</p>
 
-          <p class="text-xl sm:text-2xl mb-4 text-blue-100 font-light">
-            Data-Driven Marketing Strategist & Content Creator
-          </p>
+          <p class="lead">Bridging creative storytelling with analytical insights to drive measurable results. 
+              Specialized in content marketing effectiveness, campaign management, and digital strategy.</p>
 
-          <p class="text-lg max-w-3xl mx-auto mb-8 leading-relaxed text-blue-50">
-            Bridging creative storytelling with analytical insights to drive measurable results.
-            Specialized in content marketing effectiveness, campaign management, and digital strategy.
-          </p>
-
-          <div class="flex flex-wrap justify-center gap-4 mb-8">
-            <a href="mailto:ouafianir@gmail.com"
-               class="flex items-center gap-2 bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-all shadow-lg hover:shadow-xl">
-              <i data-lucide="mail" class="w-4 h-4"></i>
+          <div class="cta-row" role="group" aria-label="Call to action">
+            <a class="cta" href="mailto:ouafianir@gmail.com">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail w-4 h-4"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
               Get in Touch
             </a>
 
-            <a href="https://www.linkedin.com/in/ouafi/" target="_blank" rel="noopener noreferrer"
-               class="flex items-center gap-2 bg-white/10 backdrop-blur-sm border-2 border-white px-6 py-3 rounded-lg font-semibold hover:bg-white/20 transition-all">
-              <i data-lucide="linkedin" class="w-4 h-4"></i>
+            <a class="cta alt" href="https://www.linkedin.com/in/ouafi/" target="_blank" rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
               LinkedIn
+            </a>
+
+            <a class="cta alt" href="tel:+212629915388">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.86 19.86 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12 1.05.39 2.07.78 3.02a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 6 6l1.06-1.06a2 2 0 0 1 2.11-.45c.95.39 1.97.66 3.02.78A2 2 0 0 1 22 16.92z"/></svg>
+              Phone
+            </a>
+
+            <a class="cta alt" href="https://wa.me/212629915388" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-4.2-1.1L3 21l1.1-4.3A8.38 8.38 0 0 1 3.5 11.5 8.5 8.5 0 0 1 12 3a8.5 8.5 0 0 1 9 8.5z"/></svg>
+              WhatsApp
             </a>
           </div>
 
-          <div class="flex flex-wrap justify-center gap-3 text-sm">
-            <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">📍 Inezgane, Morocco</span>
-            <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">🗣️ Multilingual (4 languages)</span>
-            <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">📊 10,189+ Posts Analyzed</span>
+          <div class="flex justify-center gap-3 text-sm" style="margin-bottom:0;">
+            <span class="badge" style="background:rgba(255,255,255,0.12);padding:8px 12px;">📍 Inezgane, Morocco</span>
           </div>
         </div>
       </div>
     </header>
 
     <!-- Navigation -->
-    <nav class="sticky top-0 bg-white/80 backdrop-blur-lg shadow-sm z-40 border-b border-gray-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div id="navButtons" class="flex justify-center gap-1 py-4 overflow-x-auto nav-scroll">
-          <!-- Buttons produced by JS to keep consistent logic -->
-        </div>
+    <nav class="topnav" aria-label="Main navigation">
+      <div class="max-w-7xl px-4 sm:px-6 lg:px-8 nav-inner" id="navButtons">
+        <!-- Buttons inserted via JS -->
       </div>
     </nav>
 
-    <!-- Main content area -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <!-- Sections will be injected by JS here -->
-      <div id="sectionsContainer"></div>
+    <!-- Main -->
+    <main class="max-w-7xl px-4 sm:px-6 lg:px-8" id="mainContent">
+      <!-- Sections rendered by JS -->
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8 mt-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <p class="text-gray-400">
-          © 2024 Anir Ouafi. Crafted with analytical precision and creative passion.
-        </p>
+    <footer>
+      <div class="max-w-7xl px-4 sm:px-6 lg:px-8">
+        <p style="color:rgba(203,213,225,0.9);margin:0;">This webpage was developed by Anir Ouafi.</p>
       </div>
     </footer>
   </div>
 
-  <script>
-    // Data: mirrors the React arrays and objects exactly
-    const caseStudies = [
-      {
-        id: 'research',
-        title: 'Content Marketing Effectiveness Research',
-        type: 'Research Project',
-        organization: 'ENCG Agadir',
-        period: 'Mar 2024 - May 2024',
-        tag: 'Data-Driven Insights',
-        tagColor: 'bg-purple-100 text-purple-800',
-        iconName: 'bar-chart-3',
-        challenge: 'Limited understanding of content marketing effectiveness factors in the Moroccan digital landscape, with businesses lacking data-driven insights for optimizing social media engagement.',
-        solution: 'Conducted quantitative research analyzing 10,189 social media posts from Moroccan businesses to identify variables significantly impacting engagement metrics (likes, comments, shares).',
-        results: [
-          { metric: 'Sample Size', value: '10,189 posts', description: 'Analyzed across multiple industries' },
-          { metric: 'Platform Performance', value: 'Facebook > Instagram', description: 'Significantly higher median engagement' },
-          { metric: 'Optimal Timing', value: '12pm & 10pm', description: 'Peak engagement windows identified' },
-          { metric: 'Content Type', value: 'B2C + Humor', description: 'Highest median engagement rates' }
-        ],
-        keyFindings: [
-          'Facebook outperformed Instagram with significantly higher median likes and comments',
-          'B2C content generated the highest median engagement across all metrics',
-          'Humor/entertainment content significantly boosted engagement rates',
-          'Weekend posting increased engagement while some weekdays drastically lowered it',
-          'Posts with 0-1 hashtags unexpectedly generated highest engagement',
-          'Posting at exactly :30 minutes past any hour maximized Facebook engagement',
-          'Higher posting frequency correlated moderately with increased engagement'
-        ],
-        skills: ['Data Analysis', 'Quantitative Research', 'Statistical Analysis', 'Content Strategy', 'Market Research'],
-        link: 'https://ouafianir.wixsite.com/content-marketing'
-      },
-      {
-        id: 'mediaman',
-        title: 'Multi-Platform Content Creation & Strategy',
-        type: 'Campaign Portfolio',
-        organization: 'Media Man',
-        period: 'Feb 2024 - May 2024',
-        tag: 'Creative Direction',
-        tagColor: 'bg-blue-100 text-blue-800',
-        iconName: 'video',
-        challenge: 'Social media agency clients needed engaging, platform-optimized content that drives audience engagement and brand awareness across Instagram and Facebook.',
-        solution: 'Developed scripts, storyboards, and creative concepts for social media content. Collaborated with production team and talent to execute video and image posts aligned with brand strategies.',
-        approach: [
-          'Created compelling scripts and storyboards for video content',
-          'Developed content concepts aligned with client brand strategies',
-          'Assisted in content strategy development and planning',
-          'Evaluated user experience and contributed to SEO improvements',
-          'Coached talent on script delivery and performance'
-        ],
-        examples: [
-          { url: 'https://www.instagram.com/p/C8FVeAZNjnB/', type: 'instagram' },
-          { url: 'https://www.facebook.com/AGANET.agadir/videos/439751238595771', type: 'facebook' },
-          { url: 'https://www.instagram.com/p/C4TAmjwNShh/', type: 'instagram' },
-          { url: 'https://www.instagram.com/p/C-gFpKDt2yb/', type: 'instagram' }
-        ],
-        skills: ['Scriptwriting', 'Storyboarding', 'Content Strategy', 'Creative Direction', 'SEO', 'Talent Direction'],
-        impact: 'Contributed to diverse client campaigns spanning multiple industries, enhancing brand narratives through strategic content creation'
-      },
-      {
-        id: 'horizonpack',
-        title: 'Integrated Campaign Management & Content Production',
-        type: 'Full Campaign',
-        organization: 'Horizon Pack',
-        period: 'May 2023 - Aug 2023',
-        tag: 'Full-Funnel Marketing',
-        tagColor: 'bg-green-100 text-green-800',
-        iconName: 'trending-up',
-        challenge: 'Packaging company needed to increase market visibility, generate qualified leads, and establish strong digital presence while managing direct sales.',
-        solution: 'Led end-to-end campaign from concept to execution, including video production, multi-platform advertising, and direct customer engagement.',
-        approach: [
-          'Conducted market research and gathered qualitative data for campaign narrative',
-          'Developed complete creative package (script, storyboard, visual concepts)',
-          'Managed external production team and oversaw video creation',
-          'Launched and monitored advertising campaigns on Meta and Google Ads',
-          'Handled incoming leads and processed new customer orders'
-        ],
-        results: [
-          { metric: 'Role', value: 'Campaign Manager', description: 'End-to-end ownership' },
-          { metric: 'Platforms', value: 'Meta + Google Ads', description: 'Multi-channel execution' },
-          { metric: 'Deliverables', value: 'Video + Ads + Sales', description: 'Integrated approach' }
-        ],
-        examples: [
-          { url: 'https://www.instagram.com/horizon.pack/reel/CvSD1BNBwWt/', type: 'instagram' },
-          { url: 'https://web.facebook.com/photo/?fbid=302140355725345&set=pcb.302141625725218', type: 'facebook' }
-        ],
-        skills: ['Campaign Management', 'Video Production', 'Google Ads', 'Meta Ads', 'B2B Marketing', 'Sales', 'Market Research'],
-        impact: 'Successfully executed integrated marketing campaign from strategy through conversion, demonstrating versatility across creative, technical, and sales functions'
-      },
-      {
-        id: 'community',
-        title: 'Digital Presence & Community Building',
-        type: 'Community Management',
-        organization: 'Horizon Pack',
-        period: 'Jun 2022 - Nov 2022',
-        tag: 'Brand Development',
-        tagColor: 'bg-orange-100 text-orange-800',
-        iconName: 'users',
-        challenge: 'Company lacked cohesive digital presence and needed to establish professional social media profiles, website, and community engagement strategy.',
-        solution: 'Built complete digital infrastructure from ground up, including website development, social media optimization, content creation, and community management.',
-        achievements: [
-          'Established Google My Business and Meta Business Suite profiles',
-          'Developed WordPress website with comprehensive product catalogs',
-          'Created commercial photography and edited product images',
-          'Generated consistent social media content featuring products',
-          'Managed all online engagement (messages, comments, inquiries)'
-        ],
-        skills: ['Community Management', 'WordPress Development', 'Photography', 'Image Editing', 'Social Media Management', 'Content Creation'],
-        impact: 'Transformed company from minimal online presence to fully operational digital ecosystem with professional branding and active community engagement'
-      }
-    ];
+<script>
+/* -------------------------
+   Data (kept identical)
+   ------------------------- */
+const caseStudies = [
+  {
+    id: 'research',
+    title: 'Content Marketing Effectiveness Research',
+    type: 'Final Year Project',
+    organization: 'ENCG Agadir',
+    period: 'Mar 2024 - May 2024',
+    tag: 'Research, Data-Driven Insights',
+    tagColor: 'purple',
+    icon: 'chart',
+    challenge: 'Limited understanding of content marketing effectiveness factors in the Moroccan digital landscape, with businesses lacking data-driven insights for optimizing social media engagement.',
+    solution: 'Conducted quantitative research analyzing 10,189 social media posts from Moroccan businesses to identify variables significantly impacting engagement metrics (likes, comments, shares).',
+    sampleSize: { metric: 'Sample Size', value: '10,189 posts', description: 'Analyzed across multiple industries' },
+    keyFindings: [
+      'Facebook outperformed Instagram with significantly higher median likes and comments',
+      'B2C content generated the highest median engagement across all metrics',
+      'Humor/entertainment content significantly boosted engagement rates',
+      'Weekend posting increased engagement while some weekdays drastically lowered it',
+      'Posts with 0-1 hashtags unexpectedly generated highest engagement',
+      'Posting at exactly :30 minutes past any hour maximized Facebook engagement',
+      'Higher posting frequency correlated moderately with increased engagement',
+      'Midday (12pm) and late evening (10pm) notably increased Facebook likes, while morning (8am) significantly improved comments and shares'
+    ],
+    skills: ['Market Research', 'Quantitative Research', 'Data Analysis', 'Content Strategy'],
+    link: 'https://ouafianir.wixsite.com/content-marketing'
+  },
+  {
+    id: 'mediaman',
+    title: 'Multi-Platform Content Creation',
+    type: '4 months Final Year internship',
+    organization: 'Media Man',
+    period: 'Feb 2024 - May 2024',
+    tag: 'Digital Marketing Assistant',
+    tagColor: 'blue',
+    icon: 'video',
+    challenge: 'Social media agency clients needed engaging, platform-optimized content that drives audience engagement and brand awareness across Instagram and Facebook.',
+    solution: 'Collaborated with the team to develop scripts, storyboards, and creative concepts for social media content. Worked alongside production team and talent to execute video and image posts aligned with brand strategies.',
+    approach: [
+      'Contributed to creating scripts and storyboards for video content',
+      'Helped develop content concepts aligned with client brand strategies',
+      'Participated in content strategy development and planning',
+      'Assisted in evaluating user experience and SEO improvements',
+      'Supported models with script delivery and performance'
+    ],
+    examples: [
+	{ url: 'https://www.instagram.com/p/C8FVeAZNjnB/embed', link: 'https://www.instagram.com/p/C8FVeAZNjnB/' },
+	{ url: 'https://www.instagram.com/p/C-gFpKDt2yb/embed', link: 'https://www.instagram.com/p/C-gFpKDt2yb/' },
+	{ url: 'https://www.instagram.com/p/C4TAmjwNShh/embed', link: 'https://www.instagram.com/p/C4TAmjwNShh/' },
+	{ url: 'https://drive.google.com/file/d/1oyxHTZ_vLB3d3VmiQI4qYYV-b2zntD06/preview', link: 'https://drive.google.com/file/d/1oyxHTZ_vLB3d3VmiQI4qYYV-b2zntD06/view' },
+	{ url: 'https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2FAGANET.agadir%2Fvideos%2F439751238595771%2F&show_text=false&width=560&t=0', link: 'www.facebook.com/AGANET.agadir/videos/439751238595771' },
+	{ url: 'https://drive.google.com/file/d/1BFzuhJacFnhjAKQwykFkQX8a76fx3JK4/preview', link: 'https://drive.google.com/file/d/1BFzuhJacFnhjAKQwykFkQX8a76fx3JK4/view' },
+	{ url: 'https://drive.google.com/file/d/1mxgtfVQY3Zwai7ANV3Hf3kfHyDQrm5vL/preview', link: 'https://drive.google.com/file/d/1mxgtfVQY3Zwai7ANV3Hf3kfHyDQrm5vL/view' },
 
-    const competencies = [
-      {
-        category: 'Strategic & Analytical',
-        iconName: 'bar-chart-3',
-        skills: [
-          { name: 'Data-Driven Marketing', level: 95, highlight: true },
-          { name: 'Marketing Strategy', level: 90 },
-          { name: 'Market Research', level: 88 },
-          { name: 'Competitive Analysis', level: 85 },
-          { name: 'Data Analysis', level: 92, highlight: true }
-        ]
-      },
-      {
-        category: 'Campaign Management',
-        iconName: 'trending-up',
-        skills: [
-          { name: 'Google Ads', level: 85 },
-          { name: 'Meta Ads', level: 87 },
-          { name: 'Campaign Strategy', level: 88 },
-          { name: 'SEO', level: 80 },
-          { name: 'Google Analytics', level: 83 }
-        ]
-      },
-      {
-        category: 'Content & Creative',
-        iconName: 'video',
-        skills: [
-          { name: 'Scriptwriting', level: 90 },
-          { name: 'Storyboarding', level: 88 },
-          { name: 'Content Strategy', level: 92, highlight: true },
-          { name: 'Copywriting', level: 85 },
-          { name: 'Photography', level: 82 }
-        ]
-      },
-      {
-        category: 'Technical',
-        iconName: 'globe',
-        skills: [
-          { name: 'WordPress', level: 85 },
-          { name: 'JavaScript', level: 75 },
-          { name: 'Python', level: 78 },
-          { name: 'SQL', level: 80 },
-          { name: 'Adobe Illustrator', level: 82 }
-        ]
-      }
-    ];
 
-    // Section definitions and icons
-    const sections = [
-      { id: 'overview', label: 'Overview', iconName: 'file-text' },
-      { id: 'work', label: 'Case Studies', iconName: 'award' },
-      { id: 'skills', label: 'Competencies', iconName: 'bar-chart-3' },
-      { id: 'contact', label: 'Contact', iconName: 'mail' }
-    ];
 
-    // Application state
-    let activeSection = 'overview';
-    let expandedCase = null;
 
-    // DOM references
-    const navButtonsContainer = document.getElementById('navButtons');
-    const sectionsContainer = document.getElementById('sectionsContainer');
 
-    // Render nav buttons
-    function renderNav() {
-      navButtonsContainer.innerHTML = '';
-      sections.forEach(sec => {
-        const btn = document.createElement('button');
-        btn.className = `flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap
-          ${activeSection === sec.id ? 'bg-indigo-600 text-white shadow-md' : 'text-gray-600 hover:bg-gray-100'}`;
-        btn.dataset.section = sec.id;
 
-        const icon = document.createElement('i');
-        icon.setAttribute('data-lucide', sec.iconName);
-        icon.className = 'w-4 h-4';
-        btn.appendChild(icon);
 
-        const span = document.createElement('span');
-        span.textContent = sec.label;
-        btn.appendChild(span);
 
-        btn.addEventListener('click', () => {
-          activeSection = sec.id;
-          expandedCase = null; // collapse open case when switching sections (matches common UX)
-          render();
-          // scroll top a little so user sees the content
-          window.scrollTo({ top: 200, behavior: 'smooth' });
+
+
+    ],
+    skills: ['Scriptwriting', 'Storyboarding', 'Copywriting'],
+    impact: 'Contributed to diverse client campaigns spanning multiple industries, enhancing brand narratives through strategic content creation'
+  },
+  {
+    id: 'horizonpack',
+    title: 'Integrated Campaign Management',
+    type: '4 months internship',
+    organization: 'Horizon Pack',
+    period: 'May 2023 - Aug 2023',
+    tag: 'Advertising Campaign Manager and Seller',
+    tagColor: 'green',
+    icon: 'trending',
+    challenge: 'Packaging company needed to increase market visibility, generate qualified leads, and establish strong digital presence while managing direct sales.',
+    solution: 'Led end-to-end campaign from concept to execution, including video production, multi-platform advertising, and direct customer engagement.',
+    approach: [
+      'Conducted market research and gathered qualitative data for campaign narrative',
+      'Developed complete creative package (script, storyboard, visual concepts)',
+      'Managed external production team and oversaw video creation',
+      'Launched and monitored advertising campaigns on Meta and Google Ads',
+      'Handled incoming leads and processed new customer orders'
+    ],
+    examples: [
+      { url: 'https://www.instagram.com/p/CvSD1BNBwWt/embed', link: 'https://www.instagram.com/horizon.pack/reel/CvSD1BNBwWt/' },
+      { url: 'https://www.facebook.com/plugins/photo.php?href=https%3A%2F%2Fwww.facebook.com%2Fphoto%2F%3Ffbid%3D302140355725345%26set%3Dpcb.302141625725218&show_text=false&width=500', link: 'https://web.facebook.com/photo/?fbid=302140355725345&set=pcb.302141625725218' },
+      { url: 'https://drive.google.com/file/d/1oyxHTZ_vLB3d3VmiQI4qYYV-b2zntD06/preview', link: 'https://drive.google.com/file/d/1oyxHTZ_vLB3d3VmiQI4qYYV-b2zntD06/view?usp=drive_link' },
+      { url: 'https://www.instagram.com/p/CkHeFIvoPst/embed', link: 'https://www.instagram.com/horizon.pack/p/CkHeFIvoPst/' },
+      { url: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FHorizonPack%2Fphotos%2Fpb.100077881491713.-2207520000%2F177712994791048&show_text=false&width=500', link: 'https://web.facebook.com/HorizonPack/photos/pb.100077881491713.-2207520000/177712994791048/?type=3' }
+    ],
+    skills: ['Campaign Management', 'Google Ads', 'Meta Ads', 'B2B Marketing', 'Sales', 'Qualitative Research'],
+    impact: 'Successfully executed integrated marketing campaign from strategy through conversion, demonstrating versatility across creative, technical, and sales functions'
+  },
+  {
+    id: 'community',
+    title: 'Digital Presence & Community Building',
+    type: '5 months internship',
+    organization: 'Horizon Pack',
+    period: 'Jun 2022 - Nov 2022',
+    tag: 'Community Manager',
+    tagColor: 'orange',
+    icon: 'users',
+    challenge: 'Company lacked cohesive digital presence and needed to establish professional social media profiles, website, and community engagement strategy.',
+    solution: 'Built complete digital infrastructure from ground up, including website development, social media optimization, content creation, and community management.',
+    achievements: [
+      'Established Google My Business and Meta Business Suite profiles',
+      'Developed WordPress website with comprehensive product catalogs',
+      'Created commercial photography and edited product images',
+      'Generated consistent social media content featuring products',
+      'Managed all online engagement (messages, comments, inquiries)'
+    ],
+    skills: ['Community Management', 'WordPress Development', 'Photography', 'Image Editing', 'Social Media Management', 'Content Creation'],
+    impact: 'Transformed company from minimal online presence to fully operational digital ecosystem with professional branding and active community engagement'
+  }
+];
+
+const competencies = [
+  {
+    category: 'Strategic & Analytical',
+    icon: 'chart',
+    skills: ['Data-Driven Marketing', 'Marketing Strategy', 'Market Research', 'Competitive Analysis', 'Data Analysis']
+  },
+  {
+    category: 'Campaign Management',
+    icon: 'trending',
+    skills: ['Google Ads', 'Meta Ads', 'Campaign Strategy', 'SEO', 'Google Analytics']
+  },
+  {
+    category: 'Content & Creative',
+    icon: 'video',
+    skills: ['Scriptwriting', 'Storyboarding', 'Content Strategy', 'Copywriting']
+  },
+  {
+    category: 'Technical',
+    icon: 'globe',
+    skills: ['Office Pack', 'Data Analysis (DataTab, Tableau)', 'Web Development (HTML, JavaScript, CSS, Python, PHP, SQL)', 'Image Editing (Adobe Illustrator)']
+  }
+];
+
+/* -------------------------
+   Icon helpers (inline SVG)
+   ------------------------- */
+function iconSVG(name, size=20){
+  const svgs = {
+    mail: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail w-4 h-4"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>`,
+    linkedin: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>`,
+    phone: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.86 19.86 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12 1.05.39 2.07.78 3.02a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 6 6l1.06-1.06a2 2 0 0 1 2.11-.45c.95.39 1.97.66 3.02.78A2 2 0 0 1 22 16.92z"/></svg>`,
+    chevronRight: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>`,
+    chevronDown: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>`,
+    chart: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bar-chart3 w-5 h-5"><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg>`,
+    video: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="M23 7l-6 4 6 4V7z"/></svg>`,
+    trending: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>`,
+    users: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>`,
+    award: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-award w-4 h-4"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path><circle cx="12" cy="8" r="6"></circle></svg>`,
+    globe: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe w-5 h-5"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>`,
+    filetext: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>`,
+    external: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>`,
+    message: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+    camera: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>`
+  };
+  return svgs[name] || svgs['mail'];
+}
+
+/* -------------------------
+   State & rendering
+   ------------------------- */
+let activeSection = 'overview';
+let expandedCase = null;
+
+const sections = [
+  { id: 'overview', label: 'Overview', icon: iconSVG('filetext', 18) },
+  { id: 'work', label: 'Projects', icon: iconSVG('award', 18) },
+  { id: 'skills', label: 'Competencies', icon: iconSVG('chart', 18) },
+  { id: 'contact', label: 'Contact', icon: iconSVG('mail', 18) }
+];
+
+const navRoot = document.getElementById('navButtons');
+const mainRoot = document.getElementById('mainContent');
+
+function renderNav(){
+  navRoot.innerHTML = '';
+  sections.forEach(s=>{
+    const btn = document.createElement('button');
+    btn.className = 'nav-btn' + (activeSection===s.id ? ' active' : '');
+    btn.innerHTML = s.icon + '<span style="display:inline-block;">'+s.label+'</span>';
+    btn.onclick = ()=> { activeSection = s.id; expandedCase = null; render(); window.scrollTo({top:0, behavior:'smooth'}); };
+    navRoot.appendChild(btn);
+  });
+}
+
+function render(){
+  renderNav();
+  mainRoot.innerHTML = '';
+  if(activeSection==='overview'){
+    renderOverview();
+  } else if(activeSection==='work'){
+    renderWork();
+  } else if(activeSection==='skills'){
+    renderSkills();
+  } else if(activeSection==='contact'){
+    renderContact();
+  }
+}
+
+/* ---------- Overview ---------- */
+function renderOverview(){
+  const cont = document.createElement('div');
+  cont.className = 'space-y-8 animate-fade-in';
+
+  // Professional Overview card
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `
+    <h2 style="font-size:24px;margin:0 0 12px 0;">Professional Overview</h2>
+    <div style="color:var(--muted);line-height:1.6;">
+      <p style="margin:0 0 12px 0;">
+        Marketing graduate from the National School of Commerce and Management (ENCG) in Agadir, 
+        combining strong academic foundations with hands-on experience in digital marketing, 
+        content creation, and data analysis.
+      </p>
+      <p style="margin:0;">
+        My approach integrates <strong>analytical rigor with creative execution</strong>, demonstrated 
+        through pioneering research on content marketing effectiveness in Morocco and proven success 
+        in campaign management across multiple platforms.
+      </p>
+    </div>
+  `;
+  cont.appendChild(card);
+
+  // UVP cards grid
+  const grid = document.createElement('div');
+  grid.className = 'grid md-2';
+  grid.style.gridTemplateColumns = 'repeat(2,1fr)';
+  grid.style.gap = '18px';
+  grid.innerHTML = `
+    <div class="uvp" style="background:linear-gradient(135deg,#f3e8ff,#f5f3ff);border:2px solid #ede9fe;">
+      <div class="icon-wrap" style="background:#6d28d9;"><div style="width:22px;height:22px">${iconSVG('chart',22)}</div></div>
+      <h3>Research-Backed Insights</h3>
+      <p style="color:var(--muted);">Conducted groundbreaking research analyzing 10,189 social media posts, uncovering 
+      data-driven strategies for maximizing engagement in the Moroccan market.</p>
+    </div>
+    <div class="uvp" style="background:linear-gradient(135deg,#eff6ff,#e6f0ff);border:2px solid #dbeafe;">
+      <div class="icon-wrap" style="background:#1d4ed8;"><div style="width:22px;height:22px">${iconSVG('video',22)}</div></div>
+      <h3>End-to-End Campaign Management</h3>
+      <p style="color:var(--muted);">From scriptwriting and storyboarding to campaign execution and performance tracking, 
+      delivering integrated marketing solutions across multiple touchpoints.</p>
+    </div>
+  `;
+  cont.appendChild(grid);
+
+  // Quick stats
+  const stats = document.createElement('div');
+  stats.className = 'stats';
+  stats.innerHTML = `
+    <h3 style="margin:0 0 12px 0;text-align:center;font-size:20px;">Impact Highlights</h3>
+    <div class="grid-3">
+      <div><div style="font-size:28px;font-weight:800;">10,189</div><div style="opacity:0.9;">Posts Analyzed</div></div>
+      <div><div style="font-size:28px;font-weight:800;">19+</div><div style="opacity:0.9;">Organizations Impacted</div></div>
+      <div><div style="font-size:28px;font-weight:800;">5+</div><div style="opacity:0.9;">Certifications</div></div>
+    </div>
+  `;
+  cont.appendChild(stats);
+
+  mainRoot.appendChild(cont);
+}
+
+/* ---------- Work / Projects ---------- */
+function renderWork(){
+  const wrap = document.createElement('div');
+  wrap.className = 'space-y-8 animate-fade-in';
+
+  const intro = document.createElement('div');
+  intro.style.textAlign = 'center';
+  intro.style.marginBottom = '24px';
+  intro.innerHTML = `<h2 style="font-size:28px;margin-bottom:8px;">Projects</h2>
+    <p style="color:var(--muted);max-width:760px;margin:0 auto;">From pioneering research to hands-on campaign execution, explore projects that demonstrate strategic thinking and measurable impact.</p>`;
+  wrap.appendChild(intro);
+
+  caseStudies.forEach(study=>{
+    const project = document.createElement('div');
+    project.className = 'project card';
+    project.innerHTML = `
+      <div class="top">
+        <div class="left">
+          <div class="icon-box" style="${getTagGradient(study.tagColor)}">
+            ${iconForStudy(study.icon)}
+          </div>
+          <div class="meta">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <h3>${study.title}</h3>
+              <span class="tag" style="${tagStyle(study.tagColor)}">${study.tag}</span>
+            </div>
+            <div class="sub"><strong>${study.organization}</strong> • ${study.period} • <span style="color:var(--indigo-600);font-weight:700;">${study.type}</span></div>
+          </div>
+        </div>
+        <div>
+          <button class="expand-btn" data-id="${study.id}" aria-expanded="false">${iconSVG('chevronRight',18)}</button>
+        </div>
+      </div>
+      <div class="expanded" id="expanded-${study.id}" style="display:none;"></div>
+    `;
+    wrap.appendChild(project);
+  });
+
+  mainRoot.appendChild(wrap);
+
+  // Attach expand handlers
+  document.querySelectorAll('.expand-btn').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      const id = btn.getAttribute('data-id');
+      const panel = document.getElementById('expanded-'+id);
+      const currentlyOpen = panel.style.display === 'block';
+      // close all
+      document.querySelectorAll('.expanded').forEach(p=>p.style.display='none');
+      document.querySelectorAll('.expand-btn').forEach(b=> b.innerHTML = iconSVG('chevronRight',18));
+      if(!currentlyOpen){
+        // open this and populate
+        expandedCase = id;
+        btn.innerHTML = iconSVG('chevronDown',18);
+        panel.style.display = 'block';
+        panel.innerHTML = buildExpandedHTML(caseStudies.find(s=>s.id===id));
+        // attach sample click open
+        panel.querySelectorAll('.sample-card').forEach((c, idx)=>{
+          c.addEventListener('click', ()=> window.open(caseStudies.find(s=>s.id===id).examples[idx].link, '_blank'));
         });
-
-        navButtonsContainer.appendChild(btn);
-      });
-      // after inserting icons, ask Lucide to replace them with SVGs
-      lucide.createIcons();
-    }
-
-    // Render main content based on activeSection
-    function renderSections() {
-      sectionsContainer.innerHTML = '';
-
-      if (activeSection === 'overview') {
-        const overviewHtml = `
-          <div class="space-y-8 animate-fade-in">
-            <div class="bg-white rounded-2xl shadow-lg p-8">
-              <h2 class="text-3xl font-bold text-gray-900 mb-6">Professional Overview</h2>
-              <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
-                <p class="mb-4">
-                  Marketing graduate from the National School of Commerce and Management (ENCG) in Agadir,
-                  combining strong academic foundations with hands-on experience in digital marketing,
-                  content creation, and data analysis.
-                </p>
-                <p class="mb-4">
-                  My approach integrates <strong>analytical rigor with creative execution</strong>, demonstrated
-                  through pioneering research on content marketing effectiveness in Morocco and proven success
-                  in campaign management across multiple platforms.
-                </p>
-              </div>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-6">
-              <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 border-2 border-purple-200">
-                <div class="bg-purple-600 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
-                  <i data-lucide="bar-chart-3" class="w-6 h-6 text-white"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">Research-Backed Insights</h3>
-                <p class="text-gray-700">
-                  Conducted groundbreaking research analyzing 10,189+ social media posts, uncovering
-                  data-driven strategies for maximizing engagement in the Moroccan market.
-                </p>
-              </div>
-
-              <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 border-2 border-blue-200">
-                <div class="bg-blue-600 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
-                  <i data-lucide="video" class="w-6 h-6 text-white"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">End-to-End Campaign Management</h3>
-                <p class="text-gray-700">
-                  From scriptwriting and storyboarding to campaign execution and performance tracking,
-                  delivering integrated marketing solutions across multiple touchpoints.
-                </p>
-              </div>
-
-              <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 border-2 border-green-200">
-                <div class="bg-green-600 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
-                  <i data-lucide="globe" class="w-6 h-6 text-white"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">Multilingual Expertise</h3>
-                <p class="text-gray-700">
-                  Native in Tamazight, bilingual in Arabic, with professional proficiency in French and English.
-                  Uniquely positioned for diverse market strategies.
-                </p>
-              </div>
-            </div>
-
-            <div class="bg-gradient-to-r from-indigo-600 to-blue-600 rounded-2xl p-8 text-white">
-              <h3 class="text-2xl font-bold mb-6 text-center">Impact Highlights</h3>
-              <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="text-center">
-                  <div class="text-4xl font-bold mb-2">10,189</div>
-                  <div class="text-blue-100">Posts Analyzed</div>
-                </div>
-                <div class="text-center">
-                  <div class="text-4xl font-bold mb-2">3+</div>
-                  <div class="text-blue-100">Organizations</div>
-                </div>
-                <div class="text-center">
-                  <div class="text-4xl font-bold mb-2">40+</div>
-                  <div class="text-blue-100">Skills Mastered</div>
-                </div>
-                <div class="text-center">
-                  <div class="text-4xl font-bold mb-2">5</div>
-                  <div class="text-blue-100">Certifications</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        `;
-        sectionsContainer.insertAdjacentHTML('beforeend', overviewHtml);
-        lucide.createIcons();
-      }
-
-      if (activeSection === 'work') {
-        const headerHtml = `
-          <div class="space-y-8 animate-fade-in">
-            <div class="text-center mb-12">
-              <h2 class="text-4xl font-bold text-gray-900 mb-4">Case Studies & Projects</h2>
-              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                From pioneering research to hands-on campaign execution, explore projects
-                that demonstrate strategic thinking and measurable impact.
-              </p>
-            </div>
-          </div>
-        `;
-        sectionsContainer.insertAdjacentHTML('beforeend', headerHtml);
-
-        // create each case study block
-        caseStudies.forEach(study => {
-          const container = document.createElement('div');
-          container.className = 'bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-gray-100 hover:shadow-2xl transition-all mb-6';
-
-          const inner = document.createElement('div');
-          inner.className = 'p-8';
-
-          // header row
-          const headerRow = document.createElement('div');
-          headerRow.className = 'flex items-start justify-between mb-6';
-
-          const left = document.createElement('div');
-          left.className = 'flex items-start gap-4';
-
-          const iconWrap = document.createElement('div');
-          iconWrap.className = 'bg-gradient-to-br from-indigo-500 to-blue-600 p-3 rounded-xl text-white';
-          const iconEl = document.createElement('i');
-          iconEl.setAttribute('data-lucide', study.iconName);
-          iconEl.className = 'w-6 h-6';
-          iconWrap.appendChild(iconEl);
-
-          const meta = document.createElement('div');
-
-          const titleRow = document.createElement('div');
-          titleRow.className = 'flex items-center gap-3 mb-2';
-
-          const h3 = document.createElement('h3');
-          h3.className = 'text-2xl font-bold text-gray-900';
-          h3.textContent = study.title;
-
-          const tag = document.createElement('span');
-          tag.className = `${study.tagColor} px-3 py-1 rounded-full text-xs font-semibold`;
-          tag.textContent = study.tag;
-
-          titleRow.appendChild(h3);
-          titleRow.appendChild(tag);
-
-          const metaRow = document.createElement('div');
-          metaRow.className = 'flex items-center gap-4 text-sm text-gray-600';
-          metaRow.innerHTML = `<span class="font-semibold">${study.organization}</span><span>•</span><span>${study.period}</span><span>•</span><span class="text-indigo-600 font-medium">${study.type}</span>`;
-
-          meta.appendChild(titleRow);
-          meta.appendChild(metaRow);
-
-          left.appendChild(iconWrap);
-          left.appendChild(meta);
-
-          const toggleBtn = document.createElement('button');
-          toggleBtn.className = 'text-indigo-600 hover:text-indigo-700 transition-colors';
-          toggleBtn.setAttribute('aria-expanded', 'false');
-
-          const toggleIcon = document.createElement('i');
-          toggleIcon.setAttribute('data-lucide', 'chevron-right');
-          toggleIcon.className = 'w-6 h-6';
-          toggleBtn.appendChild(toggleIcon);
-
-          toggleBtn.addEventListener('click', () => {
-            if (expandedCase === study.id) {
-              expandedCase = null;
-            } else {
-              expandedCase = study.id;
-            }
-            render();
-            // keep lucide icons fine
-            lucide.createIcons();
-          });
-
-          headerRow.appendChild(left);
-          headerRow.appendChild(toggleBtn);
-
-          inner.appendChild(headerRow);
-
-          // expanded content container (initially hidden unless expandedCase === id)
-          const expanded = document.createElement('div');
-          expanded.className = 'space-y-6 border-t pt-6 animate-fade-in';
-          // We'll populate expanded only if it's expanded
-          if (expandedCase === study.id) {
-            // challenge
-            if (study.challenge) {
-              const block = document.createElement('div');
-              block.innerHTML = `<h4 class="font-bold text-gray-900 mb-2 flex items-center gap-2"><span class="text-red-600">❗</span> Challenge</h4><p class="text-gray-700">${study.challenge}</p>`;
-              expanded.appendChild(block);
-            }
-
-            // solution
-            if (study.solution) {
-              const block = document.createElement('div');
-              block.innerHTML = `<h4 class="font-bold text-gray-900 mb-2 flex items-center gap-2"><span class="text-blue-600">💡</span> Solution</h4><p class="text-gray-700">${study.solution}</p>`;
-              expanded.appendChild(block);
-            }
-
-            // approach
-            if (study.approach) {
-              const block = document.createElement('div');
-              const ul = study.approach.map(item => `<li class="flex items-start gap-2 text-gray-700"><span class="text-indigo-600 mt-1">▸</span><span>${item}</span></li>`).join('');
-              block.innerHTML = `<h4 class="font-bold text-gray-900 mb-3 flex items-center gap-2"><span class="text-purple-600">🎯</span> Approach</h4><ul class="space-y-2">${ul}</ul>`;
-              expanded.appendChild(block);
-            }
-
-            // results
-            if (study.results) {
-              const grid = document.createElement('div');
-              grid.className = 'grid sm:grid-cols-2 lg:grid-cols-4 gap-4';
-              study.results.forEach(result => {
-                const card = document.createElement('div');
-                card.className = 'bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 border border-green-200';
-                card.innerHTML = `<div class="text-2xl font-bold text-green-700 mb-1">${result.value}</div><div class="text-sm font-semibold text-gray-900 mb-1">${result.metric}</div><div class="text-xs text-gray-600">${result.description}</div>`;
-                grid.appendChild(card);
-              });
-              const wrapper = document.createElement('div');
-              wrapper.innerHTML = `<h4 class="font-bold text-gray-900 mb-4 flex items-center gap-2"><span class="text-green-600">📊</span> Key Results</h4>`;
-              wrapper.appendChild(grid);
-              expanded.appendChild(wrapper);
-            }
-
-            // key findings
-            if (study.keyFindings) {
-              const grid = document.createElement('div');
-              grid.className = 'grid md:grid-cols-2 gap-3';
-              study.keyFindings.forEach(finding => {
-                const card = document.createElement('div');
-                card.className = 'bg-indigo-50 rounded-lg p-3 border border-indigo-200';
-                card.innerHTML = `<p class="text-sm text-gray-700">${finding}</p>`;
-                grid.appendChild(card);
-              });
-              const wrapper = document.createElement('div');
-              wrapper.innerHTML = `<h4 class="font-bold text-gray-900 mb-3 flex items-center gap-2"><span class="text-indigo-600">🔍</span> Key Findings</h4>`;
-              wrapper.appendChild(grid);
-              expanded.appendChild(wrapper);
-            }
-
-            // achievements
-            if (study.achievements) {
-              const ul = study.achievements.map(a => `<li class="flex items-start gap-2 text-gray-700"><span class="text-orange-600 mt-1">✓</span><span>${a}</span></li>`).join('');
-              const block = document.createElement('div');
-              block.innerHTML = `<h4 class="font-bold text-gray-900 mb-3 flex items-center gap-2"><span class="text-orange-600">🏆</span> Key Achievements</h4><ul class="space-y-2">${ul}</ul>`;
-              expanded.appendChild(block);
-            }
-
-            // impact
-            if (study.impact) {
-              const block = document.createElement('div');
-              block.className = 'bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border-l-4 border-indigo-600';
-              block.innerHTML = `<h4 class="font-bold text-gray-900 mb-2">💎 Impact</h4><p class="text-gray-700">${study.impact}</p>`;
-              expanded.appendChild(block);
-            }
-
-            // skills
-            if (study.skills) {
-              const spanWrap = document.createElement('div');
-              spanWrap.innerHTML = `<h4 class="font-bold text-gray-900 mb-3">🛠️ Skills Applied</h4>`;
-              const chips = document.createElement('div');
-              chips.className = 'flex flex-wrap gap-2';
-              study.skills.forEach(s => {
-                const sp = document.createElement('span');
-                sp.className = 'bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium';
-                sp.textContent = s;
-                chips.appendChild(sp);
-              });
-              spanWrap.appendChild(chips);
-              expanded.appendChild(spanWrap);
-            }
-
-            // link
-            if (study.link) {
-              const a = document.createElement('a');
-              a.href = study.link;
-              a.target = '_blank';
-              a.rel = 'noopener noreferrer';
-              a.className = 'inline-flex items-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-all';
-              a.innerHTML = `<i data-lucide="file-text" class="w-4 h-4"></i> Request Full Research Report <i data-lucide="external-link" class="w-4 h-4"></i>`;
-              expanded.appendChild(a);
-            }
-
-            // examples
-            if (study.examples) {
-              const grid = document.createElement('div');
-              grid.className = 'grid sm:grid-cols-2 lg:grid-cols-4 gap-4';
-              study.examples.forEach(example => {
-                const a = document.createElement('a');
-                a.href = example.url;
-                a.target = '_blank';
-                a.rel = 'noopener noreferrer';
-                a.className = 'bg-gray-100 rounded-lg p-4 hover:bg-gray-200 transition-all text-center group';
-                const emoji = (example.type === 'instagram') ? '📸' : '📘';
-                a.innerHTML = `<div class="text-3xl mb-2">${emoji}</div><div class="text-sm font-medium text-gray-700 group-hover:text-indigo-600">View on ${example.type === 'instagram' ? 'Instagram' : 'Facebook'}</div>`;
-                grid.appendChild(a);
-              });
-              const wrapper = document.createElement('div');
-              wrapper.innerHTML = `<h4 class="font-bold text-gray-900 mb-3">🎬 Work Samples</h4>`;
-              wrapper.appendChild(grid);
-              expanded.appendChild(wrapper);
-            }
-          } // end expandedCase === study.id
-
-          inner.appendChild(expanded);
-          container.appendChild(inner);
-          sectionsContainer.appendChild(container);
-        });
-
-        // ensure icons render
-        lucide.createIcons();
-      }
-
-      if (activeSection === 'skills') {
-        const headerHtml = `
-          <div class="space-y-8 animate-fade-in">
-            <div class="text-center mb-12">
-              <h2 class="text-4xl font-bold text-gray-900 mb-4">Core Competencies</h2>
-              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                A comprehensive skill set spanning strategic analysis, campaign execution,
-                creative content, and technical implementation.
-              </p>
-            </div>
-          </div>
-        `;
-        sectionsContainer.insertAdjacentHTML('beforeend', headerHtml);
-
-        const gridContainer = document.createElement('div');
-        gridContainer.className = 'grid lg:grid-cols-2 gap-8';
-
-        competencies.forEach(cat => {
-          const card = document.createElement('div');
-          card.className = 'bg-white rounded-2xl shadow-lg p-8 border-2 border-gray-100';
-
-          const heading = document.createElement('div');
-          heading.className = 'flex items-center gap-3 mb-6';
-          heading.innerHTML = `<div class="bg-indigo-600 p-2 rounded-lg text-white"><i data-lucide="${cat.iconName}" class="w-5 h-5"></i></div><h3 class="text-2xl font-bold text-gray-900">${cat.category}</h3>`;
-
-          card.appendChild(heading);
-
-          const list = document.createElement('div');
-          list.className = 'space-y-4';
-          cat.skills.forEach(skill => {
-            const skillBlock = document.createElement('div');
-            skillBlock.innerHTML = `
-              <div class="flex items-center justify-between mb-2">
-                <span class="font-medium ${skill.highlight ? 'text-indigo-700 font-semibold' : 'text-gray-700'}">
-                  ${skill.name} ${skill.highlight ? '<span class="ml-2 text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded-full">Core Strength</span>' : ''}
-                </span>
-                <span class="text-sm text-gray-500">${skill.level}%</span>
-              </div>
-              <div class="bg-gray-200 rounded-full h-2 overflow-hidden skill-bar">
-                <div class="fill h-full rounded-full ${skill.highlight ? 'bg-gradient-to-r from-indigo-600 to-blue-600' : 'bg-gray-400'}" style="width: ${skill.level}%;"></div>
-              </div>
-            `;
-            list.appendChild(skillBlock);
-          });
-
-          card.appendChild(list);
-          gridContainer.appendChild(card);
-        });
-
-        sectionsContainer.appendChild(gridContainer);
-
-        // Certifications block
-        const certsHTML = `
-          <div class="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-2xl p-8 border-2 border-indigo-200 mt-8">
-            <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-              <i data-lucide="award" class="w-6 h-6 text-indigo-600"></i>
-              Professional Certifications
-            </h3>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div class="bg-white rounded-xl p-4 border border-indigo-200 hover:shadow-md transition-all">
-                <div class="font-semibold text-gray-900 mb-1">Google Analytics Certification</div>
-                <div class="text-sm text-indigo-600">Google</div>
-              </div>
-              <div class="bg-white rounded-xl p-4 border border-indigo-200 hover:shadow-md transition-all">
-                <div class="font-semibold text-gray-900 mb-1">Google Ads Video Certification</div>
-                <div class="text-sm text-indigo-600">Google</div>
-              </div>
-              <div class="bg-white rounded-xl p-4 border border-indigo-200 hover:shadow-md transition-all">
-                <div class="font-semibold text-gray-900 mb-1">ALX AiCE - AI Career Essentials</div>
-                <div class="text-sm text-indigo-600">ALX</div>
-              </div>
-              <div class="bg-white rounded-xl p-4 border border-indigo-200 hover:shadow-md transition-all">
-                <div class="font-semibold text-gray-900 mb-1">LinkedIn Marketing Solutions</div>
-                <div class="text-sm text-indigo-600">LinkedIn</div>
-              </div>
-              <div class="bg-white rounded-xl p-4 border border-indigo-200 hover:shadow-md transition-all">
-                <div class="font-semibold text-gray-900 mb-1">Semrush SEO Crash Course</div>
-                <div class="text-sm text-indigo-600">Semrush</div>
-              </div>
-            </div>
-          </div>
-        `;
-        sectionsContainer.insertAdjacentHTML('beforeend', certsHTML);
-        lucide.createIcons();
-      }
-
-      if (activeSection === 'contact') {
-        const contactHtml = `
-          <div class="space-y-8 animate-fade-in max-w-4xl mx-auto">
-            <div class="text-center mb-12">
-              <h2 class="text-4xl font-bold text-gray-900 mb-4">Let's Connect</h2>
-              <p class="text-xl text-gray-600">
-                Open to opportunities in digital marketing, content strategy, and data analysis.
-                Let's discuss how I can contribute to your team.
-              </p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-6">
-              <a href="mailto:ouafianir@gmail.com"
-                 class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border-2 border-gray-100 text-center group">
-                <div class="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-indigo-600 transition-all">
-                  <i data-lucide="mail" class="w-8 h-8 text-indigo-600 group-hover:text-white"></i>
-                </div>
-                <h3 class="font-bold text-gray-900 mb-2">Email</h3>
-                <p class="text-gray-600 text-sm">ouafianir@gmail.com</p>
-              </a>
-
-              <a href="https://www.linkedin.com/in/ouafi/" target="_blank" rel="noopener noreferrer"
-                 class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border-2 border-gray-100 text-center group">
-                <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-600 transition-all">
-                  <i data-lucide="linkedin" class="w-8 h-8 text-blue-600 group-hover:text-white"></i>
-                </div>
-                <h3 class="font-bold text-gray-900 mb-2">LinkedIn</h3>
-                <p class="text-gray-600 text-sm">linkedin.com/in/ouafi</p>
-              </a>
-
-              <a href="tel:+212629915388"
-                 class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border-2 border-gray-100 text-center group">
-                <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-600 transition-all">
-                  <i data-lucide="phone" class="w-8 h-8 text-green-600 group-hover:text-white"></i>
-                </div>
-                <h3 class="font-bold text-gray-900 mb-2">Phone</h3>
-                <p class="text-gray-600 text-sm">+212 629 915 388</p>
-              </a>
-            </div>
-
-            <div class="bg-gradient-to-r from-indigo-600 to-blue-600 rounded-2xl p-8 text-white text-center">
-              <h3 class="text-2xl font-bold mb-4">Available For</h3>
-              <div class="flex flex-wrap justify-center gap-4">
-                <span class="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full font-semibold">Full-Time Roles</span>
-                <span class="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full font-semibold">Freelance Projects</span>
-                <span class="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full font-semibold">Consulting</span>
-                <span class="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full font-semibold">Collaborations</span>
-              </div>
-            </div>
-          </div>
-        `;
-        sectionsContainer.insertAdjacentHTML('beforeend', contactHtml);
-        lucide.createIcons();
-      }
-    }
-
-    // single render entry point (renders nav + content)
-    function render() {
-      renderNav();
-      renderSections();
-
-      // update chevrons in case-study headers (show down when expanded)
-      document.querySelectorAll('[data-lucide="chevron-right"], [data-lucide="chevron-down"]').forEach(el => {
-        // lucide replaced tags with svg; find parent button to determine which study it belongs to
-      });
-      // After structural changes, ensure icons are replaced
-      lucide.createIcons();
-    }
-
-    // initial render
-    render();
-
-    // Accessibility and keyboard navigation (optional polish)
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
+      } else {
         expandedCase = null;
-        render();
       }
     });
-  </script>
+  });
+}
 
-  <!-- Initialize lucide icons after the DOM -->
-  <script>
-    // Ensure icons are created when the page first loads.
-    document.addEventListener('DOMContentLoaded', () => {
-      if (window.lucide) lucide.createIcons();
-    });
-  </script>
+function buildExpandedHTML(study){
+  // Build sections depending on existence
+  let html = '';
+
+  if(study.challenge){
+    html += `<div class="block"><h4 style="margin:0 0 6px 0;font-weight:700;"><span style="color:#ef4444;margin-right:8px;">❗</span> Challenge</h4><p style="margin:0;color:var(--muted);">${study.challenge}</p></div>`;
+  }
+  if(study.solution){
+    html += `<div class="block"><h4 style="margin:0 0 6px 0;font-weight:700;"><span style="color:#2563eb;margin-right:8px;">💡</span> Solution</h4><p style="margin:0;color:var(--muted);">${study.solution}</p></div>`;
+  }
+  if(study.approach){
+    html += `<div class="block"><h4 style="margin:0 0 8px 0;font-weight:700;"><span style="color:#7c3aed;margin-right:8px;">🎯</span> Approach</h4><ul class="list-approach">` + study.approach.map(a=>`<li style="margin-bottom:8px;color:var(--muted);">▸ ${a}</li>`).join('') + '</ul></div>';
+  }
+  if(study.sampleSize){
+    html += `<div class="block" style="background:linear-gradient(90deg,#ecfdf5,#f0fdfa);border-radius:10px;padding:12px;border:1px solid #bbf7d0;"><div style="font-size:20px;font-weight:800;color:#047857;margin-bottom:6px;">${study.sampleSize.value}</div><div style="font-weight:700;color:#111827;margin-bottom:4px;">${study.sampleSize.metric}</div><div style="font-size:13px;color:var(--muted);">${study.sampleSize.description}</div></div>`;
+  }
+  if(study.keyFindings){
+    html += `<div class="block"><h4 style="margin:0 0 8px 0;font-weight:700;"><span style="color:#16a34a;margin-right:8px;">📊</span> Key Findings</h4><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;">` + study.keyFindings.map(k=>`<div style="background:#eef2ff;padding:10px;border-radius:8px;border:1px solid #dbeafe;"><p style="margin:0;font-size:14px;color:var(--muted);">${k}</p></div>`).join('') + '</div></div>';
+  }
+  if(study.achievements){
+    html += `<div class="block"><h4 style="margin:0 0 8px 0;font-weight:700;"><span style="color:#fb923c;margin-right:8px;">🏆</span> Key Achievements</h4><ul style="padding-left:14px;color:var(--muted);">`+ study.achievements.map(a=>`<li style="margin-bottom:8px;">✓ ${a}</li>`).join('') + '</ul></div>';
+  }
+  if(study.impact){
+    html += `<div class="block" style="background:linear-gradient(90deg,#eef2ff,#eef8ff);padding:12px;border-left:4px solid #4f46e5;border-radius:8px;"><h4 style="margin:0 0 6px 0;font-weight:700;">💎 Impact</h4><p style="margin:0;color:var(--muted);">${study.impact}</p></div>`;
+  }
+
+  // skills
+  html += `<div class="block"><h4 style="margin:0 0 8px 0;font-weight:700;">🛠️ Skills Applied</h4><div class="skills-badges">` + study.skills.map(s=>`<span class="skill-pill">${s}</span>`).join('') + `</div></div>`;
+
+  // research link
+  if(study.link){
+    html += `<div class="block"><a class="cta" href="${study.link}" target="_blank" rel="noopener noreferrer">${iconSVG('filetext',16)} <span style="margin-left:8px;">Request Full Research Report</span> ${iconSVG('external',16)}</a></div>`;
+  }
+
+  // examples
+  if(study.examples){
+    html += `<div class="block"><h4 style="margin:0 0 8px 0;font-weight:700;">🎬 Work Samples</h4><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">` + study.examples.map(ex=>`<div class="sample-card"><iframe src="${ex.url}" scrolling="no" allowTransparency="true" allow="encrypted-media"></iframe></div>`).join('') + `</div></div>`;
+  }
+
+  return html;
+}
+
+/* ---------- Skills ---------- */
+function renderSkills(){
+  const wrap = document.createElement('div');
+  wrap.className = 'space-y-8 animate-fade-in';
+
+  const intro = document.createElement('div');
+  intro.style.textAlign = 'center';
+  intro.style.marginBottom = '24px';
+  intro.innerHTML = `<h2 style="font-size:28px;margin-bottom:8px;">Core Competencies</h2>
+    <p style="color:var(--muted);max-width:760px;margin:0 auto;">A comprehensive skill set spanning strategic analysis, campaign execution, creative content, and technical implementation.</p>`;
+  wrap.appendChild(intro);
+
+  const grid = document.createElement('div');
+  grid.className = 'grid';
+  grid.style.gridTemplateColumns = 'repeat(2,1fr)';
+  grid.style.gap = '18px';
+
+  competencies.forEach(cat=>{
+    const node = document.createElement('div');
+    node.className = 'competency';
+    node.innerHTML = `
+      <div class="head">
+        <div style="background:var(--indigo-600);padding:8px;border-radius:10px;color:white;">${iconForStudy(cat.icon)}</div>
+        <h3 style="margin:0;">${cat.category}</h3>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">` + cat.skills.map(s=>`<span class="skill-pill">${s}</span>`).join('') + `</div>
+    `;
+    grid.appendChild(node);
+  });
+
+  wrap.appendChild(grid);
+
+  // Certifications block
+  const certs = document.createElement('div');
+  certs.className = 'card';
+  certs.style.background = 'linear-gradient(135deg,#eef2ff,#eff6ff)';
+  certs.innerHTML = `
+    <h3 style="display:flex;align-items:center;gap:8px;margin:0 0 12px 0;"><span style="background:transparent">${iconSVG('award',20)}</span>Certifications</h3>
+    <div class="cert-grid" style="margin-top:8px;">
+      ${[
+        { name: 'Google Analytics Certification', org: 'Google Skillshop' },
+        { name: 'Google Ads Video Certification', org: 'Google Skillshop' },
+        { name: 'ALX AiCE - AI Career Essentials', org: 'ALX' },
+        { name: 'LinkedIn Marketing Solutions', org: 'LinkedIn Marketing Labs' },
+        { name: 'Semrush SEO Crash Course', org: 'Semrush Academy' }
+      ].map(c => `<div class="cert"><div style="font-weight:700;">${c.name}</div><div style="color:var(--indigo-600);font-weight:700;margin-top:6px;">${c.org}</div></div>`).join('')}
+      <div class="cert" style="border:2px solid #fecaca;background:#fff;"><div style="font-weight:700;">Manage Successful Field Research</div><div style="color:#ef4444;font-weight:700;margin-top:6px;">World Bank Institute For Economic Development • In Progress</div></div>
+    </div>
+  `;
+  wrap.appendChild(certs);
+
+  mainRoot.appendChild(wrap);
+}
+
+/* ---------- Contact ---------- */
+function renderContact(){
+  const wrap = document.createElement('div');
+  wrap.className = 'space-y-8 animate-fade-in';
+  wrap.style.maxWidth = '900px';
+  wrap.style.margin = '0 auto';
+
+  wrap.innerHTML = `<div style="text-align:center;margin-bottom:12px;"><h2 style="font-size:28px;margin-bottom:8px;">Let's Connect</h2><p style="color:var(--muted);">Open to opportunities in marketing and market research. Let's discuss how I can contribute to your team.</p></div>`;
+
+  const grid = document.createElement('div');
+  grid.className = 'contact-grid';
+  grid.style.marginTop = '8px';
+
+  // Email
+  const email = document.createElement('a');
+  email.className = 'contact-card';
+  email.href = 'mailto:ouafianir@gmail.com';
+  email.innerHTML = `<div class="round" style="background:#eef2ff;color:#4f46e5;">${iconSVG('mail',24)}</div><h3>Email</h3><p style="color:var(--muted);margin:0;">ouafianir@gmail.com</p>`;
+  grid.appendChild(email);
+
+  // LinkedIn
+  const lin = document.createElement('a');
+  lin.className = 'contact-card';
+  lin.href = 'https://www.linkedin.com/in/ouafi/';
+  lin.target = '_blank';
+  lin.rel = 'noopener noreferrer';
+  lin.innerHTML = `<div class="round" style="background:#e6f0ff;color:#1d4ed8;">${iconSVG('linkedin',24)}</div><h3>LinkedIn</h3><p style="color:var(--muted);margin:0;">linkedin.com/in/ouafi</p>`;
+  grid.appendChild(lin);
+
+  // WhatsApp
+  const wa = document.createElement('a');
+  wa.className = 'contact-card';
+  wa.href = 'https://wa.me/212629915388';
+  wa.target = '_blank'; wa.rel = 'noopener noreferrer';
+  wa.innerHTML = `<div class="round" style="background:#ecfdf5;color:#16a34a;">${iconSVG('message',24)}</div><h3>WhatsApp</h3><p style="color:var(--muted);margin:0;">+212 629 915 388</p>`;
+  grid.appendChild(wa);
+
+  // Phone
+  const ph = document.createElement('a');
+  ph.className = 'contact-card';
+  ph.href = 'tel:+212629915388';
+  ph.innerHTML = `<div class="round" style="background:#f5f3ff;color:#7c3aed;">${iconSVG('phone',24)}</div><h3>Phone</h3><p style="color:var(--muted);margin:0;">+212 629 915 388</p>`;
+  grid.appendChild(ph);
+
+  wrap.appendChild(grid);
+  mainRoot.appendChild(wrap);
+}
+
+/* -------------------------
+   Helpers
+   ------------------------- */
+function iconForStudy(key){
+  switch(key){
+    case 'chart': return iconSVG('chart',22);
+    case 'video': return iconSVG('video',22);
+    case 'trending': return iconSVG('trending',22);
+    case 'users': return iconSVG('users',22);
+    case 'globe': return iconSVG('globe',22);
+    default: return iconSVG('mail',22);
+  }
+}
+function getTagGradient(colorName){
+  switch(colorName){
+    case 'purple': return 'background:linear-gradient(135deg,#6366f1,#4f46e5);';
+    case 'blue': return 'background:linear-gradient(135deg,#3b82f6,#2563eb);';
+    case 'green': return 'background:linear-gradient(135deg,#22c55e,#16a34a);';
+    case 'orange': return 'background:linear-gradient(135deg,#fb923c,#f97316);';
+    default: return 'background:#94a3b8;';
+  }
+}
+function tagStyle(colorName){
+  switch(colorName){
+    case 'purple': return 'background:#f3e8ff;color:#6d28d9;';
+    case 'blue': return 'background:#eff6ff;color:#1e40af;';
+    case 'green': return 'background:#ecfdf5;color:#047857;';
+    case 'orange': return 'background:#fff7ed;color:#c2410c;';
+    default: return 'background:#f3f4f6;color:#111827;';
+  }
+}
+
+/* -------------------------
+   Init
+   ------------------------- */
+render();
+
+</script>
 </body>
 </html>
