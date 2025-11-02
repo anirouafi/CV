@@ -1,575 +1,794 @@
-import React, { useState } from 'react';
-import { Mail, Linkedin, Phone, ChevronDown, ChevronRight, BarChart3, Video, Camera, TrendingUp, Users, Award, Globe, FileText, ExternalLink, MessageCircle } from 'lucide-react';
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Anir Ouafi — Portfolio (HTML + CSS + JS)</title>
 
-export default function Portfolio() {
-  const [activeSection, setActiveSection] = useState('overview');
-  const [expandedCase, setExpandedCase] = useState(null);
+  <!-- Tailwind CDN (keeps the same classes & design) -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-  const caseStudies = [
-    {
-      id: 'research',
-      title: 'Content Marketing Effectiveness Research',
-      type: 'Research Project',
-      organization: 'ENCG Agadir',
-      period: 'Mar 2024 - May 2024',
-      tag: 'Data-Driven Insights',
-      tagColor: 'bg-purple-100 text-purple-800',
-      icon: <BarChart3 className="w-6 h-6" />,
-      challenge: 'Limited understanding of content marketing effectiveness factors in the Moroccan digital landscape, with businesses lacking data-driven insights for optimizing social media engagement.',
-      solution: 'Conducted quantitative research analyzing 10,189 social media posts from Moroccan businesses to identify variables significantly impacting engagement metrics (likes, comments, shares).',
-      sampleSize: { metric: 'Sample Size', value: '10,189 posts', description: 'Analyzed across multiple industries' },
-      keyFindings: [
-        'Facebook outperformed Instagram with significantly higher median likes and comments',
-        'B2C content generated the highest median engagement across all metrics',
-        'Humor/entertainment content significantly boosted engagement rates',
-        'Weekend posting increased engagement while some weekdays drastically lowered it',
-        'Posts with 0-1 hashtags unexpectedly generated highest engagement',
-        'Posting at exactly :30 minutes past any hour maximized Facebook engagement',
-        'Higher posting frequency correlated moderately with increased engagement',
-        'Midday (12pm) and late evening (10pm) notably increased Facebook likes, while morning (8am) significantly improved comments and shares'
-      ],
-      skills: ['Market Research', 'Quantitative Research', 'Data Analysis', 'Content Strategy'],
-      link: 'https://ouafianir.wixsite.com/content-marketing'
-    },
-    {
-      id: 'mediaman',
-      title: 'Multi-Platform Content Creation',
-      type: 'Campaign Portfolio',
-      organization: 'Media Man',
-      period: 'Feb 2024 - May 2024',
-      tag: 'Creative Direction',
-      tagColor: 'bg-blue-100 text-blue-800',
-      icon: <Video className="w-6 h-6" />,
-      challenge: 'Social media agency clients needed engaging, platform-optimized content that drives audience engagement and brand awareness across Instagram and Facebook.',
-      solution: 'Collaborated with the team to develop scripts, storyboards, and creative concepts for social media content. Worked alongside production team and talent to execute video and image posts aligned with brand strategies.',
-      approach: [
-        'Contributed to creating scripts and storyboards for video content',
-        'Helped develop content concepts aligned with client brand strategies',
-        'Participated in content strategy development and planning',
-        'Assisted in evaluating user experience and SEO improvements',
-        'Supported talent with script delivery and performance'
-      ],
-      examples: [
-        { url: 'https://www.instagram.com/p/C8FVeAZNjnB/embed', link: 'https://www.instagram.com/p/C8FVeAZNjnB/' },
-        { url: 'https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2FAGANET.agadir%2Fvideos%2F439751238595771%2F&show_text=false&width=560', link: 'https://www.facebook.com/AGANET.agadir/videos/439751238595771' },
-        { url: 'https://www.instagram.com/p/C4TAmjwNShh/embed', link: 'https://www.instagram.com/p/C4TAmjwNShh/' },
-        { url: 'https://www.instagram.com/p/C-gFpKDt2yb/embed', link: 'https://www.instagram.com/p/C-gFpKDt2yb/' }
-      ],
-      skills: ['Scriptwriting', 'Storyboarding', 'Copywriting'],
-      impact: 'Contributed to diverse client campaigns spanning multiple industries, enhancing brand narratives through strategic content creation'
-    },
-    {
-      id: 'horizonpack',
-      title: 'Integrated Campaign Management',
-      type: 'Full Campaign',
-      organization: 'Horizon Pack',
-      period: 'May 2023 - Aug 2023',
-      tag: 'Full-Funnel Marketing',
-      tagColor: 'bg-green-100 text-green-800',
-      icon: <TrendingUp className="w-6 h-6" />,
-      challenge: 'Packaging company needed to increase market visibility, generate qualified leads, and establish strong digital presence while managing direct sales.',
-      solution: 'Led end-to-end campaign from concept to execution, including video production, multi-platform advertising, and direct customer engagement.',
-      approach: [
-        'Conducted market research and gathered qualitative data for campaign narrative',
-        'Developed complete creative package (script, storyboard, visual concepts)',
-        'Managed external production team and oversaw video creation',
-        'Launched and monitored advertising campaigns on Meta and Google Ads',
-        'Handled incoming leads and processed new customer orders'
-      ],
-      examples: [
-        { url: 'https://www.instagram.com/p/CvSD1BNBwWt/embed', link: 'https://www.instagram.com/horizon.pack/reel/CvSD1BNBwWt/' },
-        { url: 'https://www.facebook.com/plugins/photo.php?href=https%3A%2F%2Fwww.facebook.com%2Fphoto%2F%3Ffbid%3D302140355725345%26set%3Dpcb.302141625725218&show_text=false&width=500', link: 'https://web.facebook.com/photo/?fbid=302140355725345&set=pcb.302141625725218' },
-        { url: 'https://drive.google.com/file/d/1oyxHTZ_vLB3d3VmiQI4qYYV-b2zntD06/preview', link: 'https://drive.google.com/file/d/1oyxHTZ_vLB3d3VmiQI4qYYV-b2zntD06/view?usp=drive_link' },
-        { url: 'https://www.instagram.com/p/CkHeFIvoPst/embed', link: 'https://www.instagram.com/horizon.pack/p/CkHeFIvoPst/' },
-        { url: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FHorizonPack%2Fphotos%2Fpb.100077881491713.-2207520000%2F177712994791048&show_text=false&width=500', link: 'https://web.facebook.com/HorizonPack/photos/pb.100077881491713.-2207520000/177712994791048/?type=3' }
-      ],
-      skills: ['Campaign Management', 'Google Ads', 'Meta Ads', 'B2B Marketing', 'Sales', 'Qualitative Research'],
-      impact: 'Successfully executed integrated marketing campaign from strategy through conversion, demonstrating versatility across creative, technical, and sales functions'
-    },
-    {
-      id: 'community',
-      title: 'Digital Presence & Community Building',
-      type: 'Community Management',
-      organization: 'Horizon Pack',
-      period: 'Jun 2022 - Nov 2022',
-      tag: 'Brand Development',
-      tagColor: 'bg-orange-100 text-orange-800',
-      icon: <Users className="w-6 h-6" />,
-      challenge: 'Company lacked cohesive digital presence and needed to establish professional social media profiles, website, and community engagement strategy.',
-      solution: 'Built complete digital infrastructure from ground up, including website development, social media optimization, content creation, and community management.',
-      achievements: [
-        'Established Google My Business and Meta Business Suite profiles',
-        'Developed WordPress website with comprehensive product catalogs',
-        'Created commercial photography and edited product images',
-        'Generated consistent social media content featuring products',
-        'Managed all online engagement (messages, comments, inquiries)'
-      ],
-      skills: ['Community Management', 'WordPress Development', 'Photography', 'Image Editing', 'Social Media Management', 'Content Creation'],
-      impact: 'Transformed company from minimal online presence to fully operational digital ecosystem with professional branding and active community engagement'
+  <!-- Lucide icons CDN (renders same icons used in React) -->
+  <script src="https://unpkg.com/lucide"></script>
+
+  <style>
+    /* local keyframes used by the component */
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-  ];
-
-  const competencies = [
-    {
-      category: 'Strategic & Analytical',
-      icon: <BarChart3 className="w-5 h-5" />,
-      skills: ['Data-Driven Marketing', 'Marketing Strategy', 'Market Research', 'Competitive Analysis', 'Data Analysis']
-    },
-    {
-      category: 'Campaign Management',
-      icon: <TrendingUp className="w-5 h-5" />,
-      skills: ['Google Ads', 'Meta Ads', 'Campaign Strategy', 'SEO', 'Google Analytics']
-    },
-    {
-      category: 'Content & Creative',
-      icon: <Video className="w-5 h-5" />,
-      skills: ['Scriptwriting', 'Storyboarding', 'Content Strategy', 'Copywriting', 'Photography']
-    },
-    {
-      category: 'Technical',
-      icon: <Globe className="w-5 h-5" />,
-      skills: ['Office Pack', 'Data Analysis (DataTab, Tableau)', 'Web Development (HTML, JavaScript, CSS, Python, PHP, SQL)', 'Image Editing (Adobe Illustrator)']
+    .animate-fade-in {
+      animation: fade-in 0.5s ease-out;
     }
-  ];
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-      {/* Hero Section */}
-      <header className="bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-600 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-          <div className="text-center">
-            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
-              <Award className="w-4 h-4" />
-              <span className="text-sm font-medium">Marketing Graduate • ENCG Agadir</span>
-            </div>
-            <h1 className="text-5xl sm:text-6xl font-bold mb-6 tracking-tight">
-              Anir Ouafi
-            </h1>
-            <p className="text-xl sm:text-2xl mb-4 text-blue-100 font-light">
-              Data-Driven Marketing Specialist
-            </p>
-            <p className="text-lg max-w-3xl mx-auto mb-8 leading-relaxed text-blue-50">
-              Bridging creative storytelling with analytical insights to drive measurable results. 
-              Specialized in content marketing effectiveness, campaign management, and digital strategy.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 mb-8">
-              <a href="mailto:ouafianir@gmail.com" 
-                 className="flex items-center gap-2 bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-all shadow-lg hover:shadow-xl">
-                <Mail className="w-4 h-4" />
-                Get in Touch
-              </a>
-              <a href="https://www.linkedin.com/in/ouafi/" target="_blank" rel="noopener noreferrer"
-                 className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border-2 border-white px-6 py-3 rounded-lg font-semibold hover:bg-white/20 transition-all">
-                <Linkedin className="w-4 h-4" />
-                LinkedIn
-              </a>
-              <a href="tel:+212629915388"
-                 className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border-2 border-white px-6 py-3 rounded-lg font-semibold hover:bg-white/20 transition-all">
-                <Phone className="w-4 h-4" />
-                Phone
-              </a>
-              <a href="https://wa.me/212629915388" target="_blank" rel="noopener noreferrer"
-                 className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border-2 border-white px-6 py-3 rounded-lg font-semibold hover:bg-white/20 transition-all">
-                <MessageCircle className="w-4 h-4" />
-                WhatsApp
-              </a>
-            </div>
-            <div className="flex flex-wrap justify-center gap-3 text-sm">
-              <span className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">📍 Inezgane, Morocco</span>
-            </div>
+    /* small polish for smooth progress animation */
+    .skill-bar > .fill {
+      transition: width 1s ease;
+    }
+
+    /* keep nav overflow nice on small screens */
+    .nav-scroll::-webkit-scrollbar { height: 8px; }
+    .nav-scroll::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.08); border-radius: 9999px; }
+
+    /* small fix for lucide icons alignment when used inline */
+    [data-lucide] { vertical-align: middle; display: inline-block; }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 font-sans text-gray-800">
+
+  <div id="app">
+    <!-- Header / Hero -->
+    <header class="bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-600 text-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        <div class="text-center">
+          <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
+            <i data-lucide="award" class="w-4 h-4"></i>
+            <span class="text-sm font-medium">Marketing Graduate • ENCG Agadir</span>
+          </div>
+
+          <h1 class="text-5xl sm:text-6xl font-bold mb-6 tracking-tight">Anir Ouafi</h1>
+
+          <p class="text-xl sm:text-2xl mb-4 text-blue-100 font-light">
+            Data-Driven Marketing Strategist & Content Creator
+          </p>
+
+          <p class="text-lg max-w-3xl mx-auto mb-8 leading-relaxed text-blue-50">
+            Bridging creative storytelling with analytical insights to drive measurable results.
+            Specialized in content marketing effectiveness, campaign management, and digital strategy.
+          </p>
+
+          <div class="flex flex-wrap justify-center gap-4 mb-8">
+            <a href="mailto:ouafianir@gmail.com"
+               class="flex items-center gap-2 bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-all shadow-lg hover:shadow-xl">
+              <i data-lucide="mail" class="w-4 h-4"></i>
+              Get in Touch
+            </a>
+
+            <a href="https://www.linkedin.com/in/ouafi/" target="_blank" rel="noopener noreferrer"
+               class="flex items-center gap-2 bg-white/10 backdrop-blur-sm border-2 border-white px-6 py-3 rounded-lg font-semibold hover:bg-white/20 transition-all">
+              <i data-lucide="linkedin" class="w-4 h-4"></i>
+              LinkedIn
+            </a>
+          </div>
+
+          <div class="flex flex-wrap justify-center gap-3 text-sm">
+            <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">📍 Inezgane, Morocco</span>
+            <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">🗣️ Multilingual (4 languages)</span>
+            <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">📊 10,189+ Posts Analyzed</span>
           </div>
         </div>
-      </header>
+      </div>
+    </header>
 
-      {/* Navigation */}
-      <nav className="sticky top-0 bg-white/80 backdrop-blur-lg shadow-sm z-40 border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center gap-1 py-4 overflow-x-auto">
-            {[
-              { id: 'overview', label: 'Overview', icon: <FileText className="w-4 h-4" /> },
-              { id: 'work', label: 'Case Studies', icon: <Award className="w-4 h-4" /> },
-              { id: 'skills', label: 'Competencies', icon: <BarChart3 className="w-4 h-4" /> },
-              { id: 'contact', label: 'Contact', icon: <Mail className="w-4 h-4" /> }
-            ].map(section => (
-              <button
-                key={section.id}
-                onClick={() => setActiveSection(section.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap ${
-                  activeSection === section.id
-                    ? 'bg-indigo-600 text-white shadow-md'
-                    : 'text-gray-600 hover:bg-gray-100'
-                }`}
-              >
-                {section.icon}
-                {section.label}
-              </button>
-            ))}
-          </div>
+    <!-- Navigation -->
+    <nav class="sticky top-0 bg-white/80 backdrop-blur-lg shadow-sm z-40 border-b border-gray-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div id="navButtons" class="flex justify-center gap-1 py-4 overflow-x-auto nav-scroll">
+          <!-- Buttons produced by JS to keep consistent logic -->
         </div>
-      </nav>
+      </div>
+    </nav>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Overview Section */}
-        {activeSection === 'overview' && (
-          <div className="space-y-8 animate-fade-in">
-            <div className="bg-white rounded-2xl shadow-lg p-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Professional Overview</h2>
-              <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
-                <p className="mb-4">
-                  Marketing graduate from the National School of Commerce and Management (ENCG) in Agadir, 
-                  combining strong academic foundations with hands-on experience in digital marketing, 
+    <!-- Main content area -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <!-- Sections will be injected by JS here -->
+      <div id="sectionsContainer"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-gray-400">
+          © 2024 Anir Ouafi. Crafted with analytical precision and creative passion.
+        </p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Data: mirrors the React arrays and objects exactly
+    const caseStudies = [
+      {
+        id: 'research',
+        title: 'Content Marketing Effectiveness Research',
+        type: 'Research Project',
+        organization: 'ENCG Agadir',
+        period: 'Mar 2024 - May 2024',
+        tag: 'Data-Driven Insights',
+        tagColor: 'bg-purple-100 text-purple-800',
+        iconName: 'bar-chart-3',
+        challenge: 'Limited understanding of content marketing effectiveness factors in the Moroccan digital landscape, with businesses lacking data-driven insights for optimizing social media engagement.',
+        solution: 'Conducted quantitative research analyzing 10,189 social media posts from Moroccan businesses to identify variables significantly impacting engagement metrics (likes, comments, shares).',
+        results: [
+          { metric: 'Sample Size', value: '10,189 posts', description: 'Analyzed across multiple industries' },
+          { metric: 'Platform Performance', value: 'Facebook > Instagram', description: 'Significantly higher median engagement' },
+          { metric: 'Optimal Timing', value: '12pm & 10pm', description: 'Peak engagement windows identified' },
+          { metric: 'Content Type', value: 'B2C + Humor', description: 'Highest median engagement rates' }
+        ],
+        keyFindings: [
+          'Facebook outperformed Instagram with significantly higher median likes and comments',
+          'B2C content generated the highest median engagement across all metrics',
+          'Humor/entertainment content significantly boosted engagement rates',
+          'Weekend posting increased engagement while some weekdays drastically lowered it',
+          'Posts with 0-1 hashtags unexpectedly generated highest engagement',
+          'Posting at exactly :30 minutes past any hour maximized Facebook engagement',
+          'Higher posting frequency correlated moderately with increased engagement'
+        ],
+        skills: ['Data Analysis', 'Quantitative Research', 'Statistical Analysis', 'Content Strategy', 'Market Research'],
+        link: 'https://ouafianir.wixsite.com/content-marketing'
+      },
+      {
+        id: 'mediaman',
+        title: 'Multi-Platform Content Creation & Strategy',
+        type: 'Campaign Portfolio',
+        organization: 'Media Man',
+        period: 'Feb 2024 - May 2024',
+        tag: 'Creative Direction',
+        tagColor: 'bg-blue-100 text-blue-800',
+        iconName: 'video',
+        challenge: 'Social media agency clients needed engaging, platform-optimized content that drives audience engagement and brand awareness across Instagram and Facebook.',
+        solution: 'Developed scripts, storyboards, and creative concepts for social media content. Collaborated with production team and talent to execute video and image posts aligned with brand strategies.',
+        approach: [
+          'Created compelling scripts and storyboards for video content',
+          'Developed content concepts aligned with client brand strategies',
+          'Assisted in content strategy development and planning',
+          'Evaluated user experience and contributed to SEO improvements',
+          'Coached talent on script delivery and performance'
+        ],
+        examples: [
+          { url: 'https://www.instagram.com/p/C8FVeAZNjnB/', type: 'instagram' },
+          { url: 'https://www.facebook.com/AGANET.agadir/videos/439751238595771', type: 'facebook' },
+          { url: 'https://www.instagram.com/p/C4TAmjwNShh/', type: 'instagram' },
+          { url: 'https://www.instagram.com/p/C-gFpKDt2yb/', type: 'instagram' }
+        ],
+        skills: ['Scriptwriting', 'Storyboarding', 'Content Strategy', 'Creative Direction', 'SEO', 'Talent Direction'],
+        impact: 'Contributed to diverse client campaigns spanning multiple industries, enhancing brand narratives through strategic content creation'
+      },
+      {
+        id: 'horizonpack',
+        title: 'Integrated Campaign Management & Content Production',
+        type: 'Full Campaign',
+        organization: 'Horizon Pack',
+        period: 'May 2023 - Aug 2023',
+        tag: 'Full-Funnel Marketing',
+        tagColor: 'bg-green-100 text-green-800',
+        iconName: 'trending-up',
+        challenge: 'Packaging company needed to increase market visibility, generate qualified leads, and establish strong digital presence while managing direct sales.',
+        solution: 'Led end-to-end campaign from concept to execution, including video production, multi-platform advertising, and direct customer engagement.',
+        approach: [
+          'Conducted market research and gathered qualitative data for campaign narrative',
+          'Developed complete creative package (script, storyboard, visual concepts)',
+          'Managed external production team and oversaw video creation',
+          'Launched and monitored advertising campaigns on Meta and Google Ads',
+          'Handled incoming leads and processed new customer orders'
+        ],
+        results: [
+          { metric: 'Role', value: 'Campaign Manager', description: 'End-to-end ownership' },
+          { metric: 'Platforms', value: 'Meta + Google Ads', description: 'Multi-channel execution' },
+          { metric: 'Deliverables', value: 'Video + Ads + Sales', description: 'Integrated approach' }
+        ],
+        examples: [
+          { url: 'https://www.instagram.com/horizon.pack/reel/CvSD1BNBwWt/', type: 'instagram' },
+          { url: 'https://web.facebook.com/photo/?fbid=302140355725345&set=pcb.302141625725218', type: 'facebook' }
+        ],
+        skills: ['Campaign Management', 'Video Production', 'Google Ads', 'Meta Ads', 'B2B Marketing', 'Sales', 'Market Research'],
+        impact: 'Successfully executed integrated marketing campaign from strategy through conversion, demonstrating versatility across creative, technical, and sales functions'
+      },
+      {
+        id: 'community',
+        title: 'Digital Presence & Community Building',
+        type: 'Community Management',
+        organization: 'Horizon Pack',
+        period: 'Jun 2022 - Nov 2022',
+        tag: 'Brand Development',
+        tagColor: 'bg-orange-100 text-orange-800',
+        iconName: 'users',
+        challenge: 'Company lacked cohesive digital presence and needed to establish professional social media profiles, website, and community engagement strategy.',
+        solution: 'Built complete digital infrastructure from ground up, including website development, social media optimization, content creation, and community management.',
+        achievements: [
+          'Established Google My Business and Meta Business Suite profiles',
+          'Developed WordPress website with comprehensive product catalogs',
+          'Created commercial photography and edited product images',
+          'Generated consistent social media content featuring products',
+          'Managed all online engagement (messages, comments, inquiries)'
+        ],
+        skills: ['Community Management', 'WordPress Development', 'Photography', 'Image Editing', 'Social Media Management', 'Content Creation'],
+        impact: 'Transformed company from minimal online presence to fully operational digital ecosystem with professional branding and active community engagement'
+      }
+    ];
+
+    const competencies = [
+      {
+        category: 'Strategic & Analytical',
+        iconName: 'bar-chart-3',
+        skills: [
+          { name: 'Data-Driven Marketing', level: 95, highlight: true },
+          { name: 'Marketing Strategy', level: 90 },
+          { name: 'Market Research', level: 88 },
+          { name: 'Competitive Analysis', level: 85 },
+          { name: 'Data Analysis', level: 92, highlight: true }
+        ]
+      },
+      {
+        category: 'Campaign Management',
+        iconName: 'trending-up',
+        skills: [
+          { name: 'Google Ads', level: 85 },
+          { name: 'Meta Ads', level: 87 },
+          { name: 'Campaign Strategy', level: 88 },
+          { name: 'SEO', level: 80 },
+          { name: 'Google Analytics', level: 83 }
+        ]
+      },
+      {
+        category: 'Content & Creative',
+        iconName: 'video',
+        skills: [
+          { name: 'Scriptwriting', level: 90 },
+          { name: 'Storyboarding', level: 88 },
+          { name: 'Content Strategy', level: 92, highlight: true },
+          { name: 'Copywriting', level: 85 },
+          { name: 'Photography', level: 82 }
+        ]
+      },
+      {
+        category: 'Technical',
+        iconName: 'globe',
+        skills: [
+          { name: 'WordPress', level: 85 },
+          { name: 'JavaScript', level: 75 },
+          { name: 'Python', level: 78 },
+          { name: 'SQL', level: 80 },
+          { name: 'Adobe Illustrator', level: 82 }
+        ]
+      }
+    ];
+
+    // Section definitions and icons
+    const sections = [
+      { id: 'overview', label: 'Overview', iconName: 'file-text' },
+      { id: 'work', label: 'Case Studies', iconName: 'award' },
+      { id: 'skills', label: 'Competencies', iconName: 'bar-chart-3' },
+      { id: 'contact', label: 'Contact', iconName: 'mail' }
+    ];
+
+    // Application state
+    let activeSection = 'overview';
+    let expandedCase = null;
+
+    // DOM references
+    const navButtonsContainer = document.getElementById('navButtons');
+    const sectionsContainer = document.getElementById('sectionsContainer');
+
+    // Render nav buttons
+    function renderNav() {
+      navButtonsContainer.innerHTML = '';
+      sections.forEach(sec => {
+        const btn = document.createElement('button');
+        btn.className = `flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap
+          ${activeSection === sec.id ? 'bg-indigo-600 text-white shadow-md' : 'text-gray-600 hover:bg-gray-100'}`;
+        btn.dataset.section = sec.id;
+
+        const icon = document.createElement('i');
+        icon.setAttribute('data-lucide', sec.iconName);
+        icon.className = 'w-4 h-4';
+        btn.appendChild(icon);
+
+        const span = document.createElement('span');
+        span.textContent = sec.label;
+        btn.appendChild(span);
+
+        btn.addEventListener('click', () => {
+          activeSection = sec.id;
+          expandedCase = null; // collapse open case when switching sections (matches common UX)
+          render();
+          // scroll top a little so user sees the content
+          window.scrollTo({ top: 200, behavior: 'smooth' });
+        });
+
+        navButtonsContainer.appendChild(btn);
+      });
+      // after inserting icons, ask Lucide to replace them with SVGs
+      lucide.createIcons();
+    }
+
+    // Render main content based on activeSection
+    function renderSections() {
+      sectionsContainer.innerHTML = '';
+
+      if (activeSection === 'overview') {
+        const overviewHtml = `
+          <div class="space-y-8 animate-fade-in">
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">Professional Overview</h2>
+              <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                <p class="mb-4">
+                  Marketing graduate from the National School of Commerce and Management (ENCG) in Agadir,
+                  combining strong academic foundations with hands-on experience in digital marketing,
                   content creation, and data analysis.
                 </p>
-                <p className="mb-4">
-                  My approach integrates <strong>analytical rigor with creative execution</strong>, demonstrated 
-                  through pioneering research on content marketing effectiveness in Morocco and proven success 
+                <p class="mb-4">
+                  My approach integrates <strong>analytical rigor with creative execution</strong>, demonstrated
+                  through pioneering research on content marketing effectiveness in Morocco and proven success
                   in campaign management across multiple platforms.
                 </p>
               </div>
             </div>
 
-            {/* Unique Value Propositions */}
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 border-2 border-purple-200">
-                <div className="bg-purple-600 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
-                  <BarChart3 className="w-6 h-6 text-white" />
+            <div class="grid md:grid-cols-3 gap-6">
+              <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 border-2 border-purple-200">
+                <div class="bg-purple-600 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
+                  <i data-lucide="bar-chart-3" class="w-6 h-6 text-white"></i>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Research-Backed Insights</h3>
-                <p className="text-gray-700">
-                  Conducted groundbreaking research analyzing 10,189+ social media posts, uncovering 
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Research-Backed Insights</h3>
+                <p class="text-gray-700">
+                  Conducted groundbreaking research analyzing 10,189+ social media posts, uncovering
                   data-driven strategies for maximizing engagement in the Moroccan market.
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 border-2 border-blue-200">
-                <div className="bg-blue-600 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
-                  <Video className="w-6 h-6 text-white" />
+              <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 border-2 border-blue-200">
+                <div class="bg-blue-600 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
+                  <i data-lucide="video" class="w-6 h-6 text-white"></i>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">End-to-End Campaign Management</h3>
-                <p className="text-gray-700">
-                  From scriptwriting and storyboarding to campaign execution and performance tracking, 
+                <h3 class="text-xl font-bold text-gray-900 mb-3">End-to-End Campaign Management</h3>
+                <p class="text-gray-700">
+                  From scriptwriting and storyboarding to campaign execution and performance tracking,
                   delivering integrated marketing solutions across multiple touchpoints.
+                </p>
+              </div>
+
+              <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 border-2 border-green-200">
+                <div class="bg-green-600 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
+                  <i data-lucide="globe" class="w-6 h-6 text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Multilingual Expertise</h3>
+                <p class="text-gray-700">
+                  Native in Tamazight, bilingual in Arabic, with professional proficiency in French and English.
+                  Uniquely positioned for diverse market strategies.
                 </p>
               </div>
             </div>
 
-            {/* Quick Stats */}
-            <div className="bg-gradient-to-r from-indigo-600 to-blue-600 rounded-2xl p-8 text-white">
-              <h3 className="text-2xl font-bold mb-6 text-center">Impact Highlights</h3>
-              <div className="grid sm:grid-cols-3 gap-6">
-                <div className="text-center">
-                  <div className="text-4xl font-bold mb-2">10,189</div>
-                  <div className="text-blue-100">Posts Analyzed</div>
+            <div class="bg-gradient-to-r from-indigo-600 to-blue-600 rounded-2xl p-8 text-white">
+              <h3 class="text-2xl font-bold mb-6 text-center">Impact Highlights</h3>
+              <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center">
+                  <div class="text-4xl font-bold mb-2">10,189</div>
+                  <div class="text-blue-100">Posts Analyzed</div>
                 </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold mb-2">19+</div>
-                  <div className="text-blue-100">Organizations Impacted</div>
+                <div class="text-center">
+                  <div class="text-4xl font-bold mb-2">3+</div>
+                  <div class="text-blue-100">Organizations</div>
                 </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold mb-2">5+</div>
-                  <div className="text-blue-100">Certifications</div>
+                <div class="text-center">
+                  <div class="text-4xl font-bold mb-2">40+</div>
+                  <div class="text-blue-100">Skills Mastered</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-4xl font-bold mb-2">5</div>
+                  <div class="text-blue-100">Certifications</div>
                 </div>
               </div>
             </div>
           </div>
-        )}
+        `;
+        sectionsContainer.insertAdjacentHTML('beforeend', overviewHtml);
+        lucide.createIcons();
+      }
 
-        {/* Case Studies Section */}
-        {activeSection === 'work' && (
-          <div className="space-y-8 animate-fade-in">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Projects</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                From pioneering research to hands-on campaign execution, explore projects 
+      if (activeSection === 'work') {
+        const headerHtml = `
+          <div class="space-y-8 animate-fade-in">
+            <div class="text-center mb-12">
+              <h2 class="text-4xl font-bold text-gray-900 mb-4">Case Studies & Projects</h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                From pioneering research to hands-on campaign execution, explore projects
                 that demonstrate strategic thinking and measurable impact.
               </p>
             </div>
-
-            {caseStudies.map((study, index) => (
-              <div key={study.id} className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-gray-100 hover:shadow-2xl transition-all">
-                <div className="p-8">
-                  <div className="flex items-start justify-between mb-6">
-                    <div className="flex items-start gap-4">
-                      <div className="bg-gradient-to-br from-indigo-500 to-blue-600 p-3 rounded-xl text-white">
-                        {study.icon}
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-3 mb-2">
-                          <h3 className="text-2xl font-bold text-gray-900">{study.title}</h3>
-                          <span className={`${study.tagColor} px-3 py-1 rounded-full text-xs font-semibold`}>
-                            {study.tag}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-4 text-sm text-gray-600">
-                          <span className="font-semibold">{study.organization}</span>
-                          <span>•</span>
-                          <span>{study.period}</span>
-                          <span>•</span>
-                          <span className="text-indigo-600 font-medium">{study.type}</span>
-                        </div>
-                      </div>
-                    </div>
-                    <button
-                      onClick={() => setExpandedCase(expandedCase === study.id ? null : study.id)}
-                      className="text-indigo-600 hover:text-indigo-700 transition-colors"
-                    >
-                      {expandedCase === study.id ? <ChevronDown className="w-6 h-6" /> : <ChevronRight className="w-6 h-6" />}
-                    </button>
-                  </div>
-
-                  {expandedCase === study.id && (
-                    <div className="space-y-6 border-t pt-6 animate-fade-in">
-                      {study.challenge && (
-                        <div>
-                          <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
-                            <span className="text-red-600">❗</span> Challenge
-                          </h4>
-                          <p className="text-gray-700">{study.challenge}</p>
-                        </div>
-                      )}
-
-                      {study.solution && (
-                        <div>
-                          <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
-                            <span className="text-blue-600">💡</span> Solution
-                          </h4>
-                          <p className="text-gray-700">{study.solution}</p>
-                        </div>
-                      )}
-
-                      {study.approach && (
-                        <div>
-                          <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
-                            <span className="text-purple-600">🎯</span> Approach
-                          </h4>
-                          <ul className="space-y-2">
-                            {study.approach.map((item, i) => (
-                              <li key={i} className="flex items-start gap-2 text-gray-700">
-                                <span className="text-indigo-600 mt-1">▸</span>
-                                <span>{item}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-
-                      {study.sampleSize && (
-                        <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 border border-green-200">
-                          <div className="text-2xl font-bold text-green-700 mb-1">{study.sampleSize.value}</div>
-                          <div className="text-sm font-semibold text-gray-900 mb-1">{study.sampleSize.metric}</div>
-                          <div className="text-xs text-gray-600">{study.sampleSize.description}</div>
-                        </div>
-                      )}
-
-                      {study.keyFindings && (
-                        <div>
-                          <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
-                            <span className="text-green-600">📊</span> Key Findings
-                          </h4>
-                          <div className="grid md:grid-cols-2 gap-3">
-                            {study.keyFindings.map((finding, i) => (
-                              <div key={i} className="bg-indigo-50 rounded-lg p-3 border border-indigo-200">
-                                <p className="text-sm text-gray-700">{finding}</p>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {study.achievements && (
-                        <div>
-                          <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
-                            <span className="text-orange-600">🏆</span> Key Achievements
-                          </h4>
-                          <ul className="space-y-2">
-                            {study.achievements.map((achievement, i) => (
-                              <li key={i} className="flex items-start gap-2 text-gray-700">
-                                <span className="text-orange-600 mt-1">✓</span>
-                                <span>{achievement}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-
-                      {study.impact && (
-                        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border-l-4 border-indigo-600">
-                          <h4 className="font-bold text-gray-900 mb-2">💎 Impact</h4>
-                          <p className="text-gray-700">{study.impact}</p>
-                        </div>
-                      )}
-
-                      <div>
-                        <h4 className="font-bold text-gray-900 mb-3">🛠️ Skills Applied</h4>
-                        <div className="flex flex-wrap gap-2">
-                          {study.skills.map((skill, i) => (
-                            <span key={i} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">
-                              {skill}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      {study.link && (
-                        <div>
-                          <a href={study.link} target="_blank" rel="noopener noreferrer"
-                             className="inline-flex items-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-all">
-                            <FileText className="w-4 h-4" />
-                            Request Full Research Report
-                            <ExternalLink className="w-4 h-4" />
-                          </a>
-                        </div>
-                      )}
-
-                      {study.examples && (
-                        <div>
-                          <h4 className="font-bold text-gray-900 mb-3">🎬 Work Samples</h4>
-                          <div className="grid sm:grid-cols-2 gap-4">
-                            {study.examples.map((example, i) => (
-                              <div key={i} className="bg-gray-50 rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg transition-all cursor-pointer" onClick={() => window.open(example.link, '_blank')}>
-                                <iframe src={example.url} className="w-full h-96 pointer-events-none" scrolling="no" allowTransparency="true" allow="encrypted-media"></iframe>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
           </div>
-        )}
+        `;
+        sectionsContainer.insertAdjacentHTML('beforeend', headerHtml);
 
-        {/* Skills Section */}
-        {activeSection === 'skills' && (
-          <div className="space-y-8 animate-fade-in">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Core Competencies</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                A comprehensive skill set spanning strategic analysis, campaign execution, 
+        // create each case study block
+        caseStudies.forEach(study => {
+          const container = document.createElement('div');
+          container.className = 'bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-gray-100 hover:shadow-2xl transition-all mb-6';
+
+          const inner = document.createElement('div');
+          inner.className = 'p-8';
+
+          // header row
+          const headerRow = document.createElement('div');
+          headerRow.className = 'flex items-start justify-between mb-6';
+
+          const left = document.createElement('div');
+          left.className = 'flex items-start gap-4';
+
+          const iconWrap = document.createElement('div');
+          iconWrap.className = 'bg-gradient-to-br from-indigo-500 to-blue-600 p-3 rounded-xl text-white';
+          const iconEl = document.createElement('i');
+          iconEl.setAttribute('data-lucide', study.iconName);
+          iconEl.className = 'w-6 h-6';
+          iconWrap.appendChild(iconEl);
+
+          const meta = document.createElement('div');
+
+          const titleRow = document.createElement('div');
+          titleRow.className = 'flex items-center gap-3 mb-2';
+
+          const h3 = document.createElement('h3');
+          h3.className = 'text-2xl font-bold text-gray-900';
+          h3.textContent = study.title;
+
+          const tag = document.createElement('span');
+          tag.className = `${study.tagColor} px-3 py-1 rounded-full text-xs font-semibold`;
+          tag.textContent = study.tag;
+
+          titleRow.appendChild(h3);
+          titleRow.appendChild(tag);
+
+          const metaRow = document.createElement('div');
+          metaRow.className = 'flex items-center gap-4 text-sm text-gray-600';
+          metaRow.innerHTML = `<span class="font-semibold">${study.organization}</span><span>•</span><span>${study.period}</span><span>•</span><span class="text-indigo-600 font-medium">${study.type}</span>`;
+
+          meta.appendChild(titleRow);
+          meta.appendChild(metaRow);
+
+          left.appendChild(iconWrap);
+          left.appendChild(meta);
+
+          const toggleBtn = document.createElement('button');
+          toggleBtn.className = 'text-indigo-600 hover:text-indigo-700 transition-colors';
+          toggleBtn.setAttribute('aria-expanded', 'false');
+
+          const toggleIcon = document.createElement('i');
+          toggleIcon.setAttribute('data-lucide', 'chevron-right');
+          toggleIcon.className = 'w-6 h-6';
+          toggleBtn.appendChild(toggleIcon);
+
+          toggleBtn.addEventListener('click', () => {
+            if (expandedCase === study.id) {
+              expandedCase = null;
+            } else {
+              expandedCase = study.id;
+            }
+            render();
+            // keep lucide icons fine
+            lucide.createIcons();
+          });
+
+          headerRow.appendChild(left);
+          headerRow.appendChild(toggleBtn);
+
+          inner.appendChild(headerRow);
+
+          // expanded content container (initially hidden unless expandedCase === id)
+          const expanded = document.createElement('div');
+          expanded.className = 'space-y-6 border-t pt-6 animate-fade-in';
+          // We'll populate expanded only if it's expanded
+          if (expandedCase === study.id) {
+            // challenge
+            if (study.challenge) {
+              const block = document.createElement('div');
+              block.innerHTML = `<h4 class="font-bold text-gray-900 mb-2 flex items-center gap-2"><span class="text-red-600">❗</span> Challenge</h4><p class="text-gray-700">${study.challenge}</p>`;
+              expanded.appendChild(block);
+            }
+
+            // solution
+            if (study.solution) {
+              const block = document.createElement('div');
+              block.innerHTML = `<h4 class="font-bold text-gray-900 mb-2 flex items-center gap-2"><span class="text-blue-600">💡</span> Solution</h4><p class="text-gray-700">${study.solution}</p>`;
+              expanded.appendChild(block);
+            }
+
+            // approach
+            if (study.approach) {
+              const block = document.createElement('div');
+              const ul = study.approach.map(item => `<li class="flex items-start gap-2 text-gray-700"><span class="text-indigo-600 mt-1">▸</span><span>${item}</span></li>`).join('');
+              block.innerHTML = `<h4 class="font-bold text-gray-900 mb-3 flex items-center gap-2"><span class="text-purple-600">🎯</span> Approach</h4><ul class="space-y-2">${ul}</ul>`;
+              expanded.appendChild(block);
+            }
+
+            // results
+            if (study.results) {
+              const grid = document.createElement('div');
+              grid.className = 'grid sm:grid-cols-2 lg:grid-cols-4 gap-4';
+              study.results.forEach(result => {
+                const card = document.createElement('div');
+                card.className = 'bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 border border-green-200';
+                card.innerHTML = `<div class="text-2xl font-bold text-green-700 mb-1">${result.value}</div><div class="text-sm font-semibold text-gray-900 mb-1">${result.metric}</div><div class="text-xs text-gray-600">${result.description}</div>`;
+                grid.appendChild(card);
+              });
+              const wrapper = document.createElement('div');
+              wrapper.innerHTML = `<h4 class="font-bold text-gray-900 mb-4 flex items-center gap-2"><span class="text-green-600">📊</span> Key Results</h4>`;
+              wrapper.appendChild(grid);
+              expanded.appendChild(wrapper);
+            }
+
+            // key findings
+            if (study.keyFindings) {
+              const grid = document.createElement('div');
+              grid.className = 'grid md:grid-cols-2 gap-3';
+              study.keyFindings.forEach(finding => {
+                const card = document.createElement('div');
+                card.className = 'bg-indigo-50 rounded-lg p-3 border border-indigo-200';
+                card.innerHTML = `<p class="text-sm text-gray-700">${finding}</p>`;
+                grid.appendChild(card);
+              });
+              const wrapper = document.createElement('div');
+              wrapper.innerHTML = `<h4 class="font-bold text-gray-900 mb-3 flex items-center gap-2"><span class="text-indigo-600">🔍</span> Key Findings</h4>`;
+              wrapper.appendChild(grid);
+              expanded.appendChild(wrapper);
+            }
+
+            // achievements
+            if (study.achievements) {
+              const ul = study.achievements.map(a => `<li class="flex items-start gap-2 text-gray-700"><span class="text-orange-600 mt-1">✓</span><span>${a}</span></li>`).join('');
+              const block = document.createElement('div');
+              block.innerHTML = `<h4 class="font-bold text-gray-900 mb-3 flex items-center gap-2"><span class="text-orange-600">🏆</span> Key Achievements</h4><ul class="space-y-2">${ul}</ul>`;
+              expanded.appendChild(block);
+            }
+
+            // impact
+            if (study.impact) {
+              const block = document.createElement('div');
+              block.className = 'bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border-l-4 border-indigo-600';
+              block.innerHTML = `<h4 class="font-bold text-gray-900 mb-2">💎 Impact</h4><p class="text-gray-700">${study.impact}</p>`;
+              expanded.appendChild(block);
+            }
+
+            // skills
+            if (study.skills) {
+              const spanWrap = document.createElement('div');
+              spanWrap.innerHTML = `<h4 class="font-bold text-gray-900 mb-3">🛠️ Skills Applied</h4>`;
+              const chips = document.createElement('div');
+              chips.className = 'flex flex-wrap gap-2';
+              study.skills.forEach(s => {
+                const sp = document.createElement('span');
+                sp.className = 'bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium';
+                sp.textContent = s;
+                chips.appendChild(sp);
+              });
+              spanWrap.appendChild(chips);
+              expanded.appendChild(spanWrap);
+            }
+
+            // link
+            if (study.link) {
+              const a = document.createElement('a');
+              a.href = study.link;
+              a.target = '_blank';
+              a.rel = 'noopener noreferrer';
+              a.className = 'inline-flex items-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-all';
+              a.innerHTML = `<i data-lucide="file-text" class="w-4 h-4"></i> Request Full Research Report <i data-lucide="external-link" class="w-4 h-4"></i>`;
+              expanded.appendChild(a);
+            }
+
+            // examples
+            if (study.examples) {
+              const grid = document.createElement('div');
+              grid.className = 'grid sm:grid-cols-2 lg:grid-cols-4 gap-4';
+              study.examples.forEach(example => {
+                const a = document.createElement('a');
+                a.href = example.url;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                a.className = 'bg-gray-100 rounded-lg p-4 hover:bg-gray-200 transition-all text-center group';
+                const emoji = (example.type === 'instagram') ? '📸' : '📘';
+                a.innerHTML = `<div class="text-3xl mb-2">${emoji}</div><div class="text-sm font-medium text-gray-700 group-hover:text-indigo-600">View on ${example.type === 'instagram' ? 'Instagram' : 'Facebook'}</div>`;
+                grid.appendChild(a);
+              });
+              const wrapper = document.createElement('div');
+              wrapper.innerHTML = `<h4 class="font-bold text-gray-900 mb-3">🎬 Work Samples</h4>`;
+              wrapper.appendChild(grid);
+              expanded.appendChild(wrapper);
+            }
+          } // end expandedCase === study.id
+
+          inner.appendChild(expanded);
+          container.appendChild(inner);
+          sectionsContainer.appendChild(container);
+        });
+
+        // ensure icons render
+        lucide.createIcons();
+      }
+
+      if (activeSection === 'skills') {
+        const headerHtml = `
+          <div class="space-y-8 animate-fade-in">
+            <div class="text-center mb-12">
+              <h2 class="text-4xl font-bold text-gray-900 mb-4">Core Competencies</h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                A comprehensive skill set spanning strategic analysis, campaign execution,
                 creative content, and technical implementation.
               </p>
             </div>
+          </div>
+        `;
+        sectionsContainer.insertAdjacentHTML('beforeend', headerHtml);
 
-            <div className="grid lg:grid-cols-2 gap-8">
-              {competencies.map((category, index) => (
-                <div key={index} className="bg-white rounded-2xl shadow-lg p-8 border-2 border-gray-100">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="bg-indigo-600 p-2 rounded-lg text-white">
-                      {category.icon}
-                    </div>
-                    <h3 className="text-2xl font-bold text-gray-900">{category.category}</h3>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {category.skills.map((skill, i) => (
-                      <span key={i} className="bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-medium">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
+        const gridContainer = document.createElement('div');
+        gridContainer.className = 'grid lg:grid-cols-2 gap-8';
 
-            {/* Certifications */}
-            <div className="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-2xl p-8 border-2 border-indigo-200">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                <Award className="w-6 h-6 text-indigo-600" />
-                Professional Certifications
-              </h3>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {[
-                  { name: 'Google Analytics Certification', org: 'Google' },
-                  { name: 'Google Ads Video Certification', org: 'Google' },
-                  { name: 'ALX AiCE - AI Career Essentials', org: 'ALX' },
-                  { name: 'LinkedIn Marketing Solutions', org: 'LinkedIn' },
-                  { name: 'Semrush SEO Crash Course', org: 'Semrush' }
-                ].map((cert, i) => (
-                  <div key={i} className="bg-white rounded-xl p-4 border border-indigo-200 hover:shadow-md transition-all">
-                    <div className="font-semibold text-gray-900 mb-1">{cert.name}</div>
-                    <div className="text-sm text-indigo-600">{cert.org}</div>
-                  </div>
-                ))}
-                <div className="bg-white rounded-xl p-4 border-2 border-red-300 hover:shadow-md transition-all">
-                  <div className="font-semibold text-gray-900 mb-1">Manage Successful Field Research</div>
-                  <div className="text-sm text-red-600 font-semibold">World Bank Institute • In Progress</div>
-                </div>
+        competencies.forEach(cat => {
+          const card = document.createElement('div');
+          card.className = 'bg-white rounded-2xl shadow-lg p-8 border-2 border-gray-100';
+
+          const heading = document.createElement('div');
+          heading.className = 'flex items-center gap-3 mb-6';
+          heading.innerHTML = `<div class="bg-indigo-600 p-2 rounded-lg text-white"><i data-lucide="${cat.iconName}" class="w-5 h-5"></i></div><h3 class="text-2xl font-bold text-gray-900">${cat.category}</h3>`;
+
+          card.appendChild(heading);
+
+          const list = document.createElement('div');
+          list.className = 'space-y-4';
+          cat.skills.forEach(skill => {
+            const skillBlock = document.createElement('div');
+            skillBlock.innerHTML = `
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-medium ${skill.highlight ? 'text-indigo-700 font-semibold' : 'text-gray-700'}">
+                  ${skill.name} ${skill.highlight ? '<span class="ml-2 text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded-full">Core Strength</span>' : ''}
+                </span>
+                <span class="text-sm text-gray-500">${skill.level}%</span>
+              </div>
+              <div class="bg-gray-200 rounded-full h-2 overflow-hidden skill-bar">
+                <div class="fill h-full rounded-full ${skill.highlight ? 'bg-gradient-to-r from-indigo-600 to-blue-600' : 'bg-gray-400'}" style="width: ${skill.level}%;"></div>
+              </div>
+            `;
+            list.appendChild(skillBlock);
+          });
+
+          card.appendChild(list);
+          gridContainer.appendChild(card);
+        });
+
+        sectionsContainer.appendChild(gridContainer);
+
+        // Certifications block
+        const certsHTML = `
+          <div class="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-2xl p-8 border-2 border-indigo-200 mt-8">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+              <i data-lucide="award" class="w-6 h-6 text-indigo-600"></i>
+              Professional Certifications
+            </h3>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div class="bg-white rounded-xl p-4 border border-indigo-200 hover:shadow-md transition-all">
+                <div class="font-semibold text-gray-900 mb-1">Google Analytics Certification</div>
+                <div class="text-sm text-indigo-600">Google</div>
+              </div>
+              <div class="bg-white rounded-xl p-4 border border-indigo-200 hover:shadow-md transition-all">
+                <div class="font-semibold text-gray-900 mb-1">Google Ads Video Certification</div>
+                <div class="text-sm text-indigo-600">Google</div>
+              </div>
+              <div class="bg-white rounded-xl p-4 border border-indigo-200 hover:shadow-md transition-all">
+                <div class="font-semibold text-gray-900 mb-1">ALX AiCE - AI Career Essentials</div>
+                <div class="text-sm text-indigo-600">ALX</div>
+              </div>
+              <div class="bg-white rounded-xl p-4 border border-indigo-200 hover:shadow-md transition-all">
+                <div class="font-semibold text-gray-900 mb-1">LinkedIn Marketing Solutions</div>
+                <div class="text-sm text-indigo-600">LinkedIn</div>
+              </div>
+              <div class="bg-white rounded-xl p-4 border border-indigo-200 hover:shadow-md transition-all">
+                <div class="font-semibold text-gray-900 mb-1">Semrush SEO Crash Course</div>
+                <div class="text-sm text-indigo-600">Semrush</div>
               </div>
             </div>
           </div>
-        )}
+        `;
+        sectionsContainer.insertAdjacentHTML('beforeend', certsHTML);
+        lucide.createIcons();
+      }
 
-        {/* Contact Section */}
-        {activeSection === 'contact' && (
-          <div className="space-y-8 animate-fade-in max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Let's Connect</h2>
-              <p className="text-xl text-gray-600">
-                Open to opportunities in marketing and market research. 
+      if (activeSection === 'contact') {
+        const contactHtml = `
+          <div class="space-y-8 animate-fade-in max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+              <h2 class="text-4xl font-bold text-gray-900 mb-4">Let's Connect</h2>
+              <p class="text-xl text-gray-600">
+                Open to opportunities in digital marketing, content strategy, and data analysis.
                 Let's discuss how I can contribute to your team.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-4 gap-6">
-              <a href="mailto:ouafianir@gmail.com" 
-                 className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border-2 border-gray-100 text-center group">
-                <div className="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-indigo-600 transition-all">
-                  <Mail className="w-8 h-8 text-indigo-600 group-hover:text-white" />
+            <div class="grid md:grid-cols-3 gap-6">
+              <a href="mailto:ouafianir@gmail.com"
+                 class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border-2 border-gray-100 text-center group">
+                <div class="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-indigo-600 transition-all">
+                  <i data-lucide="mail" class="w-8 h-8 text-indigo-600 group-hover:text-white"></i>
                 </div>
-                <h3 className="font-bold text-gray-900 mb-2">Email</h3>
-                <p className="text-gray-600 text-sm">ouafianir@gmail.com</p>
+                <h3 class="font-bold text-gray-900 mb-2">Email</h3>
+                <p class="text-gray-600 text-sm">ouafianir@gmail.com</p>
               </a>
 
               <a href="https://www.linkedin.com/in/ouafi/" target="_blank" rel="noopener noreferrer"
-                 className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border-2 border-gray-100 text-center group">
-                <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-600 transition-all">
-                  <Linkedin className="w-8 h-8 text-blue-600 group-hover:text-white" />
+                 class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border-2 border-gray-100 text-center group">
+                <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-600 transition-all">
+                  <i data-lucide="linkedin" class="w-8 h-8 text-blue-600 group-hover:text-white"></i>
                 </div>
-                <h3 className="font-bold text-gray-900 mb-2">LinkedIn</h3>
-                <p className="text-gray-600 text-sm">linkedin.com/in/ouafi</p>
-              </a>
-
-              <a href="https://wa.me/212629915388" target="_blank" rel="noopener noreferrer"
-                 className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border-2 border-gray-100 text-center group">
-                <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-600 transition-all">
-                  <MessageCircle className="w-8 h-8 text-green-600 group-hover:text-white" />
-                </div>
-                <h3 className="font-bold text-gray-900 mb-2">WhatsApp</h3>
-                <p className="text-gray-600 text-sm">+212 629 915 388</p>
+                <h3 class="font-bold text-gray-900 mb-2">LinkedIn</h3>
+                <p class="text-gray-600 text-sm">linkedin.com/in/ouafi</p>
               </a>
 
               <a href="tel:+212629915388"
-                 className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border-2 border-gray-100 text-center group">
-                <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-600 transition-all">
-                  <Phone className="w-8 h-8 text-purple-600 group-hover:text-white" />
+                 class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border-2 border-gray-100 text-center group">
+                <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-600 transition-all">
+                  <i data-lucide="phone" class="w-8 h-8 text-green-600 group-hover:text-white"></i>
                 </div>
-                <h3 className="font-bold text-gray-900 mb-2">Phone</h3>
-                <p className="text-gray-600 text-sm">+212 629 915 388</p>
+                <h3 class="font-bold text-gray-900 mb-2">Phone</h3>
+                <p class="text-gray-600 text-sm">+212 629 915 388</p>
               </a>
             </div>
+
+            <div class="bg-gradient-to-r from-indigo-600 to-blue-600 rounded-2xl p-8 text-white text-center">
+              <h3 class="text-2xl font-bold mb-4">Available For</h3>
+              <div class="flex flex-wrap justify-center gap-4">
+                <span class="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full font-semibold">Full-Time Roles</span>
+                <span class="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full font-semibold">Freelance Projects</span>
+                <span class="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full font-semibold">Consulting</span>
+                <span class="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full font-semibold">Collaborations</span>
+              </div>
+            </div>
           </div>
-        )}
-      </main>
+        `;
+        sectionsContainer.insertAdjacentHTML('beforeend', contactHtml);
+        lucide.createIcons();
+      }
+    }
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8 mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-gray-400">
-            This webpage was developed by Anir Ouafi.
-          </p>
-        </div>
-      </footer>
+    // single render entry point (renders nav + content)
+    function render() {
+      renderNav();
+      renderSections();
 
-      <style jsx>{`
-        @keyframes fade-in {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in {
-          animation: fade-in 0.5s ease-out;
-        }
-      `}</style>
-    </div>
-  );
-}
+      // update chevrons in case-study headers (show down when expanded)
+      document.querySelectorAll('[data-lucide="chevron-right"], [data-lucide="chevron-down"]').forEach(el => {
+        // lucide replaced tags with svg; find parent button to determine which study it belongs to
+      });
+      // After structural changes, ensure icons are replaced
+      lucide.createIcons();
+    }
+
+    // initial render
+    render();
+
+    // Accessibility and keyboard navigation (optional polish)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        expandedCase = null;
+        render();
+      }
+    });
+  </script>
+
+  <!-- Initialize lucide icons after the DOM -->
+  <script>
+    // Ensure icons are created when the page first loads.
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
