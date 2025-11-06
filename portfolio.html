@@ -556,14 +556,14 @@ function renderNav(){
     const btn = document.createElement('button');
     btn.className = 'nav-btn' + (activeSection===s.id ? ' active' : '');
     btn.innerHTML = s.icon + '<span style="display:inline-block;">'+s.label+'</span>';
-    btn.onclick = ()=> { 
-      activeSection = s.id; 
-      expandedCase = null; 
-      const sectionEl = document.getElementById('section-'+s.id);
-      if(sectionEl) {
-        sectionEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    };
+btn.onclick = ()=> { 
+  activeSection = s.id;
+  renderNav(); // ADD THIS LINE to update button states immediately
+  const sectionEl = document.getElementById('section-'+s.id);
+  if(sectionEl) {
+    sectionEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+};
     navRoot.appendChild(btn);
   });
 }
@@ -735,16 +735,13 @@ function renderWork(){
 
   // Attach expand handlers
   document.querySelectorAll('.expand-btn').forEach(btn=>{
-    btn.addEventListener('click', (e)=>{
-      e.preventDefault();
-      const id = btn.getAttribute('data-id');
-      const panel = document.getElementById('expanded-'+id);
-      const currentlyOpen = panel.style.display === 'block';
-      // close all
-      document.querySelectorAll('.expanded').forEach(p=>p.style.display='none');
-      document.querySelectorAll('.expand-btn').forEach(b=> b.innerHTML = iconSVG('chevronRight',18));
-
-if(!currentlyOpen){
+btn.addEventListener('click', (e)=>{
+  e.preventDefault();
+  const id = btn.getAttribute('data-id');
+  const panel = document.getElementById('expanded-'+id);
+  const currentlyOpen = panel.style.display === 'block';
+  // Toggle only this panel (REMOVED: close all logic)
+  if(!currentlyOpen){
   // open this and populate
   expandedCase = id;
   btn.innerHTML = iconSVG('chevronDown',18);
@@ -752,9 +749,10 @@ if(!currentlyOpen){
   panel.style.display = 'block';
   panel.innerHTML = buildExpandedHTML(caseStudies.find(s=>s.id===id));
   window.scrollTo(0, scrollY); // RESTORE SCROLL POSITION
-      } else {
-        expandedCase = null;
-      }
+} else {
+    btn.innerHTML = iconSVG('chevronRight',18);
+    panel.style.display = 'none';
+  }
     });
   });
 }
